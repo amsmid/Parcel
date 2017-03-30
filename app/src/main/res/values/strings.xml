@@ -1,0 +1,165 @@
+<resources>
+    <string name="app_name">Parcel</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="no_account_yet_create_one">No account yet? Create one</string>
+    <string name="password">Password</string>
+    <string name="url">http://whitebird.co.in/parcel/</string>
+    <string name="loginKey">userLogin.php</string>
+    <string name="historyListKey">list.php</string>
+    <string name="historyListOwnerKey">history.php</string>
+    <string name="fetchHubListKey">fetchHub.php</string>
+    <string name="getLanLonKey">track.php</string>
+    <string name="locationSendKey">location.php</string>
+    <string name="pendingParcelListKey">pending.php</string>
+    <string name="sendListHubSelectedKey">addParcel.php</string>
+    <string name="mainListofOwner">list.php</string>
+    <string name="transManageAcceptList">tpending.php</string>
+    <string name="transManageDeliveredList">tpicked.php</string>
+    <string name="acceptPendingOrder">accept.php</string>
+    <string name="acceptByOwnerPickOrder">pickedParcel.php</string>
+    <string name="receivedParcelBtnOrder">deliveredParcel.php</string>
+    <string name="signupKey">userRegister.php</string>
+    <string name="updateProfileKey">userUpdate.php</string>
+    <string name="updateProfilePasswordKey">userPassword.php</string>
+    <string name="name">Name</string>
+    <string name="mob_number">Mobile No.</string>
+    <string name="address">Address</string>
+    <string name="pincode">PinCode</string>
+    <string name="state">State</string>
+    <string name="city">City</string>
+    <string name="landmark">LandMark</string>
+    <string name="conform_password">Conform Password</string>
+    <string name="register">Don\'t Have Account Need Signup?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="signin_from_signup_page">Have an account ! Sign In?</string>
+    <string name="Owner">Owner</string>
+    <string name="transporter">Transporter</string>
+    <string name="title_activity_main_parcel">Parcel</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="log_out">Log Out</string>
+    <string name="profile">Profile</string>
+    <string name="profile_name">Name :</string>
+    <string name="profile_email">Email :</string>
+    <string name="profile_mobno">Mobile No :</string>
+
+    <string-array name="city_area">
+        <item>Inter-City</item>
+        <item>Intra-City</item>
+    </string-array>
+    <string-array name="vehicletype">
+        <item>Bike</item>
+        <item>Mini Van</item>
+        <item>Truck</item>
+    </string-array>
+
+    <string-array name="new_item_type">
+        <item>Bike</item>
+        <item>Documents</item>
+        <item>Small Stuff</item>
+        <item>Medium Stuff</item>
+        <item>Large Stuff</item>
+    </string-array>
+
+    <string name="key_result">result</string>
+    <string name="key_uid">uid</string>
+    <string name="key_name">name</string>
+    <string name="key_email">email</string>
+    <string name="key_mobileNo">mobileNo</string>
+    <string name="key_password">password</string>
+    <string name="key_address">address</string>
+    <string name="key_pincode">pincode</string>
+    <string name="key_stateName">stateName</string>
+    <string name="key_cityName">cityName</string>
+    <string name="key_type">type</string>
+    <string name="key_interCity">interCity</string>
+    <string name="key_vehicle">vehicle</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="save_profile">Save</string>
+    <string name="change_password">Change Password</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_conform_password">New Conform Password</string>
+    <string name="new_password">New Password</string>
+    <string name="title_activity_main_parcel_transporter">Transporter</string>
+    <string name="item_image">Item Image</string>
+    <string name="select_type_of_item">Select Type Of Item :</string>
+    <string name="size">Size</string>
+    <string name="weight">Weight</string>
+    <string name="select_name_of_hub">Select Name Of Hub :</string>
+    <string name="name_of_hub">Name Of Hub</string>
+    <string name="address_of_hub">Select Address Of Destination Hub :</string>
+    <string name="address_of_destination_hub">Address Of Destination Hub</string>
+    <string name="submit_parcel">Submit Parcel</string>
+
+
+    <!--Sender And Receiver Data Key For Array List Of Data User-->
+
+    <string-array name="keyArrayList">
+        <item>senderId</item>
+        <item>receiverId</item>
+    </string-array>
+
+    <string name="server_key_success">success</string>
+    <string name="server_key_message">message</string>
+    <string name="server_key_Profile">Profile</string>
+    <string name="server_key_result">result</string>
+    <string name="server_key_pending">pending</string>
+    <string name="server_key_status">status</string>
+    <string name="server_key_hub">hub</string>
+    <string name="server_key_uid">uid</string>
+    <string name="server_key_history">history</string>
+    <string name="server_key_oldPassword">oldPassword</string>
+    <string name="server_key_newPassword">newPassword</string>
+    <string name="server_key_user">user</string>
+    <string name="server_key_outgoing">outgoing</string>
+    <string name="server_key_incoming">incoming</string>
+    <string name="server_key_transId">transId</string>
+    <string name="server_key_picked">picked</string>
+    <string name="server_key_count">count</string>
+    <string name="server_key_accepted">accepted</string>
+    <string name="server_key_email">email</string>
+    <string name="server_key_password">password</string>
+    <string name="server_key_name">name</string>
+    <string name="server_key_mobileNo">mobileNo</string>
+    <string name="server_key_stateName">stateName</string>
+    <string name="server_key_cityName">cityName</string>
+    <string name="server_key_lastLogin">lastLogin</string>
+    <string name="server_key_vehicle">vehicle</string>
+    <string name="server_key_interCity">interCity</string>
+    <string name="server_key_senderAd">senderAd</string>
+    <string name="server_key_senderId">senderId</string>
+    <string name="server_key_sender">sender</string>
+    <string name="server_key_senderPin">senderPin</string>
+    <string name="server_key_receiverAd">receiverAd</string>
+    <string name="server_key_receiverId">receiverId</string>
+    <string name="server_key_receiver">receiver</string>
+    <string name="server_key_orderNumber">orderNumber</string>
+    <string name="server_key_item">item</string>
+    <string name="server_key_address">address</string>
+    <string name="server_key_fare">fare</string>
+    <string name="server_key_parcel">parcel</string>
+    <string name="server_key_type">type</string>
+    <string name="server_key_userType">userType</string>
+    <string name="server_key_pincode">pincode</string>
+    <string name="server_key_time">time</string>
+    <string name="server_key_timeline">timeline</string>
+    <string name="server_key_landmark">landmark</string>
+    <string name="server_key_size">size</string>
+    <string name="server_key_weight">weight</string>
+    <string name="server_key_dispatchTime">dispatchTime</string>
+    <string name="server_key_senderCity">senderCity</string>
+    <string name="server_key_senderState">senderState</string>
+    <string name="server_key_senderMo">senderMo</string>
+    <string name="server_key_senderLand">senderLand</string>
+    <string name="server_key_receiverCity">receiverCity</string>
+    <string name="server_key_receiverState">receiverState</string>
+    <string name="server_key_image">image1</string>
+    <string name="server_key_receiverMo">receiverMo</string>
+    <string name="server_key_receiverLand">receiverLand</string>
+    <string name="server_key_transName">transName</string>
+    <string name="server_key_transMobile">transMobile</string>
+</resources>

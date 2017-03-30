@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.whitebird.parcel">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="com.whitebird.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyB6elF7Om2wXO-TXrdjeKsMiFB1lIebD4o" />
+
+        <activity
+            android:name=".ParcelSplashScreen"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SignIn.ClsSignIn"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".SignUp.ClsSignUp"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Owner.Profile.OwnerActivity.ActMainActivityParcelOwner"
+            android:label="@string/title_activity_main_parcel"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Owner.Profile.ProfileActivity.ClsProfileDisplay"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Owner.Profile.ProfileActivity.EditProfileActivity"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Transporter.MainActivityParcelTransporter"
+            android:label="@string/title_activity_main_parcel_transporter"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Owner.Profile.HistoryPageForOwner.MainActivityHistoryList"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Owner.Profile.HistoryPageForOwner.ClsFullSendHistoryListView"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".AddParcelActivity.MainActivityAddNewParcel"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Owner.Profile.OwnerActivity.ActPendingOwnerFullView"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Owner.Profile.OwnerActivity.ActProcessingOwnerFullView"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Owner.Profile.OwnerActivity.ActMainManage"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Transporter.MainActivityPickShipment"
+            tools:ignore="InnerclassSeparator" />
+        <activity android:name=".Transporter$ActFullAcceptPendingParcelView" />
+        <activity android:name=".Owner$Profile$OwnerActivity$ActAcceptedOwnerFullView" />
+        <activity android:name=".Transporter$TransActManageParcelDelivery" />
+        <activity android:name=".Transporter$ActTransManageFullAcceptedView" />
+        <activity android:name=".Transporter$ActTransManageFullDeliveredView" />
+
+        <receiver
+            android:name=".Transporter.MyAlarmReceiver"
+            android:exported="true"
+            tools:ignore="InnerclassSeparator">
+            <intent-filter>
+                <action android:name="android.intent.action.NOTIFY" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".Transporter.MyGpsTrackerService"
+            tools:ignore="InnerclassSeparator" />
+
+        <activity
+            android:name=".Owner.Profile.OwnerActivity.ActMapView"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Owner.Profile.OwnerActivity.ActOwnerTrackParcel"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Owner.Profile.OwnerActivity.ActReceivedOwnerFullView"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Transporter.TransActManageParcelDelivery"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Transporter.ActTransManageFullAcceptedView"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Transporter.ActTransManageFullDeliveredView"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Owner.Profile.OwnerActivity.ActAcceptedOwnerFullView"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Transporter.ActFullAcceptPendingParcelView"
+            tools:ignore="InnerclassSeparator" />
+        <activity android:name=".Transporter.TransporterProfile.ActTransProfileDisplay" />
+        <activity android:name=".Transporter.TransporterProfile.ActTransProfileEdit" />
+        <activity android:name=".Transporter.TransHistoryPage.ActTransHistory" />
+        <activity android:name=".Transporter.TransHistoryPage.ActTransHistoryFullView" />
+        <activity android:name=".Owner.Profile.HistoryPageForOwner.ClsFullReceiveHistoryListView"></activity>
+    </application>
+
+</manifest>

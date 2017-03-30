@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.whitebird.parcel.SignUp.ClsSignUp"
+    android:fitsSystemWindows="true">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name"
+        android:inputType="text"
+        android:maxLength="30"
+        android:id="@+id/signup_name"
+        android:layout_margin="7dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:maxLength="30"
+        android:id="@+id/signup_email"
+        android:layout_margin="7dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/mob_number"
+        android:inputType="number"
+        android:maxLength="10"
+        android:id="@+id/signup_mobile_no"
+        android:layout_margin="7dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:maxLength="15"
+        android:id="@+id/signup_password"
+        android:layout_margin="7dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/conform_password"
+        android:inputType="textPassword"
+        android:maxLength="15"
+        android:id="@+id/signup_conform_password"
+        android:layout_margin="7dp"/>
+
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/address"
+        android:inputType="textPostalAddress"
+        android:maxLength="50"
+        android:id="@+id/signup_address"
+        android:layout_margin="7dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/pincode"
+        android:inputType="number"
+        android:maxLength="6"
+        android:id="@+id/signup_pincode"
+        android:layout_margin="7dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/state"
+        android:inputType="text"
+        android:maxLength="15"
+        android:id="@+id/signup_state"
+        android:layout_margin="7dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/city"
+        android:inputType="text"
+        android:maxLength="15"
+        android:id="@+id/signup_city"
+        android:layout_margin="7dp"/>
+
+
+
+
+        <RadioGroup
+            android:id="@+id/user_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="UselessParent">
+            <RadioButton
+                android:id="@+id/user_owner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Owner"
+                android:layout_alignParentLeft="true"
+                tools:ignore="RtlHardcoded"
+                android:checked="true"
+                android:layout_marginLeft="30dp"/>
+
+            <RadioButton
+                android:id="@+id/user_transport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/transporter"
+                android:layout_alignParentRight="true"
+                tools:ignore="RelativeOverlap,RtlHardcoded"
+                android:checked="false"
+                android:layout_marginRight="30dp"/>
+            </RelativeLayout>
+        </RadioGroup>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_margin="10dp"
+        android:id="@+id/select_city_area">
+    </Spinner>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_margin="10dp"
+        android:id="@+id/select_vehicle">
+    </Spinner>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/main_sign_up"
+        android:background="@color/colorPrimary"
+        android:text="@string/sign_up"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/transperentBackground"
+        android:text="@string/signin_from_signup_page"
+        android:id="@+id/signin_from_signup_page"
+        android:textColor="@color/colorAccent"
+        android:textSize="12sp"
+        android:layout_gravity="center"
+        tools:targetApi="lollipop" />
+
+
+
+
+</LinearLayout>
+</ScrollView>

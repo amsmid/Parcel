@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="com.whitebird.parcel.Owner.Profile.OwnerActivity.ActProcessingOwnerFullView"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/image_full_owner_processing_list"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/processing_model_full_view_address"
+            android:text="Receiver Address :"
+            android:textStyle="bold"
+            android:layout_margin="10dp"
+            tools:ignore="RtlHardcoded" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/address"
+            android:id="@+id/processing_model_full_edit_address"
+            android:layout_margin="10dp"
+            tools:ignore="RtlHardcoded" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/processing_model_full_view_order_no"
+                android:text="Order Number :"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                tools:ignore="RtlHardcoded" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Order Number"
+                android:id="@+id/processing_model_full_edit_order_no"
+                android:layout_margin="10dp"
+                android:layout_toRightOf="@+id/processing_model_full_view_order_no"
+                tools:ignore="RtlHardcoded" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/processing_model_full_view_pick_up"
+                android:text="Order PickUp Time :"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                tools:ignore="RtlHardcoded" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="PickUp Time"
+                android:id="@+id/processing_model_full_edit_pick_up"
+                android:layout_margin="10dp"
+                android:layout_toRightOf="@+id/processing_model_full_view_pick_up"
+                tools:ignore="RtlHardcoded" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/processing_model_full_view_trans_name"
+                android:text="Transporter Name :"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                tools:ignore="RtlHardcoded" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Transporter Name"
+                android:id="@+id/processing_model_full_edit_trans_name"
+                android:layout_margin="10dp"
+                android:layout_toRightOf="@+id/processing_model_full_view_trans_name"
+                tools:ignore="RtlHardcoded" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/processing_model_full_view_type"
+                android:text="Transport Vehicle Type :"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                tools:ignore="RtlHardcoded" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Transport Type"
+                android:id="@+id/processing_model_full_edit_type"
+                android:layout_margin="10dp"
+                android:layout_toRightOf="@+id/processing_model_full_view_type"
+                tools:ignore="RtlHardcoded" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/processing_model_full_view_timeline"
+                android:text="Parcel Reach Time :"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                tools:ignore="RtlHardcoded" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Parcel Reach Time"
+                android:id="@+id/processing_model_full_edit_timeline"
+                android:layout_margin="10dp"
+                android:layout_toRightOf="@+id/processing_model_full_view_timeline"
+                tools:ignore="RtlHardcoded" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/processing_model_full_view_trans_mob"
+                android:text="Transporter MobileNo. :"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                tools:ignore="RtlHardcoded" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Mobile Number"
+                android:id="@+id/processing_model_full_edit_trans_mob"
+                android:layout_margin="10dp"
+                android:layout_toRightOf="@+id/processing_model_full_view_trans_mob"
+                tools:ignore="RtlHardcoded" />
+        </RelativeLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/show_loc"
+            android:text="Show Location"/>
+        <!-- <fragment
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:id="@+id/map"
+             android:name="com.google.android.gms.maps.SupportMapFragment" />-->
+
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.whitebird.parcel.Transporter.MainActivityPickShipment">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:id="@+id/search_text_notation"
+        android:background="@color/colorAccent"
+        android:text="Search Hub List Here!"
+        android:textAlignment="center"
+        android:textSize="30sp"/>
+    <android.support.v7.widget.SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:queryHint="Search Hub For List"
+        android:id="@+id/transport_pick_s_search_hub_list">
+
+    </android.support.v7.widget.SearchView>
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/transport_pick_s_search_hub_list"
+        android:id="@+id/transport_pick_s_list_view_pending_parcel">
+
+    </ListView>
+
+</RelativeLayout>

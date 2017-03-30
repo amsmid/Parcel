@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.whitebird.parcel.Owner.Profile.ProfileActivity.EditProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="com.whitebird.parcel.Owner.Profile.ProfileActivity.EditProfileActivity"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/name"
+            android:inputType="text"
+            android:maxLength="30"
+            android:id="@+id/profile_o_name"
+            android:layout_margin="7dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:maxLength="30"
+            android:id="@+id/profile_o_email"
+            android:layout_margin="7dp"
+            android:editable="false"
+            android:focusable="false"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/mob_number"
+            android:inputType="number"
+            android:maxLength="10"
+            android:id="@+id/profile_o_mobile_no"
+            android:layout_margin="7dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:maxLength="15"
+            android:visibility="gone"
+            android:id="@+id/profile_o_password"
+            android:layout_margin="7dp"
+            android:editable="false"
+            android:focusable="false"/>
+
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/address"
+            android:inputType="textPostalAddress"
+            android:maxLength="50"
+            android:id="@+id/profile_o_address"
+            android:layout_margin="7dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/pincode"
+            android:inputType="number"
+            android:maxLength="6"
+            android:id="@+id/profile_o_pincode"
+            android:layout_margin="7dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/state"
+            android:inputType="text"
+            android:maxLength="15"
+            android:id="@+id/profile_o_state"
+            android:layout_margin="7dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/city"
+            android:inputType="text"
+            android:maxLength="15"
+            android:id="@+id/profile_o_city"
+            android:layout_margin="7dp"/>
+    </LinearLayout>
+</ScrollView>

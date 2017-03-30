@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thank You!"
+        android:textStyle="bold"
+        android:textSize="35sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        tools:ignore="RtlHardcoded" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_parcel_submit_data_source_address_name"
+        android:text="Source Address :"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_margin="10dp"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_parcel_submit_data_source_address_name_view"
+        android:hint="Source Address"
+        android:textSize="15sp"
+        android:layout_margin="10dp"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_parcel_submit_data_destination_address_name"
+        android:text="Destination Address :"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_margin="10dp"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_parcel_submit_data_destination_address_name_view"
+        android:hint="Destination Address"
+        android:textSize="15sp"
+        android:layout_margin="10dp"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_parcel_submit_data_order_number_name"
+        android:text="Order Number :"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_margin="10dp"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_parcel_submit_data_order_number_name_view"
+        android:hint="Order Number"
+        android:textSize="15sp"
+        android:layout_margin="10dp"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_parcel_submit_data_fare_name"
+        android:text="Price :"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_margin="10dp"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_parcel_submit_data_fare_name_view"
+        android:hint="Price"
+        android:textSize="15sp"
+        android:layout_margin="10dp"
+        tools:ignore="RtlHardcoded" />
+
+
+</LinearLayout>
