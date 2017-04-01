@@ -26,7 +26,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginTop="?attr/actionBarSize"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical">
@@ -66,16 +65,6 @@
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/transport_act_main_pick_button"
-            android:layout_margin="20dp"
-            android:padding="20dp"
-            android:visibility="gone"
-            android:text="Pick Shipment"
-            android:theme="@style/MyButton"/>
-
         <android.support.v7.widget.CardView
             android:id="@+id/transport_act_main_card_view_pick_button"
             android:layout_width="match_parent"
@@ -88,8 +77,8 @@
             card_view:cardElevation="10dp">
 
             <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/textView_pick_button"
@@ -107,18 +96,6 @@
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/transport_act_main_delivery_button"
-            android:layout_margin="20dp"
-            android:visibility="gone"
-            android:padding="20dp"
-            android:text="Delivery Shipment"
-            android:theme="@style/MyButton"/>
-
-
         <android.support.v7.widget.CardView
             android:id="@+id/transport_act_main_card_view_delivery_cv"
             android:layout_width="match_parent"
@@ -131,8 +108,8 @@
             card_view:cardElevation="10dp">
 
             <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/textView_delivery_button_tv"

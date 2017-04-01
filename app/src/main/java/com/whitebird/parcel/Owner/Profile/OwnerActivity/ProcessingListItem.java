@@ -6,7 +6,7 @@ package com.whitebird.parcel.Owner.Profile.OwnerActivity;
 
 class ProcessingListItem {
     private String transId,transName,transMobile,pickupTime;
-    private String senderId,receiverId,orderNumber,address,type,pincode,time,dispatchTime,timeline,landmark,size,weight,status,image,senderAd,receiverCity,senderCity,senderState,senderMo,senderLand,receiverState,receiverMo,receiverLand,sender,receiver,senderPin;
+    private String senderId,receiverId,orderNumber,address,type,pincode,time,dispatchTime,timeline,landmark,size,weight,status,image,senderAd,receiverCity,senderCity,senderState,senderMo,senderLand,receiverState,receiverMo,receiverLand,sender,receiver,senderPin,cityName,stateName;
 
     public void setSenderId(String senderId) {
         this.senderId = senderId;
@@ -246,6 +246,22 @@ class ProcessingListItem {
 
     public String getTransId() {
         return transId;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public String getStateName() {
+        return stateName;
     }
 
 }

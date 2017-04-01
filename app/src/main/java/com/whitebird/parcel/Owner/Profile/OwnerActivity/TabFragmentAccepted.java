@@ -26,7 +26,7 @@ import java.util.HashMap;
  * Created by girish on 22/3/17.
  */
 
-class TabFragmentAccepted extends Fragment implements AbsListView.OnScrollListener,ResultInString {
+public class TabFragmentAccepted extends Fragment implements AbsListView.OnScrollListener,ResultInString {
     ListView listViewAccepted;
     SharedPreferenceUserData sharedPreferenceUserData;
     private int previousTotal = 0;
@@ -102,6 +102,7 @@ class TabFragmentAccepted extends Fragment implements AbsListView.OnScrollListen
                 acceptedListItem.setSender(object.getString(getResources().getString(R.string.server_key_sender)));
                 acceptedListItem.setReceiverId(object.getString(getResources().getString(R.string.server_key_receiverId)));
                 acceptedListItem.setReceiver(object.getString(getResources().getString(R.string.server_key_receiver)));
+                acceptedListItem.setReceiverMo(object.getString(getResources().getString(R.string.server_key_receiverMo)));
                 acceptedListItem.setOrderNumber(object.getString(getResources().getString(R.string.server_key_orderNumber)));
                 acceptedListItem.setAddress(object.getString(getResources().getString(R.string.server_key_address)));
                 acceptedListItem.setType(object.getString(getResources().getString(R.string.server_key_type)));
@@ -115,6 +116,8 @@ class TabFragmentAccepted extends Fragment implements AbsListView.OnScrollListen
                 acceptedListItem.setImage(object.getString(getResources().getString(R.string.server_key_image)));
                 acceptedListItem.setTransName(object.getString(getResources().getString(R.string.server_key_transName)));
                 acceptedListItem.setTransMo(object.getString(getResources().getString(R.string.server_key_transMobile)));
+                acceptedListItem.setCityName(object.getString(getResources().getString(R.string.server_key_cityName)));
+                acceptedListItem.setStateName(object.getString(getResources().getString(R.string.server_key_stateName)));
                 GetAcceptedListOwner.getInstance().acceptedListItems.add(acceptedListItem);
             }
             arrayList = new ArrayList<>();

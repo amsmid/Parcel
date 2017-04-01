@@ -52,10 +52,10 @@ public class TabFragmentPending extends Fragment implements AbsListView.OnScroll
         arrayList = GetPendingListOwner.getInstance().pendingListItems;
         onlineKey = getResources().getString(R.string.mainListofOwner);
         sharedPreferenceUserData = new SharedPreferenceUserData(getActivity());
-        uid = sharedPreferenceUserData.getMyLoginUserData(getResources().getString(R.string.key_uid));
+        uid = sharedPreferenceUserData.getMyLoginUserData(getResources().getString(R.string.server_key_uid));
         HashMap<String,String> hashMapData = new HashMap<String, String>();
-        hashMapData.put("uid",uid);
-        hashMapData.put("count", String.valueOf(count));
+        hashMapData.put(getResources().getString(R.string.server_key_uid),uid);
+        hashMapData.put(getResources().getString(R.string.server_key_count), String.valueOf(count));
         new BackgroundTaskForFragmentResult(hashMapData, onlineKey,this).execute();
         listViewPending = new ListView(getActivity());
         listViewPending = (ListView)fragmentPendingList.findViewById(R.id.list_view_pending_owner_list);
@@ -122,6 +122,8 @@ public class TabFragmentPending extends Fragment implements AbsListView.OnScroll
                 pendingListItem.setDispatchTime(object.getString(getResources().getString(R.string.server_key_dispatchTime)));
                 pendingListItem.setImage(object.getString(getResources().getString(R.string.server_key_image)));
                 pendingListItem.setReceiverMo(object.getString(getResources().getString(R.string.server_key_receiverMo)));
+                pendingListItem.setCityName(object.getString(getResources().getString(R.string.server_key_cityName)));
+                pendingListItem.setStateName(object.getString(getResources().getString(R.string.server_key_stateName)));
                 GetPendingListOwner.getInstance().pendingListItems.add(pendingListItem);
             }
             listViewPending.setAdapter(adapter);

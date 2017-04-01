@@ -58,9 +58,9 @@ class CustomProcessingListOfOwnerAdapter extends BaseAdapter {
             TextView textViewTransName = (TextView) convertView.findViewById(R.id.processing_model_edit_status);
             CardView cardView = (CardView) convertView.findViewById(R.id.card_view_processing_list);
             String address = arrayList.get(position).getAddress()+","+
-                    arrayList.get(position).getReceiverCity()+","+
-                    arrayList.get(position).getReceiverState()+","+
-                    arrayList.get(position).getReceiverLand()+","+
+                    arrayList.get(position).getCityName()+","+
+                    arrayList.get(position).getStateName()+","+
+                    arrayList.get(position).getLandmark()+","+
                     arrayList.get(position).getPincode();
             String orderNo = arrayList.get(position).getOrderNumber();
             String status = arrayList.get(position).getTransName();

@@ -57,18 +57,18 @@ public class ActReceivedOwnerFullView extends AppCompatActivity implements Resul
         receivedListItem = GetReceivedListOwner.getInstance().receivedListItems.get(position);
         receiverId = receivedListItem.getReceiverId();
         senderId = receivedListItem.getSenderId();
-        address = receivedListItem.getSenderAd()+","+
-                receivedListItem.getSenderLand()+","+
-                receivedListItem.getSenderCity()+","+
-                receivedListItem.getSenderState()+","+
+        address = receivedListItem.getAddress()+","+
+                receivedListItem.getLandmark()+","+
+                receivedListItem.getCityName()+","+
+                receivedListItem.getStateName()+","+
                 receivedListItem.getPincode();
         dispatchTime = receivedListItem.getDispatchTime();
         orderNo = receivedListItem.getOrderNumber();
         image = receivedListItem.getImage();
         transName = receivedListItem.getTransName();
         transMo = receivedListItem.getTransMo();
-        receiverName = receivedListItem.getReceiver();
-        receiverMo = receivedListItem.getReceiverMo();
+        receiverName = receivedListItem.getSender();
+        receiverMo = receivedListItem.getSenderMo();
         size = receivedListItem.getSize();
         weight = receivedListItem.getWeight();
         timeline = receivedListItem.getTimeline();
@@ -82,7 +82,7 @@ public class ActReceivedOwnerFullView extends AppCompatActivity implements Resul
         TextView textViewWeight = (TextView)findViewById(R.id.owner_received_model_full_edit_weight);
         TextView textViewTimeline = (TextView)findViewById(R.id.owner_received_model_full_edit_timeline);
         TextView textViewType = (TextView)findViewById(R.id.owner_received_model_full_edit_type);
-        TextView textViewAddress = (TextView)findViewById(R.id.owner_received_model_full_edit_address);
+        TextView textViewAddress = (TextView)findViewById(R.id.owner_received_model_full_edit_sender_address);
         TextView textViewOrderNo = (TextView)findViewById(R.id.owner_received_model_full_edit_order_no);
         TextView textViewDispTime = (TextView)findViewById(R.id.owner_received_model_full_edit_disp_time);
         textViewAddress.setText(address);

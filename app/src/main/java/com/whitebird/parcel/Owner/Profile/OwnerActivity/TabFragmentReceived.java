@@ -114,16 +114,21 @@ public class TabFragmentReceived extends Fragment implements AbsListView.OnScrol
                 receivedListItem.setWeight(object.getString(getResources().getString(R.string.server_key_weight)));
                 receivedListItem.setDispatchTime(object.getString(getResources().getString(R.string.server_key_dispatchTime)));
                 receivedListItem.setImage(object.getString(getResources().getString(R.string.server_key_image)));
-                receivedListItem.setSenderAd(object.getString(getResources().getString(R.string.server_key_senderAd)));
+                receivedListItem.setTransName(object.getString(getResources().getString(R.string.server_key_transName)));
+                receivedListItem.setTransMo(object.getString(getResources().getString(R.string.server_key_transMobile)));
+                receivedListItem.setSenderMo(object.getString(getResources().getString(R.string.server_key_senderMo)));
+                /*receivedListItem.setSenderAd(object.getString(getResources().getString(R.string.server_key_senderAd)));
                 receivedListItem.setSenderCity(object.getString(getResources().getString(R.string.server_key_senderCity)));
                 receivedListItem.setSenderState(object.getString(getResources().getString(R.string.server_key_senderState)));
-                receivedListItem.setSenderMo(object.getString(getResources().getString(R.string.server_key_senderMo)));
-                receivedListItem.setSenderLand(object.getString(getResources().getString(R.string.server_key_senderLand)));
-                receivedListItem.setReceiverAd(object.getString(getResources().getString(R.string.server_key_receiverAd)));
+
+                receivedListItem.setSenderLand(object.getString(getResources().getString(R.string.server_key_senderLand)));*/
+                /*receivedListItem.setReceiverAd(object.getString(getResources().getString(R.string.server_key_receiverAd)));
                 receivedListItem.setReceiverCity(object.getString(getResources().getString(R.string.server_key_receiverCity)));
                 receivedListItem.setReceiverState(object.getString(getResources().getString(R.string.server_key_receiverState)));
                 receivedListItem.setReceiverMo(object.getString(getResources().getString(R.string.server_key_receiverMo)));
-                receivedListItem.setReceiverLand(object.getString(getResources().getString(R.string.server_key_receiverLand)));
+                receivedListItem.setReceiverLand(object.getString(getResources().getString(R.string.server_key_receiverLand)));*/
+                receivedListItem.setCityName(object.getString(getResources().getString(R.string.server_key_cityName)));
+                receivedListItem.setStateName(object.getString(getResources().getString(R.string.server_key_stateName)));
                 GetReceivedListOwner.getInstance().receivedListItems.add(receivedListItem);
             }
             arrayList = new ArrayList<>();

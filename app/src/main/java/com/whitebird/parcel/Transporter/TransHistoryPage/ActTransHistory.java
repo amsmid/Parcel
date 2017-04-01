@@ -101,7 +101,7 @@ public class ActTransHistory extends AppCompatActivity implements AbsListView.On
                 transHistoryListItem.setImage(object.getString(getResources().getString(R.string.server_key_image)));
                 transHistoryListItem.setSenderAd(object.getString(getResources().getString(R.string.server_key_senderAd)));
                 transHistoryListItem.setSender(object.getString(getResources().getString(R.string.server_key_sender)));
-                transHistoryListItem.setSenderPin(object.getString(getResources().getString(R.string.server_key_senderPin)));
+                /*transHistoryListItem.setSenderPin(object.getString(getResources().getString(R.string.server_key_senderPin)));*/
                 transHistoryListItem.setReceiver(object.getString(getResources().getString(R.string.server_key_receiver)));
                 transHistoryListItem.setType(object.getString(getResources().getString(R.string.server_key_type)));
                 transHistoryListItem.setTimeline(object.getString(getResources().getString(R.string.server_key_timeline)));

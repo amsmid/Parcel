@@ -25,6 +25,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.whitebird.parcel.R;
 import com.whitebird.parcel.SharedPreferenceUserData;
@@ -88,12 +89,10 @@ public class MainActivityParcelTransporter extends AppCompatActivity
 
         CardView cardViewPick = (CardView)findViewById(R.id.transport_act_main_card_view_pick_button);
         CardView cardViewDelivery = (CardView)findViewById(R.id.transport_act_main_card_view_delivery_cv);
-        Button buttonPick = (Button)findViewById(R.id.transport_act_main_pick_button);
-        Button buttonDelivery = (Button)findViewById(R.id.transport_act_main_delivery_button);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            buttonPick.setVisibility(View.GONE);
-            buttonDelivery.setVisibility(View.GONE);
+
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {*/
+
             cardViewPick.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -107,7 +106,7 @@ public class MainActivityParcelTransporter extends AppCompatActivity
                 }
             });
             // Call some material design APIs here
-        } else {
+        /*} else {
             cardViewPick.setVisibility(View.GONE);
             cardViewDelivery.setVisibility(View.GONE);
             buttonPick.setOnClickListener(new View.OnClickListener() {
@@ -124,7 +123,7 @@ public class MainActivityParcelTransporter extends AppCompatActivity
             });
             // Implement this feature without material design
 
-        }
+        }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -134,6 +133,15 @@ public class MainActivityParcelTransporter extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_transport);
         navigationView.setNavigationItemSelectedListener(this);
+
+        sharedPreferenceUserData = new SharedPreferenceUserData(this);
+        String name =sharedPreferenceUserData.getMyLoginUserData(getResources().getString(R.string.server_key_name));
+        String email =sharedPreferenceUserData.getMyLoginUserData(getResources().getString(R.string.server_key_email));
+        View header = navigationView.getHeaderView(0);
+        TextView textViewDrawerName = (TextView)header.findViewById(R.id.nav_trans_profile_name);
+        TextView textViewDrawerEmail = (TextView)header.findViewById(R.id.nav_trans_profile_email);
+        textViewDrawerName.setText(name);
+        textViewDrawerEmail.setText(email);
     }
 
     public  boolean isStoragePermissionGranted() {

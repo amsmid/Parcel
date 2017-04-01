@@ -5,6 +5,7 @@
     <string name="no_account_yet_create_one">No account yet? Create one</string>
     <string name="password">Password</string>
     <string name="url">http://whitebird.co.in/parcel/</string>
+    <string name="getStateName">get.php</string>
     <string name="loginKey">userLogin.php</string>
     <string name="historyListKey">list.php</string>
     <string name="historyListOwnerKey">history.php</string>
@@ -111,11 +112,13 @@
     <string name="server_key_status">status</string>
     <string name="server_key_hub">hub</string>
     <string name="server_key_uid">uid</string>
+    <string name="server_key_flag">flag</string>
     <string name="server_key_history">history</string>
     <string name="server_key_oldPassword">oldPassword</string>
     <string name="server_key_newPassword">newPassword</string>
     <string name="server_key_user">user</string>
     <string name="server_key_outgoing">outgoing</string>
+    <string name="server_key_State">State</string>
     <string name="server_key_incoming">incoming</string>
     <string name="server_key_transId">transId</string>
     <string name="server_key_picked">picked</string>
@@ -146,6 +149,7 @@
     <string name="server_key_userType">userType</string>
     <string name="server_key_pincode">pincode</string>
     <string name="server_key_time">time</string>
+    <string name="server_key_pickupTime">pickupTime</string>
     <string name="server_key_timeline">timeline</string>
     <string name="server_key_landmark">landmark</string>
     <string name="server_key_size">size</string>
@@ -162,4 +166,5 @@
     <string name="server_key_receiverLand">receiverLand</string>
     <string name="server_key_transName">transName</string>
     <string name="server_key_transMobile">transMobile</string>
+    <string name="server_key_stateId">stateId</string>
 </resources>

@@ -116,7 +116,7 @@ class FragmentReceiveList extends Fragment implements AbsListView.OnScrollListen
                 receiveHistoryListItem.setImage(object.getString(getResources().getString(R.string.server_key_image)));
                 receiveHistoryListItem.setSenderAd(object.getString(getResources().getString(R.string.server_key_senderAd)));
                 receiveHistoryListItem.setSender(object.getString(getResources().getString(R.string.server_key_sender)));
-                receiveHistoryListItem.setSenderPin(object.getString(getResources().getString(R.string.server_key_senderPin)));
+                /*receiveHistoryListItem.setSenderPin(object.getString(getResources().getString(R.string.server_key_senderPin)));*/
                 receiveHistoryListItem.setReceiver(object.getString(getResources().getString(R.string.server_key_receiver)));
                 receiveHistoryListItem.setType(object.getString(getResources().getString(R.string.server_key_type)));
                 receiveHistoryListItem.setTimeline(object.getString(getResources().getString(R.string.server_key_timeline)));

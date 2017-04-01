@@ -78,12 +78,15 @@ public class ActOwnerTrackParcel extends AppCompatActivity implements AbsListVie
                     processingListItem.setType(object.getString(getResources().getString(R.string.server_key_type)));
                     processingListItem.setPincode(object.getString(getResources().getString(R.string.server_key_pincode)));
                     processingListItem.setTime(object.getString(getResources().getString(R.string.server_key_time)));
+                    processingListItem.setPickupTime(object.getString(getResources().getString(R.string.server_key_pickupTime)));
                     processingListItem.setTimeline(object.getString(getResources().getString(R.string.server_key_timeline)));
                     processingListItem.setLandmark(object.getString(getResources().getString(R.string.server_key_landmark)));
                     processingListItem.setSize(object.getString(getResources().getString(R.string.server_key_size)));
                     processingListItem.setWeight(object.getString(getResources().getString(R.string.server_key_weight)));
                     processingListItem.setDispatchTime(object.getString(getResources().getString(R.string.server_key_dispatchTime)));
                     processingListItem.setImage(object.getString(getResources().getString(R.string.server_key_image)));
+                    processingListItem.setCityName(object.getString(getResources().getString(R.string.server_key_cityName)));
+                    processingListItem.setStateName(object.getString(getResources().getString(R.string.server_key_stateName)));
                     /*processingListItem.setReceiverMo(object.getString(getResources().getString(R.string.server_key_receiverMo)));*/
                     GetProcessingListOwner.getInstance().processingListItems.add(processingListItem);
                 }

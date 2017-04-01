@@ -45,16 +45,11 @@ public class ActMainActivityParcelOwner extends AppCompatActivity implements Nav
         CardView cardViewCreate = (CardView)findViewById(R.id.card_view_create_button);
         CardView cardViewManage = (CardView)findViewById(R.id.card_view);
         CardView cardViewTrack = (CardView)findViewById(R.id.card_view_track_button);
-        Button buttonCreate = (Button)findViewById(R.id.act_create_button);
-        Button buttonManage = (Button)findViewById(R.id.act_manage_button);
-        Button buttonTrack = (Button)findViewById(R.id.act_track_button);
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
             // Call some material design APIs here
-            buttonCreate.setVisibility(View.GONE);
-            buttonManage.setVisibility(View.GONE);
-            buttonTrack.setVisibility(View.GONE);
+
             cardViewCreate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -73,25 +68,12 @@ public class ActMainActivityParcelOwner extends AppCompatActivity implements Nav
                     StartTrackParcelActivity();
                 }
             });
-        } else {
-            cardViewCreate.setVisibility(View.GONE);
-            cardViewManage.setVisibility(View.GONE);
-            cardViewTrack.setVisibility(View.GONE);
-            buttonCreate.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    StartCreateActivity();
-                }
-            });
-            buttonManage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    StartMainManageActivity();
-                }
-            });
-            // Implement this feature without material design
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
 
         }
+            // Implement this feature without material design
+
+
 
 
         //Display Data On Drawer Info View

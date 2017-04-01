@@ -95,6 +95,7 @@ public class MainActivityAddNewParcel extends AppCompatActivity implements Resul
         String onlineKey = getResources().getString(R.string.fetchHubListKey);
         HashMap<String,String> hashMapData = new HashMap<String, String>();
         hashMapData.put(getResources().getString(R.string.server_key_uid),data);
+        hashMapData.put(getResources().getString(R.string.server_key_flag),"1");
         new BackgroundTaskForResult(hashMapData, onlineKey, MainActivityAddNewParcel.this).execute();
         getName = new ArrayList<>();
         clsStoreListOfHub = new ClsStoreListofHub(this);

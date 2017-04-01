@@ -25,9 +25,9 @@ public class ActPendingOwnerFullView extends AppCompatActivity {
         int position=intent.getIntExtra("position",0);
         pendingListItem = GetPendingListOwner.getInstance().pendingListItems.get(position);
         address = pendingListItem.getAddress()+","+
-                pendingListItem.getReceiverCity()+","+
-                pendingListItem.getReceiverState()+","+
-                pendingListItem.getReceiverLand()+","+
+                pendingListItem.getCityName()+","+
+                pendingListItem.getStateName()+","+
+                pendingListItem.getLandmark()+","+
                 pendingListItem.getPincode();
         dispatchTime = pendingListItem.getDispatchTime();
         orderNo = pendingListItem.getOrderNumber();

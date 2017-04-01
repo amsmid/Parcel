@@ -56,7 +56,7 @@ class CustomTransHistoryListAdapter extends BaseAdapter {
         TextView textViewSenderAddress = (TextView)convertView.findViewById(R.id.trans_history_model_edit_sender_address);
         TextView textViewAddress = (TextView)convertView.findViewById(R.id.trans_history_model_edit_address);
         TextView textViewOrderNo = (TextView)convertView.findViewById(R.id.trans_history_model_edit_order_no);
-        CardView cardView = (CardView)convertView.findViewById(R.id.trans_manage_card_view_accepted_list);
+        CardView cardView = (CardView)convertView.findViewById(R.id.trans_history_card_view_list);
         String senderAddress = GetTransHistoryList.getInstance().transHistoryListItems.get(position).getSenderAd()+","+
                 GetTransHistoryList.getInstance().transHistoryListItems.get(position).getSenderCity()+","+
                 GetTransHistoryList.getInstance().transHistoryListItems.get(position).getSenderState()+","+
@@ -71,7 +71,7 @@ class CustomTransHistoryListAdapter extends BaseAdapter {
         textViewSenderAddress.setText(senderAddress);
         textViewAddress.setText(address);
         textViewOrderNo.setText(orderNo);
-        cardView.setOnClickListener(new View.OnClickListener() {
+            cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity,ActTransHistoryFullView.class);

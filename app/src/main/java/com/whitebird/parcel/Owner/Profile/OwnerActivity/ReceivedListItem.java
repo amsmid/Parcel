@@ -5,7 +5,7 @@ package com.whitebird.parcel.Owner.Profile.OwnerActivity;
  */
 
 class ReceivedListItem {
-    private String senderId,receiverId,orderNumber,address,type,pincode,time,dispatchTime,timeline,landmark,size,weight,status,image,senderAd,receiverCity,senderCity,senderState,senderMo,senderLand,receiverState,receiverMo,receiverLand,sender,receiver,senderPin,transName,transMo,receiverAd;
+    private String senderId,receiverId,orderNumber,address,type,pincode,time,dispatchTime,timeline,landmark,size,weight,status,image,senderAd,receiverCity,senderCity,senderState,senderMo,senderLand,receiverState,receiverMo,receiverLand,sender,receiver,senderPin,transName,transMo,receiverAd,cityName,stateName;
 
     public void setSenderId(String senderId) {
         this.senderId = senderId;
@@ -237,5 +237,21 @@ class ReceivedListItem {
 
     public void setReceiverAd(String receiverAd) {
         this.receiverAd = receiverAd;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public String getStateName() {
+        return stateName;
     }
 }

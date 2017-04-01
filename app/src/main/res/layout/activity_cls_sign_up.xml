@@ -78,23 +78,24 @@
         android:id="@+id/signup_pincode"
         android:layout_margin="7dp"/>
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/state"
-        android:inputType="text"
-        android:maxLength="15"
-        android:id="@+id/signup_state"
-        android:layout_margin="7dp"/>
+        android:padding="5dp"
+        android:hint="Select State"
+        android:layout_margin="10dp"
+        android:id="@+id/signup_state" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select City"/>
 
-    <EditText
+    <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/city"
-        android:inputType="text"
-        android:maxLength="15"
-        android:id="@+id/signup_city"
-        android:layout_margin="7dp"/>
+        android:padding="20dp"
+        android:layout_margin="10dp"
+        android:id="@+id/signup_city" />
 
 
 

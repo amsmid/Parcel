@@ -51,6 +51,7 @@ public class MainActivityPickShipment extends AppCompatActivity implements View.
         String onlineKey = getResources().getString(R.string.fetchHubListKey);
         HashMap<String,String> hashMapData = new HashMap<String, String>();
         hashMapData.put(getResources().getString(R.string.server_key_uid),"");
+        hashMapData.put(getResources().getString(R.string.server_key_flag),"2");
         new BackgroundTaskForResult(hashMapData, onlineKey, MainActivityPickShipment.this).execute();
         setContentView(R.layout.activity_main_pick_shipment);
         getHubNameListStored = new ArrayList<>();
@@ -90,6 +91,7 @@ public class MainActivityPickShipment extends AppCompatActivity implements View.
             String onlineKey = getResources().getString(R.string.fetchHubListKey);
             HashMap<String,String> hashMapData = new HashMap<String, String>();
             hashMapData.put(getResources().getString(R.string.server_key_uid),"");
+            hashMapData.put(getResources().getString(R.string.server_key_flag),"2");
             new BackgroundTaskForResult(hashMapData, onlineKey, MainActivityPickShipment.this).execute();
         }
     }
@@ -147,6 +149,7 @@ public class MainActivityPickShipment extends AppCompatActivity implements View.
                 listViewCombine.setAdapter(adapter);
             }else if (keyOnline.equals(getResources().getString(R.string.pendingParcelListKey))){
                 Log.d("pendingKey",result);
+                SlgnTransPendingParcelList.getInstance().transPendingLists.clear();
                 clsTransStorePendingListOfHub = new ClsTransStorePendingListOfHub(this);
                 clsTransStorePendingListOfHub.SavePendingList(result);
                 transPendingListArrayList = new ArrayList<>();

@@ -55,9 +55,9 @@ class CustomPendingListOfOwnerAdapter extends BaseAdapter {
         CardView cardView = (CardView)convertView.findViewById(R.id.card_view_pending_list);
         PendingListItem pendingListItem = GetPendingListOwner.getInstance().pendingListItems.get(position);
         String address = pendingListItem.getAddress()+","+
-                pendingListItem.getReceiverCity()+","+
-                pendingListItem.getReceiverState()+","+
-                pendingListItem.getReceiverLand()+","+
+                pendingListItem.getCityName()+","+
+                pendingListItem.getStateName()+","+
+                pendingListItem.getLandmark()+","+
                 pendingListItem.getPincode();
         String orderNo = pendingListItem.getOrderNumber();
         String status = pendingListItem.getTime();

@@ -44,8 +44,8 @@ public class ClsStoreHubListTrans {
                 getHubListData.setPincode(jsonObject1.getString(activity.getResources().getString(R.string.server_key_pincode)));
                 getHubListData.setAddress(jsonObject1.getString(activity.getResources().getString(R.string.server_key_address)));
                 getHubListData.setLastLogin(jsonObject1.getString(activity.getResources().getString(R.string.server_key_lastLogin)));
-                getHubListData.setVehicle(jsonObject1.getString(activity.getResources().getString(R.string.server_key_vehicle)));
-                getHubListData.setInterCity(jsonObject1.getString(activity.getResources().getString(R.string.server_key_interCity)));
+                /*getHubListData.setVehicle(jsonObject1.getString(activity.getResources().getString(R.string.server_key_vehicle)));*/
+                /*getHubListData.setInterCity(jsonObject1.getString(activity.getResources().getString(R.string.server_key_interCity)));*/
                 getHubListData.setLandmark(jsonObject1.getString(activity.getResources().getString(R.string.server_key_landmark)));
                 getHubListDatas.add(getHubListData);
             }

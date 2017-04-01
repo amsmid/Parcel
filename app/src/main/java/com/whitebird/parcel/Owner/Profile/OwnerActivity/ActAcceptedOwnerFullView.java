@@ -64,9 +64,9 @@ public class ActAcceptedOwnerFullView extends AppCompatActivity implements Resul
         int position=intent.getIntExtra("position",0);
         acceptedListItem = GetAcceptedListOwner.getInstance().acceptedListItems.get(position);
         address = acceptedListItem.getAddress()+","+
-                acceptedListItem.getReceiverCity()+","+
-                acceptedListItem.getReceiverState()+","+
-                acceptedListItem.getReceiverLand()+","+
+                acceptedListItem.getCityName()+","+
+                acceptedListItem.getStateName()+","+
+                acceptedListItem.getLandmark()+","+
                 acceptedListItem.getPincode();
         dispatchTime = acceptedListItem.getDispatchTime();
         orderNo = acceptedListItem.getOrderNumber();

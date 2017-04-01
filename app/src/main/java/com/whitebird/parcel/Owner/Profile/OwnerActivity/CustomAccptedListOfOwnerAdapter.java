@@ -58,9 +58,9 @@ class CustomAccptedListOfOwnerAdapter extends BaseAdapter {
         TextView textViewTransName = (TextView)convertView.findViewById(R.id.accepted_model_edit_trans_name);
         CardView cardView = (CardView)convertView.findViewById(R.id.card_view_accepted_list);
         String address = GetAcceptedListOwner.getInstance().acceptedListItems.get(position).getAddress()+","+
-                GetAcceptedListOwner.getInstance().acceptedListItems.get(position).getReceiverCity()+","+
-                GetAcceptedListOwner.getInstance().acceptedListItems.get(position).getReceiverState()+","+
-                GetAcceptedListOwner.getInstance().acceptedListItems.get(position).getReceiverLand()+","+
+                GetAcceptedListOwner.getInstance().acceptedListItems.get(position).getCityName()+","+
+                GetAcceptedListOwner.getInstance().acceptedListItems.get(position).getStateName()+","+
+                GetAcceptedListOwner.getInstance().acceptedListItems.get(position).getLandmark()+","+
                 GetAcceptedListOwner.getInstance().acceptedListItems.get(position).getPincode();
         String orderNo = GetAcceptedListOwner.getInstance().acceptedListItems.get(position).getOrderNumber();
         String transName = GetAcceptedListOwner.getInstance().acceptedListItems.get(position).getTransName();

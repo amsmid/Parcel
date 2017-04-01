@@ -57,9 +57,9 @@ public class ActProcessingOwnerFullView extends FragmentActivity {
         int position=intent.getIntExtra("position",0);
         processingListItem = GetProcessingListOwner.getInstance().processingListItems.get(position);
         address = processingListItem.getAddress()+","+
-                processingListItem.getReceiverCity()+","+
-                processingListItem.getReceiverState()+","+
-                processingListItem.getReceiverLand()+","+
+                processingListItem.getCityName()+","+
+                processingListItem.getStateName()+","+
+                processingListItem.getLandmark()+","+
                 processingListItem.getPincode();
         pickUpTime = processingListItem.getPickupTime();
         orderNo = processingListItem.getOrderNumber();

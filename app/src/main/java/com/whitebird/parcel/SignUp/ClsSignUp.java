@@ -1,17 +1,27 @@
 package com.whitebird.parcel.SignUp;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
+import android.util.ArraySet;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.whitebird.parcel.BackgroundTaskForResult;
@@ -23,26 +33,43 @@ import com.whitebird.parcel.SharedPreferenceUserData;
 import com.whitebird.parcel.SignIn.ClsSignIn;
 import com.whitebird.parcel.Transporter.MainActivityParcelTransporter;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ClsSignUp extends AppCompatActivity implements ResultInString{
 
-    EditText editTextName,editTextEmail,editTextMobNo,editTextPsswd,editTextConPsswd,editTextAddress,editTextPinCode,editTextState,editTextCity;
+    EditText editTextName,editTextEmail,editTextMobNo,editTextPsswd,editTextConPsswd,editTextAddress,editTextPinCode;
     Button signUp,signInFromSignupPage;
+    TextView editTextState;
     RadioGroup userType;
     RadioButton userOwner,userTransport;
     String userTypeSelected;
     String stringName,stringEmail,stringMobNo,stringPsswd,stringConPsswd,stringAddress,stringPinCode,stringState,stringCity,stringLandmark;
     ClsStoreAllDataOfUser clsStoreAllDataOfUser;
-    Spinner spinnerVehicle,spinnerCityArea;
+    Spinner spinnerVehicle,spinnerCityArea,editTextCity;
     String stringVehicle,stringCityArea;
     SharedPreferenceUserData sharedPreferenceUserData;
+    ArrayList<String> stateNames,stateId,cityName,cityId;
+    AlertDialog.Builder builder;
+    Dialog dialogDis;
+    View viewSearch;
+    ListView listViewState;
+    BaseAdapter setAdapter;
+    int go = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cls_sign_up);
 
 
+        stateNames = new ArrayList<>();
+        stateId = new ArrayList<>();
+        cityName = new ArrayList<>();
+        cityId = new ArrayList<>();
         //All Edit Text Defined
         editTextName = (EditText)findViewById(R.id.signup_name);
         editTextEmail = (EditText)findViewById(R.id.signup_email);
@@ -51,8 +78,8 @@ public class ClsSignUp extends AppCompatActivity implements ResultInString{
         editTextConPsswd = (EditText)findViewById(R.id.signup_conform_password);
         editTextAddress = (EditText)findViewById(R.id.signup_address);
         editTextPinCode = (EditText)findViewById(R.id.signup_pincode);
-        editTextState = (EditText)findViewById(R.id.signup_state);
-        editTextCity = (EditText)findViewById(R.id.signup_city);
+        editTextState = (TextView)findViewById(R.id.signup_state);
+        editTextCity = (Spinner)findViewById(R.id.signup_city);
         userType = (RadioGroup)findViewById(R.id.user_type);
         userOwner = (RadioButton)findViewById(R.id.user_owner);
         userTransport = (RadioButton)findViewById(R.id.user_transport);
@@ -127,27 +154,21 @@ public class ClsSignUp extends AppCompatActivity implements ResultInString{
         // Apply the adapter to the spinner
         spinnerCityArea.setAdapter(adapterCity);
 
-        spinnerVehicle.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String item = spinnerVehicle.getSelectedItem().toString();
-            }
 
+
+        editTextState.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onClick(View v) {
+                go = 1;
+                String onlineKey = getResources().getString(R.string.getStateName);
+                HashMap<String,String> hashMapData = new HashMap<String, String>();
+                hashMapData.put(getResources().getString(R.string.server_key_stateId),"0");
+                new BackgroundTaskForResult(hashMapData, onlineKey, ClsSignUp.this).execute();
+                editTextState.setError(null);
+                ListBuilderOnPopUp();
             }
         });
 
-        spinnerCityArea.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String item2 = spinnerCityArea.getSelectedItem().toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
 
 
 
@@ -163,7 +184,7 @@ public class ClsSignUp extends AppCompatActivity implements ResultInString{
                 stringAddress = editTextAddress.getText().toString();
                 stringPinCode = editTextPinCode.getText().toString();
                 stringState = editTextState.getText().toString();
-                stringCity = editTextCity.getText().toString();
+                stringCity = editTextCity.getSelectedItem().toString();
 
                 Log.d("strPrf_uid",userTypeSelected);
                 if (Validate()) {
@@ -214,6 +235,14 @@ public class ClsSignUp extends AppCompatActivity implements ResultInString{
             }
         });
 
+
+    }
+
+    private void ListBuilderOnPopUp() {
+        builder = new AlertDialog.Builder(this);
+        LayoutInflater layout = getLayoutInflater();
+        viewSearch = layout.inflate(R.layout.search_list_layout, null);
+        listViewState = (ListView) viewSearch.findViewById(R.id.list_of_hub_item_in_popup);
 
     }
 
@@ -278,13 +307,13 @@ public class ClsSignUp extends AppCompatActivity implements ResultInString{
             valid = false;
         }else {
             editTextState.setError(null);
-        }
+        }/*
         if (stringCity.isEmpty() || stringCity.length() < 4 || stringCity.length() > 15) {
             editTextCity.setError("Put Correct City");
             valid = false;
         }else {
             editTextCity.setError(null);
-        }
+        }*/
         return valid;
     }
 
@@ -314,16 +343,70 @@ public class ClsSignUp extends AppCompatActivity implements ResultInString{
         String success ="0";
         sharedPreferenceUserData = new SharedPreferenceUserData(this);
         sharedPreferenceUserData.SaveSharedData("result",result);
-        clsStoreAllDataOfUser = new ClsStoreAllDataOfUser(this);
-        clsStoreAllDataOfUser.SetUserType(userTypeSelected);
-        success=clsStoreAllDataOfUser.GetResult();
+        if (keyOnline.equals(getResources().getString(R.string.signupKey))) {
+            clsStoreAllDataOfUser = new ClsStoreAllDataOfUser(this);
+            clsStoreAllDataOfUser.SetUserType(userTypeSelected);
+            success = clsStoreAllDataOfUser.GetResult();
 
-        switch (success){
-            case "1":
-                onSignUpSuccess();
-                break;
-            default:
-                onSignUpFailed();
+            switch (success) {
+                case "1":
+                    onSignUpSuccess();
+                    break;
+                default:
+                    onSignUpFailed();
+            }
+        }else if (keyOnline.equals(getResources().getString(R.string.getStateName))){
+            Log.d("stateNameRes",result);
+            try {
+                stateNames = new ArrayList<>();
+                stateId = new ArrayList<>();
+                cityName = new ArrayList<>();
+                cityId = new ArrayList<>();
+                JSONObject jsonObject = new JSONObject(result);
+                if (go == 2){
+                    JSONArray city = jsonObject.getJSONArray("City");
+                    int len2 = city.length();
+                    for (int i=0;i<len2;i++){
+                        JSONObject object = city.getJSONObject(i);
+                        cityName.add(object.getString("cityName"));
+                        cityId.add(object.getString("cityId"));
+                    }
+                    ArrayAdapter<String> arrayAdapterCityName = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, android.R.id.text1, cityName);
+                    editTextCity.setAdapter(arrayAdapterCityName);
+                }else if (go==1){
+                    JSONArray state = jsonObject.getJSONArray(getResources().getString(R.string.server_key_State));
+                    int len1 = state.length();
+                    for (int i = 0; i < len1; i++) {
+                        JSONObject object = state.getJSONObject(i);
+                        stateNames.add(object.getString("stateName"));
+                        stateId.add(object.getString("stateId"));
+                    }
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, android.R.id.text1, stateNames);
+                    listViewState.setAdapter(adapter);
+                    listViewState.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            go = 2;
+                            editTextState.setText(stateNames.get(position));
+                            String onlineKey = getResources().getString(R.string.getStateName);
+                            HashMap<String,String> hashMapData = new HashMap<String, String>();
+                            hashMapData.put(getResources().getString(R.string.server_key_stateId),stateId.get(position));
+                            new BackgroundTaskForResult(hashMapData, onlineKey, ClsSignUp.this).execute();
+                            dialogDis.dismiss();
+                        }
+                    });
+                    //Set All List Here And Search it
+                    builder.setView(viewSearch);
+                    builder.setNegativeButton("Cancel", null);
+                    dialogDis = builder.create();
+                    dialogDis.show();
+                }
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 }
