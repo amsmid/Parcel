@@ -126,7 +126,8 @@
         <activity android:name=".Transporter.TransporterProfile.ActTransProfileEdit" />
         <activity android:name=".Transporter.TransHistoryPage.ActTransHistory" />
         <activity android:name=".Transporter.TransHistoryPage.ActTransHistoryFullView" />
-        <activity android:name=".Owner.Profile.HistoryPageForOwner.ClsFullReceiveHistoryListView"></activity>
+        <activity android:name=".Owner.Profile.HistoryPageForOwner.ClsFullReceiveHistoryListView" />
+        <activity android:name=".Transporter.TransMapView"></activity>
     </application>
 
 </manifest>

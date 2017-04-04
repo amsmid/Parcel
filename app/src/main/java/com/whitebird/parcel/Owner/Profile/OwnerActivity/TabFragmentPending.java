@@ -34,7 +34,7 @@ public class TabFragmentPending extends Fragment implements AbsListView.OnScroll
     ListView listViewPending;
     SharedPreferenceUserData sharedPreferenceUserData;
     GetPendingListOwner getPendingListOwner;
-    private int visibleThreshold = 5;
+    private int visibleThreshold = 2;
     private int currentPage = 0;
     private int previousTotal = 0;
     private boolean loading = true;
@@ -42,25 +42,27 @@ public class TabFragmentPending extends Fragment implements AbsListView.OnScroll
     Activity activity;
     String uid,onlineKey;
     ListAdapter adapter;
-    ArrayList<PendingListItem> arrayList;
+    //ArrayList<PendingListItem> arrayList;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View fragmentPendingList= inflater.inflate(R.layout.fragment_pending_main_list_owner,container,false);
 
-        arrayList = new ArrayList<>();
-        arrayList = GetPendingListOwner.getInstance().pendingListItems;
+        /*arrayList = new ArrayList<>();
+        arrayList.clear();
+        arrayList = GetPendingListOwner.getInstance().pendingListItems;*/
         onlineKey = getResources().getString(R.string.mainListofOwner);
         sharedPreferenceUserData = new SharedPreferenceUserData(getActivity());
         uid = sharedPreferenceUserData.getMyLoginUserData(getResources().getString(R.string.server_key_uid));
-        HashMap<String,String> hashMapData = new HashMap<String, String>();
+        HashMap<String,String> hashMapData = new HashMap<>();
+        hashMapData.clear();
         hashMapData.put(getResources().getString(R.string.server_key_uid),uid);
         hashMapData.put(getResources().getString(R.string.server_key_count), String.valueOf(count));
         new BackgroundTaskForFragmentResult(hashMapData, onlineKey,this).execute();
         listViewPending = new ListView(getActivity());
         listViewPending = (ListView)fragmentPendingList.findViewById(R.id.list_view_pending_owner_list);
         listViewPending.setOnScrollListener(this);
-        adapter = new CustomPendingListOfOwnerAdapter(getActivity(),arrayList);
+        adapter = new CustomPendingListOfOwnerAdapter(getActivity());
 
 
         return fragmentPendingList;
@@ -98,9 +100,12 @@ public class TabFragmentPending extends Fragment implements AbsListView.OnScroll
     public void Result(String result, String keyOnline) {
         Log.d("ResultInFragmentPending",result);
 
+        if (getActivity()==null){
+            return;
+        }
         try {
             JSONObject jsonObject = new JSONObject(result);
-            JSONArray jsonArrayListPending = jsonObject.getJSONArray(getResources().getString(R.string.server_key_pending));
+            JSONArray jsonArrayListPending = jsonObject.getJSONArray(getString(R.string.server_key_pending));
 
             int len1 = jsonArrayListPending.length();
             for (int i=0;i<len1;i++){

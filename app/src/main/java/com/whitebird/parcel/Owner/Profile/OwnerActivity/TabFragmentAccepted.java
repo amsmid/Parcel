@@ -30,7 +30,7 @@ public class TabFragmentAccepted extends Fragment implements AbsListView.OnScrol
     ListView listViewAccepted;
     SharedPreferenceUserData sharedPreferenceUserData;
     private int previousTotal = 0;
-    private int visibleThreshold = 5;
+    private int visibleThreshold = 2;
     private boolean loading = true;
     private int count =0;
     String uid,onlineKey;
@@ -90,6 +90,9 @@ public class TabFragmentAccepted extends Fragment implements AbsListView.OnScrol
     @Override
     public void Result(String result, String keyOnline) {
         Log.d("ResultInFragAccepted",result);
+        if (getActivity()==null){
+            return;
+        }
         try {
             JSONObject jsonObject = new JSONObject(result);
             JSONArray jsonArrayListAccepted = jsonObject.getJSONArray(getResources().getString(R.string.server_key_accepted));

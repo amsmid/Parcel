@@ -22,11 +22,8 @@ import java.util.ArrayList;
  */
 
 class CustomHistoryReceiveListAdapter extends BaseAdapter {
-    private ArrayList<ItemsInListReceive> arrayList;
     private Activity activity;
-    CustomHistoryReceiveListAdapter(Activity activity,ArrayList<ItemsInListReceive> arrayList){
-        this.arrayList = new ArrayList<>();
-        this.arrayList = arrayList;
+    CustomHistoryReceiveListAdapter(Activity activity){
         this.activity = activity;
     }
 

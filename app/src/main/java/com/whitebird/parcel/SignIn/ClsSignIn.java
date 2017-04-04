@@ -3,6 +3,7 @@ package com.whitebird.parcel.SignIn;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +26,7 @@ import java.util.HashMap;
 public class ClsSignIn extends AppCompatActivity implements ResultInString {
 
     EditText editTextUsername,editTextPassword;
-    Button signIn,signupRegister;
+    CardView signIn,signupRegister;
     String userTypeSelected;
     RadioGroup userType;
     RadioButton userOwner,userTransport;
@@ -38,7 +39,7 @@ public class ClsSignIn extends AppCompatActivity implements ResultInString {
         editTextUsername = (EditText)findViewById(R.id.get_email);
         editTextPassword = (EditText)findViewById(R.id.get_password);
         //Sign In Button
-        signIn = (Button)findViewById(R.id.sign_in);
+        signIn = (CardView) findViewById(R.id.sign_in);
 
         userType = (RadioGroup)findViewById(R.id.user_type_signIn);
         userOwner = (RadioButton)findViewById(R.id.user_owner_signIn);
@@ -75,7 +76,7 @@ public class ClsSignIn extends AppCompatActivity implements ResultInString {
             }
         });
 
-        signupRegister = (Button)findViewById(R.id.signup_register);
+        signupRegister = (CardView) findViewById(R.id.signup_register);
 
 
         signupRegister.setOnClickListener(new View.OnClickListener() {
@@ -95,11 +96,11 @@ public class ClsSignIn extends AppCompatActivity implements ResultInString {
                     onLoginFailed();
                     return;
                 }
-                HashMap<String,String> hashMapData = new HashMap<String, String>();
+                HashMap<String,String> hashMapData = new HashMap<>();
                 hashMapData.put(getResources().getString(R.string.server_key_email),email);
                 hashMapData.put(getResources().getString(R.string.server_key_password),password);
                 hashMapData.put(getResources().getString(R.string.server_key_userType),userTypeSelected);
-                String data = email + "|" + password;
+                //String data = email + "|" + password;
                 String onlineKey = getResources().getString(R.string.loginKey);
                 new BackgroundTaskForResult(hashMapData, onlineKey, ClsSignIn.this).execute();
             }
@@ -133,7 +134,7 @@ public class ClsSignIn extends AppCompatActivity implements ResultInString {
 
     @Override
     public void Result(String result,String keyOnline) {
-        String success ="0";
+        String success;
         Log.d("resultSignIn",result);
         sharedPreferenceUserData = new SharedPreferenceUserData(this);
         sharedPreferenceUserData.SaveSharedData(getResources().getString(R.string.server_key_result),result);

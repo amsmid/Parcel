@@ -3,6 +3,7 @@ package com.whitebird.parcel;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -21,8 +22,9 @@ import java.util.Map;
  */
 
 public class ConnectToVolleyServer {
-    Activity activity;
-    ProgressDialog pd;
+    private Activity activity;
+    private ProgressDialog pd;
+    private RequestQueue queue;
     ConnectToVolleyServer(Activity activity, ProgressDialog pd){
         this.pd=pd;
         this.activity=activity;
@@ -30,8 +32,14 @@ public class ConnectToVolleyServer {
 
     void GetResult(final HashMap<String,String> hashMapData, final String onlineKey){
         // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(activity);
+        if (activity==null) {
+            return;
+        }
+        if (queue==null)
+            queue = Volley.newRequestQueue(activity);
+
         String url =activity.getResources().getString(R.string.url)+onlineKey;
+
 
 // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -43,14 +51,20 @@ public class ConnectToVolleyServer {
                             return;
                         }
                         // Display the first 500 characters of the response string.
-                        ResultInString resultInString= null;
-                        resultInString = (ResultInString)activity;
-                        resultInString.Result(response,onlineKey);
+                        if(activity != null){
+                            ResultInString resultInString= null;
+                            resultInString = (ResultInString)activity;
+                            resultInString.Result(response,onlineKey);
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 pd.dismiss();
+                AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
+                dialog.setTitle("Check Connection");
+                dialog.setPositiveButton("Ok",null);
+                dialog.show();
             }
         }){
             @Override

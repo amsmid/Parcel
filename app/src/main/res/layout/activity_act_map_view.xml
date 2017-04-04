@@ -1,25 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.whitebird.parcel.Owner.Profile.OwnerActivity.ActMapView"
-    android:orientation="vertical">
-
-    <com.google.android.gms.maps.MapView
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:id="@+id/map_view">
-    </com.google.android.gms.maps.MapView>
-    <TextView
+    tools:context="com.whitebird.parcel.Owner.Profile.OwnerActivity.ActMapView">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/text_view_locality"
-        android:text="Address"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/address_lat_lan"/>
+        tools:context="com.whitebird.parcel.Owner.Profile.OwnerActivity.ActMapView"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <com.google.android.gms.maps.MapView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:id="@+id/map_view">
+        </com.google.android.gms.maps.MapView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_view_locality"
+            android:textSize="20sp"
+            android:textColor="@color/colorAccent"
+            android:hint="@string/address"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/address_lat_lan"/>
+
+    </LinearLayout>
+</ScrollView>

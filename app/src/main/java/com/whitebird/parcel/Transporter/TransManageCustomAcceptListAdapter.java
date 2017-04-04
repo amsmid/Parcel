@@ -1,5 +1,6 @@
 package com.whitebird.parcel.Transporter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -23,11 +24,8 @@ import java.util.ArrayList;
 
 class TransManageCustomAcceptListAdapter extends BaseAdapter {
 
-    private ArrayList<GtStTransManageAcceptedList> arrayList;
     private Activity activity;
-    TransManageCustomAcceptListAdapter(Activity activity, ArrayList<GtStTransManageAcceptedList> arrayList){
-        this.arrayList = new ArrayList<>();
-        this.arrayList = arrayList;
+    TransManageCustomAcceptListAdapter(Activity activity){
         this.activity = activity;
     }
     @Override
@@ -45,6 +43,7 @@ class TransManageCustomAcceptListAdapter extends BaseAdapter {
         return SlgnTransManageGetAcceptedList.getInstance().gtStTransManageAcceptedLists.indexOf(position);
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater layoutInflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

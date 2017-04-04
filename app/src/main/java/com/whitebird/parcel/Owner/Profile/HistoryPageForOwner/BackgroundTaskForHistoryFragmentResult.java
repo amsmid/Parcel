@@ -11,10 +11,10 @@ import java.util.HashMap;
  */
 
 class BackgroundTaskForHistoryFragmentResult extends AsyncTask<Void,Void,Void> {
-    private String onlineKey, result;
+    private String onlineKey;
     private HashMap<String,String> getData;
     private ConnectToVolleyServerHistoryFragment connectToVolleyServerFragment;
-    public BackgroundTaskForHistoryFragmentResult(HashMap<String, String> hashMapData, String onlineKey, Fragment fragment) {
+    BackgroundTaskForHistoryFragmentResult(HashMap<String, String> hashMapData, String onlineKey, Fragment fragment) {
         this.getData = hashMapData;
         this.onlineKey = onlineKey;
         //connectToServer = new ConnectToServer(activity);

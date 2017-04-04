@@ -2,29 +2,22 @@ package com.whitebird.parcel.Owner.Profile.OwnerActivity;
 
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationListener;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.whitebird.parcel.AddParcelActivity.MainActivityAddNewParcel;
 import com.whitebird.parcel.BackgroundTaskForResult;
 import com.whitebird.parcel.R;
 import com.whitebird.parcel.ResultInString;
-import com.whitebird.parcel.SharedPreferenceUserData;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,7 +45,7 @@ public class ActMapView extends AppCompatActivity implements OnMapReadyCallback,
         transUid = getIntent().getStringExtra("transUid");
 
         String onlineKey = getResources().getString(R.string.getLanLonKey);
-        HashMap<String,String> hashMapData = new HashMap<String, String>();
+        HashMap<String,String> hashMapData = new HashMap<>();
         hashMapData.put(getResources().getString(R.string.server_key_uid),transUid);
         new BackgroundTaskForResult(hashMapData, onlineKey, ActMapView.this).execute();
          /*SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -93,7 +86,7 @@ public class ActMapView extends AppCompatActivity implements OnMapReadyCallback,
 
 
             // Add a marker in Sydney, Australia, and move the camera.
-            LatLng myPosition = new LatLng(latitude, longitude);
+//            LatLng myPosition = new LatLng(latitude, longitude);
 
 
             /*CameraPosition position = new CameraPosition.Builder().
@@ -130,7 +123,7 @@ public class ActMapView extends AppCompatActivity implements OnMapReadyCallback,
     /*Map Program
     * 19.100981
     * 72.9984171*/
-    private boolean isGooglePlayServicesAvailable() {
+    /*private boolean isGooglePlayServicesAvailable() {
         int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
         if (ConnectionResult.SUCCESS == status) {
             return true;
@@ -138,13 +131,13 @@ public class ActMapView extends AppCompatActivity implements OnMapReadyCallback,
             GooglePlayServicesUtil.getErrorDialog(status, this, 0).show();
             return false;
         }
-    }
+    }*/
 
     @Override
     public void Result(String result, String keyOnline) {
         Log.d("LatLngResult",result);
         String success;
-        String Lat,Lang,LatLang;
+        String Lat,Lang;
         try {
             JSONObject jsonObjectSuccess = new JSONObject(result);
             success = jsonObjectSuccess.getString("success");

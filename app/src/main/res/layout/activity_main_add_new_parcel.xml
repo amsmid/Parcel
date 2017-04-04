@@ -5,17 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="4dp">
+    >
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="4dp"
     tools:context="com.whitebird.parcel.AddParcelActivity.MainActivityAddNewParcel"
     android:orientation="vertical">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:src="@drawable/blank_camera_image"
+        android:src="@drawable/parcel_image_camera"
         android:id="@+id/image_of_item_selected"
         android:contentDescription="@string/item_image" />
 
@@ -69,6 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/name_of_hub"
+            android:background="@color/colorAccent"
             android:id="@+id/list_item_of_hub_select"
             android:layout_margin="10dp"
             tools:ignore="RtlHardcoded" />
@@ -98,7 +100,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/view_date_time_parcel_taken"
-        android:text="Date And Time For Parcel Should Dispatch"
+        android:text="@string/date_and_time_for_parcel_should_dispatch"
         android:textSize="15sp"
         android:textStyle="bold"
         android:layout_margin="10dp"
@@ -112,7 +114,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/date_picker_icon"
-        app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+        android:background="@color/colorAccent"
+        app:srcCompat="@android:drawable/ic_menu_my_calendar"
+        android:contentDescription=""
+        tools:ignore="ContentDescription" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -135,6 +140,7 @@
             android:id="@+id/time_picker_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
             app:srcCompat="@android:drawable/ic_menu_recent_history"
             tools:ignore="ContentDescription" />
         <TextView
@@ -154,7 +160,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/parcel_timeline"
-        android:text="Parcel Timeline For Reach Destination"
+        android:text="@string/parcel_timeline_for_reach_destination"
         android:textSize="15sp"
         android:textStyle="bold"
         android:layout_margin="10dp"
@@ -167,7 +173,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/date_picker_timeline_icon"
-            app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+            android:background="@color/colorAccent"
+            app:srcCompat="@android:drawable/ic_menu_my_calendar"
+            tools:ignore="ContentDescription" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -187,9 +195,10 @@
         android:layout_height="wrap_content"
         android:text="@string/submit_parcel"
         android:layout_gravity="center"
-        android:backgroundTint="#37dc9f"
+        android:backgroundTint="@color/colorAccent"
         android:id="@+id/submit_button_hub"
-        tools:targetApi="lollipop" />
+        tools:targetApi="lollipop"
+        android:layout_marginBottom="8dp"/>
 
 </LinearLayout>
 </ScrollView>

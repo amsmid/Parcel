@@ -210,11 +210,11 @@ public class ActTransProfileEdit extends AppCompatActivity implements ResultInSt
         if (!Validate()){
             return;
         }
-        String data = uid + "|" + stringName + "|" + stringEmail + "|" + stringMobNo + "|" + stringAddress + "|" + stringPinCode + "|" + stringState + "|" + stringCity;
+        //String data = uid + "|" + stringName + "|" + stringEmail + "|" + stringMobNo + "|" + stringAddress + "|" + stringPinCode + "|" + stringState + "|" + stringCity;
         String onlineKey = getResources().getString(R.string.updateProfileKey);
         HashMap<String,String> hashMapData = new HashMap<String, String>();
         hashMapData.put(getResources().getString(R.string.server_key_uid),uid);
-        hashMapData.put(getResources().getString(R.string.server_key_user),"1");
+        hashMapData.put(getResources().getString(R.string.server_key_user),"2");
         hashMapData.put(getResources().getString(R.string.server_key_name),stringName);
         hashMapData.put(getResources().getString(R.string.server_key_email),stringEmail);
         hashMapData.put(getResources().getString(R.string.server_key_mobileNo),stringMobNo);
@@ -308,6 +308,7 @@ public class ActTransProfileEdit extends AppCompatActivity implements ResultInSt
             sharedPreferenceUserData = new SharedPreferenceUserData(this);
             sharedPreferenceUserData.SaveSharedData(getResources().getString(R.string.server_key_result), result);
             clsStoreAllDataOfUser = new ClsStoreAllDataOfUser(this);
+            clsStoreAllDataOfUser.SetUserType("2");
             success = clsStoreAllDataOfUser.GetResult();
         }else if (keyOnline.equals(getResources().getString(R.string.updateProfilePasswordKey))){
             JSONObject jsonObject = null;

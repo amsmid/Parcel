@@ -21,11 +21,8 @@ import java.util.ArrayList;
  */
 
 class CustomHistorySendListAdapter extends BaseAdapter {
-    ArrayList<ItemsInListSend> arrayList;
-    Activity activity;
-    CustomHistorySendListAdapter(Activity activity,ArrayList<ItemsInListSend> arrayList){
-        this.arrayList = new ArrayList<>();
-        this.arrayList = arrayList;
+    private Activity activity;
+    CustomHistorySendListAdapter(Activity activity){
         this.activity = activity;
     }
 

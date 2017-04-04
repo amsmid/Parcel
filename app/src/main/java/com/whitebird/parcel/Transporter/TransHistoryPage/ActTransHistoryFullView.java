@@ -65,7 +65,7 @@ public class ActTransHistoryFullView extends AppCompatActivity {
         TextView textViewAddress = (TextView)findViewById(R.id.trans_history_model_full_edit_address);
         TextView textViewOrderNo = (TextView)findViewById(R.id.trans_history_model_full_edit_order_no);
         TextView textViewDispTime = (TextView)findViewById(R.id.trans_history_model_full_edit_disp_time);
-        textViewSenderAddress.setText(address);
+        textViewSenderAddress.setText(senderAddress);
         textViewAddress.setText(address);
         textViewOrderNo.setText(orderNo);
         textViewDispTime.setText(dispatchTime);
@@ -102,12 +102,11 @@ public class ActTransHistoryFullView extends AppCompatActivity {
             if (files == null) {
                 return true;
             }
-            for(int i=0; i<files.length; i++) {
-                if(files[i].isDirectory()) {
-                    deleteDirectory(files[i]);
-                }
-                else {
-                    files[i].delete();
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    deleteDirectory(file);
+                } else {
+                    file.delete();
                 }
             }
         }

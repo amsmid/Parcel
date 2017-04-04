@@ -1,20 +1,17 @@
 package com.whitebird.parcel.SignUp;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.SearchView;
-import android.text.TextUtils;
-import android.util.ArraySet;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -43,12 +40,12 @@ import java.util.HashMap;
 public class ClsSignUp extends AppCompatActivity implements ResultInString{
 
     EditText editTextName,editTextEmail,editTextMobNo,editTextPsswd,editTextConPsswd,editTextAddress,editTextPinCode;
-    Button signUp,signInFromSignupPage;
+    CardView signUp,signInFromSignupPage;
     TextView editTextState;
     RadioGroup userType;
     RadioButton userOwner,userTransport;
     String userTypeSelected;
-    String stringName,stringEmail,stringMobNo,stringPsswd,stringConPsswd,stringAddress,stringPinCode,stringState,stringCity,stringLandmark;
+    String stringName,stringEmail,stringMobNo,stringPsswd,stringConPsswd,stringAddress,stringPinCode,stringState,stringCity;
     ClsStoreAllDataOfUser clsStoreAllDataOfUser;
     Spinner spinnerVehicle,spinnerCityArea,editTextCity;
     String stringVehicle,stringCityArea;
@@ -58,7 +55,6 @@ public class ClsSignUp extends AppCompatActivity implements ResultInString{
     Dialog dialogDis;
     View viewSearch;
     ListView listViewState;
-    BaseAdapter setAdapter;
     int go = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +86,8 @@ public class ClsSignUp extends AppCompatActivity implements ResultInString{
 
         //Buttons On SignUp Page
 
-        signUp = (Button)findViewById(R.id.main_sign_up);
-        signInFromSignupPage = (Button)findViewById(R.id.signin_from_signup_page);
+        signUp = (CardView) findViewById(R.id.main_sign_up);
+        signInFromSignupPage = (CardView) findViewById(R.id.signin_from_signup_page);
 
         signInFromSignupPage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,7 +157,7 @@ public class ClsSignUp extends AppCompatActivity implements ResultInString{
             public void onClick(View v) {
                 go = 1;
                 String onlineKey = getResources().getString(R.string.getStateName);
-                HashMap<String,String> hashMapData = new HashMap<String, String>();
+                HashMap<String,String> hashMapData = new HashMap<>();
                 hashMapData.put(getResources().getString(R.string.server_key_stateId),"0");
                 new BackgroundTaskForResult(hashMapData, onlineKey, ClsSignUp.this).execute();
                 editTextState.setError(null);
@@ -214,9 +210,9 @@ public class ClsSignUp extends AppCompatActivity implements ResultInString{
                 }
 
 
-                    String data = stringName + "|" + stringEmail + "|" + stringMobNo + "|" + stringPsswd + "|" + stringAddress + "|" + stringPinCode + "|" + stringState + "|" + stringCity + "|" + userTypeSelected + "|" + stringCityArea + "|" + stringVehicle;
+                    //String data = stringName + "|" + stringEmail + "|" + stringMobNo + "|" + stringPsswd + "|" + stringAddress + "|" + stringPinCode + "|" + stringState + "|" + stringCity + "|" + userTypeSelected + "|" + stringCityArea + "|" + stringVehicle;
                     String onlineKey = getResources().getString(R.string.signupKey);
-                    HashMap<String,String> hashMapData = new HashMap<String, String>();
+                    HashMap<String,String> hashMapData = new HashMap<>();
                     hashMapData.put(getResources().getString(R.string.server_key_name),stringName);
                     hashMapData.put(getResources().getString(R.string.server_key_email),stringEmail);
                     hashMapData.put(getResources().getString(R.string.server_key_mobileNo),stringMobNo);
@@ -238,6 +234,7 @@ public class ClsSignUp extends AppCompatActivity implements ResultInString{
 
     }
 
+    @SuppressLint("InflateParams")
     private void ListBuilderOnPopUp() {
         builder = new AlertDialog.Builder(this);
         LayoutInflater layout = getLayoutInflater();
@@ -340,7 +337,7 @@ public class ClsSignUp extends AppCompatActivity implements ResultInString{
 
     @Override
     public void Result(String result,String keyOnline) {
-        String success ="0";
+        String success;
         sharedPreferenceUserData = new SharedPreferenceUserData(this);
         sharedPreferenceUserData.SaveSharedData("result",result);
         if (keyOnline.equals(getResources().getString(R.string.signupKey))) {
@@ -371,7 +368,7 @@ public class ClsSignUp extends AppCompatActivity implements ResultInString{
                         cityName.add(object.getString("cityName"));
                         cityId.add(object.getString("cityId"));
                     }
-                    ArrayAdapter<String> arrayAdapterCityName = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, android.R.id.text1, cityName);
+                    ArrayAdapter<String> arrayAdapterCityName = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, android.R.id.text1, cityName);
                     editTextCity.setAdapter(arrayAdapterCityName);
                 }else if (go==1){
                     JSONArray state = jsonObject.getJSONArray(getResources().getString(R.string.server_key_State));
@@ -381,7 +378,7 @@ public class ClsSignUp extends AppCompatActivity implements ResultInString{
                         stateNames.add(object.getString("stateName"));
                         stateId.add(object.getString("stateId"));
                     }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, android.R.id.text1, stateNames);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, android.R.id.text1, stateNames);
                     listViewState.setAdapter(adapter);
                     listViewState.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
@@ -389,7 +386,7 @@ public class ClsSignUp extends AppCompatActivity implements ResultInString{
                             go = 2;
                             editTextState.setText(stateNames.get(position));
                             String onlineKey = getResources().getString(R.string.getStateName);
-                            HashMap<String,String> hashMapData = new HashMap<String, String>();
+                            HashMap<String,String> hashMapData = new HashMap<>();
                             hashMapData.put(getResources().getString(R.string.server_key_stateId),stateId.get(position));
                             new BackgroundTaskForResult(hashMapData, onlineKey, ClsSignUp.this).execute();
                             dialogDis.dismiss();

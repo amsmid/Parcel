@@ -14,34 +14,30 @@ import android.widget.TextView;
 
 import com.whitebird.parcel.R;
 
-import java.util.ArrayList;
 
 /**
  * Created by girish on 19/3/17.
  */
 
 class CustomProcessingListOfOwnerAdapter extends BaseAdapter {
-    private ArrayList<ProcessingListItem> arrayList;
     private Activity activity;
-    public CustomProcessingListOfOwnerAdapter(FragmentActivity activity, ArrayList<ProcessingListItem> arrayList) {
-        this.arrayList = new ArrayList<>();
-        this.arrayList = arrayList;
+    public CustomProcessingListOfOwnerAdapter(FragmentActivity activity) {
         this.activity = activity;
     }
 
     @Override
     public int getCount() {
-        return arrayList.size();
+        return GetProcessingListOwner.getInstance().processingListItems.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return arrayList.get(position);
+        return GetProcessingListOwner.getInstance().processingListItems.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return arrayList.indexOf(position);
+        return GetProcessingListOwner.getInstance().processingListItems.indexOf(position);
     }
 
     @Override
@@ -50,20 +46,20 @@ class CustomProcessingListOfOwnerAdapter extends BaseAdapter {
         if (convertView==null){
             convertView = layoutInflater.inflate(R.layout.list_view_of_processing_list_model,null);
         }
-        if (arrayList.isEmpty()){
+        if (GetProcessingListOwner.getInstance().processingListItems.isEmpty()){
             convertView.setBackgroundResource(R.drawable.no_content_image);
         }else {
             TextView textViewAddress = (TextView) convertView.findViewById(R.id.processing_model_edit_address);
             TextView textViewOrderNo = (TextView) convertView.findViewById(R.id.processing_model_edit_order_no);
             TextView textViewTransName = (TextView) convertView.findViewById(R.id.processing_model_edit_status);
             CardView cardView = (CardView) convertView.findViewById(R.id.card_view_processing_list);
-            String address = arrayList.get(position).getAddress()+","+
-                    arrayList.get(position).getCityName()+","+
-                    arrayList.get(position).getStateName()+","+
-                    arrayList.get(position).getLandmark()+","+
-                    arrayList.get(position).getPincode();
-            String orderNo = arrayList.get(position).getOrderNumber();
-            String status = arrayList.get(position).getTransName();
+            String address = GetProcessingListOwner.getInstance().processingListItems.get(position).getAddress()+","+
+                    GetProcessingListOwner.getInstance().processingListItems.get(position).getCityName()+","+
+                    GetProcessingListOwner.getInstance().processingListItems.get(position).getStateName()+","+
+                    GetProcessingListOwner.getInstance().processingListItems.get(position).getLandmark()+","+
+                    GetProcessingListOwner.getInstance().processingListItems.get(position).getPincode();
+            String orderNo = GetProcessingListOwner.getInstance().processingListItems.get(position).getOrderNumber();
+            String status = GetProcessingListOwner.getInstance().processingListItems.get(position).getTransName();
             textViewAddress.setText(address);
             textViewOrderNo.setText(orderNo);
             textViewTransName.setText(status);

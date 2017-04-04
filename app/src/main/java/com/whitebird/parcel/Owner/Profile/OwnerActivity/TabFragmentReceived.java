@@ -20,7 +20,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -32,18 +31,16 @@ public class TabFragmentReceived extends Fragment implements AbsListView.OnScrol
     ListView listViewReceived;
     SharedPreferenceUserData sharedPreferenceUserData;
     private int previousTotal = 0;
-    private int visibleThreshold = 5;
+    private int visibleThreshold = 2;
     private boolean loading = true;
     private int count =0;
     String uid,onlineKey;
     ListAdapter adapter;
-    ArrayList<ReceivedListItem> arrayList;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View fragmentReceivedList= inflater.inflate(R.layout.fragment_received_main_list_owner,container,false);
-        arrayList = new ArrayList<>();
         onlineKey = getResources().getString(R.string.mainListofOwner);
         sharedPreferenceUserData = new SharedPreferenceUserData(getActivity());
         uid = sharedPreferenceUserData.getMyLoginUserData(getResources().getString(R.string.server_key_uid));
@@ -54,7 +51,7 @@ public class TabFragmentReceived extends Fragment implements AbsListView.OnScrol
         listViewReceived = new ListView(getActivity());
         listViewReceived = (ListView)fragmentReceivedList.findViewById(R.id.list_view_received_owner_list);
         listViewReceived.setOnScrollListener(this);
-        adapter = new CustomReceivedListOfOwnerAdapter(getActivity(),arrayList);
+        adapter = new CustomReceivedListOfOwnerAdapter(getActivity());
         return fragmentReceivedList;
     }
 
@@ -91,6 +88,9 @@ public class TabFragmentReceived extends Fragment implements AbsListView.OnScrol
     @Override
     public void Result(String result, String keyOnline) {
         Log.d("ResultInFragReceived",result);
+        if (getActivity()==null){
+            return;
+        }
         try {
             JSONObject jsonObject = new JSONObject(result);
             JSONArray jsonArrayListReceived = jsonObject.getJSONArray(getResources().getString(R.string.server_key_incoming));
@@ -131,8 +131,6 @@ public class TabFragmentReceived extends Fragment implements AbsListView.OnScrol
                 receivedListItem.setStateName(object.getString(getResources().getString(R.string.server_key_stateName)));
                 GetReceivedListOwner.getInstance().receivedListItems.add(receivedListItem);
             }
-            arrayList = new ArrayList<>();
-            arrayList = GetReceivedListOwner.getInstance().receivedListItems;
             listViewReceived.setAdapter(adapter);
         } catch (JSONException e) {
             e.printStackTrace();

@@ -11,7 +11,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -93,7 +92,7 @@ public class MainActivityAddNewParcel extends AppCompatActivity implements Resul
         sharedPreferenceUserData = new SharedPreferenceUserData(this);
         String data = sharedPreferenceUserData.getMyLoginUserData(getResources().getString(R.string.server_key_uid));
         String onlineKey = getResources().getString(R.string.fetchHubListKey);
-        HashMap<String,String> hashMapData = new HashMap<String, String>();
+        HashMap<String,String> hashMapData = new HashMap<>();
         hashMapData.put(getResources().getString(R.string.server_key_uid),data);
         hashMapData.put(getResources().getString(R.string.server_key_flag),"1");
         new BackgroundTaskForResult(hashMapData, onlineKey, MainActivityAddNewParcel.this).execute();
@@ -107,7 +106,7 @@ public class MainActivityAddNewParcel extends AppCompatActivity implements Resul
         textViewHubSelection = (Button) findViewById(R.id.list_item_of_hub_select);
         textViewHubSelectionAddress = (TextView) findViewById(R.id.list_item_of_hub_select_address);
         imageViewItemSelected = (ImageView)findViewById(R.id.image_of_item_selected);
-        imageViewItemSelected.setImageDrawable(getResources().getDrawable(R.drawable.blank_camera_image));
+        imageViewItemSelected.setImageDrawable(getResources().getDrawable(R.drawable.parcel_image_camera));
 
 
 
@@ -211,7 +210,7 @@ public class MainActivityAddNewParcel extends AppCompatActivity implements Resul
                 String weight = getWeight.getText().toString();
                 String size = getSize.getText().toString();
                 String senderUid = sharedPreferenceUserData.getMyLoginUserData(getResources().getString(R.string.server_key_uid));
-                String senderaddress = sharedPreferenceUserData.getMyLoginUserData(getResources().getString(R.string.server_key_address));
+                //String senderaddress = sharedPreferenceUserData.getMyLoginUserData(getResources().getString(R.string.server_key_address));
                 String dateNTime = textViewDate.getText().toString()+" "+textViewTime.getText().toString();
                 String dateTimeline = textViewDateTimeline.getText().toString();
                 imageViewItemSelected.setDrawingCacheEnabled(true);
@@ -225,9 +224,9 @@ public class MainActivityAddNewParcel extends AppCompatActivity implements Resul
                 if (!validate()){
                     return;
                 }
-                String data = senderUid +"|"+ receiverUid +"|"+ senderaddress +"|"+  type  +"|"+ receiverPincode +"|"+ receiverLandmark +"|"+ size +"|"+ weight +"|"+itemImage;
+                //String data = senderUid +"|"+ receiverUid +"|"+ senderaddress +"|"+  type  +"|"+ receiverPincode +"|"+ receiverLandmark +"|"+ size +"|"+ weight +"|"+itemImage;
                 String onlineKey = getResources().getString(R.string.sendListHubSelectedKey);
-                HashMap<String,String> hashMapData = new HashMap<String, String>();
+                HashMap<String,String> hashMapData = new HashMap<>();
                 hashMapData.put(getResources().getString(R.string.server_key_sender),senderUid);
                 hashMapData.put(getResources().getString(R.string.server_key_receiver),receiverUid);
                 hashMapData.put(getResources().getString(R.string.server_key_address),receiverAd);
@@ -408,7 +407,7 @@ public class MainActivityAddNewParcel extends AppCompatActivity implements Resul
         return input;
     }
 
-    public Bitmap StringToBitMap(String encodedString){
+    /*public Bitmap StringToBitMap(String encodedString){
         try {
             byte [] encodeByte=Base64.decode(encodedString,Base64.DEFAULT);
             Bitmap bitmap= BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
@@ -417,8 +416,9 @@ public class MainActivityAddNewParcel extends AppCompatActivity implements Resul
             e.getMessage();
             return null;
         }
-    }
+    }*/
 
+    @SuppressLint("SetTextI18n")
     private void selectImage() {
         final CharSequence[] items = { "Take Photo", "Choose from Library",
                 "Cancel" };
@@ -519,6 +519,7 @@ public class MainActivityAddNewParcel extends AppCompatActivity implements Resul
         }
     }
 
+    @SuppressLint("InflateParams")
     private void ListBuilderOnPopUp() {
         builder = new AlertDialog.Builder(this);
         LayoutInflater layout = getLayoutInflater();
@@ -596,7 +597,7 @@ public class MainActivityAddNewParcel extends AppCompatActivity implements Resul
             }else if (keyOnline.equals(getResources().getString(R.string.sendListHubSelectedKey))){
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 LayoutInflater layoutInflater = getLayoutInflater();
-                View view = layoutInflater.inflate(R.layout.submit_parcel_data_view_dialog,null);
+                @SuppressLint("InflateParams") View view = layoutInflater.inflate(R.layout.submit_parcel_data_view_dialog,null);
                 TextView textViewSourceAddress = (TextView)view.findViewById(R.id.add_parcel_submit_data_source_address_name_view);
                 TextView textViewDestinationAddress = (TextView)view.findViewById(R.id.add_parcel_submit_data_destination_address_name_view);
                 TextView textViewOrderNumber = (TextView)view.findViewById(R.id.add_parcel_submit_data_order_number_name_view);
@@ -639,7 +640,7 @@ public class MainActivityAddNewParcel extends AppCompatActivity implements Resul
 
     }
 
-    public class CustomListViewOfHubAdapter extends BaseAdapter implements Filterable{
+    private class CustomListViewOfHubAdapter extends BaseAdapter implements Filterable{
         ArrayList<GetHubListData> arrayList;
         Activity activity;
         ArrayList<GetHubListData> getFilterlist;
@@ -702,7 +703,7 @@ public class MainActivityAddNewParcel extends AppCompatActivity implements Resul
                 @Override
                 protected FilterResults performFiltering(CharSequence constraint) {
                     final FilterResults oReturn = new FilterResults();
-                    final ArrayList<GetHubListData> results = new ArrayList<GetHubListData>();
+                    final ArrayList<GetHubListData> results = new ArrayList<>();
                     if (getFilterlist == null)
                         getFilterlist = arrayList;
 

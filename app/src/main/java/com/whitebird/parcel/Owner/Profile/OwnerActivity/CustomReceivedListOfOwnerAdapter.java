@@ -21,11 +21,8 @@ import java.util.ArrayList;
  */
 
 class CustomReceivedListOfOwnerAdapter extends BaseAdapter {
-    private ArrayList<ReceivedListItem> arrayList;
     private Activity activity;
-    public CustomReceivedListOfOwnerAdapter(FragmentActivity activity, ArrayList<ReceivedListItem> arrayList) {
-        this.arrayList = new ArrayList<>();
-        this.arrayList = arrayList;
+    public CustomReceivedListOfOwnerAdapter(FragmentActivity activity) {
         this.activity = activity;
     }
 

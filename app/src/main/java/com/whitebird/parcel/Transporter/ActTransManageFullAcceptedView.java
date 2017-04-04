@@ -4,7 +4,8 @@ import android.content.Intent;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ public class ActTransManageFullAcceptedView extends AppCompatActivity {
     GtStTransManageAcceptedList gtStTransManageAcceptedList;
     String address,dispatchTime,orderNo,image,senderAddress,senderName,senderMo,receiverName,receiverMo,size,weight,timeline,type;
     File mediaFile,mediaStorageDir;
+    Button btnShowLocation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,14 +27,14 @@ public class ActTransManageFullAcceptedView extends AppCompatActivity {
         int position=intent.getIntExtra("position",0);
         gtStTransManageAcceptedList = SlgnTransManageGetAcceptedList.getInstance().gtStTransManageAcceptedLists.get(position);
         senderAddress = gtStTransManageAcceptedList.getSenderAd()+","+
+                gtStTransManageAcceptedList.getSenderLand()+","+
                 gtStTransManageAcceptedList.getSenderCity()+","+
                 gtStTransManageAcceptedList.getSenderState()+","+
-                gtStTransManageAcceptedList.getSenderLand()+","+
                 gtStTransManageAcceptedList.getSenderPin();
         address = gtStTransManageAcceptedList.getAddress()+","+
+                gtStTransManageAcceptedList.getLandmark()+","+
                 gtStTransManageAcceptedList.getReceiverCity()+","+
                 gtStTransManageAcceptedList.getReceiverState()+","+
-                gtStTransManageAcceptedList.getAddress()+","+
                 gtStTransManageAcceptedList.getPincode();
         dispatchTime = gtStTransManageAcceptedList.getDispatchTime();
         orderNo = gtStTransManageAcceptedList.getOrderNumber();
@@ -58,7 +60,7 @@ public class ActTransManageFullAcceptedView extends AppCompatActivity {
         TextView textViewAddress = (TextView)findViewById(R.id.trans_accepted_model_full_edit_address);
         TextView textViewOrderNo = (TextView)findViewById(R.id.trans_accepted_model_full_edit_order_no);
         TextView textViewDispTime = (TextView)findViewById(R.id.trans_accepted_model_full_edit_disp_time);
-        textViewSenderAddress.setText(address);
+        textViewSenderAddress.setText(senderAddress);
         textViewAddress.setText(address);
         textViewOrderNo.setText(orderNo);
         textViewDispTime.setText(dispatchTime);
@@ -87,6 +89,18 @@ public class ActTransManageFullAcceptedView extends AppCompatActivity {
         mediaFile = new File(mediaStorageDir.getPath(),newImg);
         new TransManageClsBackgroundImageLoader(this,imageUrl,imageView,mediaFile).execute();
 
+//        To Show Location of sender button described here
+        btnShowLocation = (Button)findViewById(R.id.trans_btn_show_loc_accepted_parcel);
+        btnShowLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(ActTransManageFullAcceptedView.this,TransMapView.class);
+                intent1.putExtra("address",senderAddress);
+                startActivity(intent1);
+            }
+        });
+
+
     }
 
     public static boolean deleteDirectory(File path) {
@@ -95,12 +109,11 @@ public class ActTransManageFullAcceptedView extends AppCompatActivity {
             if (files == null) {
                 return true;
             }
-            for(int i=0; i<files.length; i++) {
-                if(files[i].isDirectory()) {
-                    deleteDirectory(files[i]);
-                }
-                else {
-                    files[i].delete();
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    deleteDirectory(file);
+                } else {
+                    file.delete();
                 }
             }
         }

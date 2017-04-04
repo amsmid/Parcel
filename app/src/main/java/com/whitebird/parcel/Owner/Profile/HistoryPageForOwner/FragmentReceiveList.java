@@ -40,7 +40,6 @@ class FragmentReceiveList extends Fragment implements AbsListView.OnScrollListen
     private int count =0;
     String uid,onlineKey;
     ListAdapter adapter;
-    ArrayList<ItemsInListReceive> arrayList;
 
     @Nullable
     @Override
@@ -49,7 +48,6 @@ class FragmentReceiveList extends Fragment implements AbsListView.OnScrollListen
         //Set Data For Showing List
 
         //Set Data For Showing List
-        arrayList = new ArrayList<>();
         onlineKey = getResources().getString(R.string.historyListOwnerKey);
         sharedPreferenceUserData = new SharedPreferenceUserData(getActivity());
         uid = sharedPreferenceUserData.getMyLoginUserData(getResources().getString(R.string.key_uid));
@@ -61,7 +59,7 @@ class FragmentReceiveList extends Fragment implements AbsListView.OnScrollListen
         listViewReceiveHistory = new ListView(getActivity());
         listViewReceiveHistory = (ListView)fragmentReceive.findViewById(R.id.history_owner_receive_list_view);
         listViewReceiveHistory.setOnScrollListener(this);
-        adapter = new CustomHistoryReceiveListAdapter(getActivity(),arrayList);
+        adapter = new CustomHistoryReceiveListAdapter(getActivity());
         return fragmentReceive;
     }
 
@@ -132,8 +130,6 @@ class FragmentReceiveList extends Fragment implements AbsListView.OnScrollListen
                 receiveHistoryListItem.setReceiverLand(object.getString(getResources().getString(R.string.server_key_receiverLand)));
                 GetReceiveHistoryList.getInstance().itemsInListReceives.add(receiveHistoryListItem);
             }
-            arrayList = new ArrayList<>();
-            arrayList = GetReceiveHistoryList.getInstance().itemsInListReceives;
             listViewReceiveHistory.setAdapter(adapter);
         } catch (JSONException e) {
             e.printStackTrace();

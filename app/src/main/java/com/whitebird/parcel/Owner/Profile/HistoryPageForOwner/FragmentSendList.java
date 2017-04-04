@@ -40,14 +40,12 @@ class FragmentSendList extends Fragment implements AbsListView.OnScrollListener,
     private int count =0;
     String uid,onlineKey;
     ListAdapter adapter;
-    ArrayList<ItemsInListSend> arrayList;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View fragmentSend= inflater.inflate(R.layout.fragment_send_history_owner,container,false);
         //Set Data For Showing List
-        arrayList = new ArrayList<>();
         onlineKey = getResources().getString(R.string.historyListOwnerKey);
         sharedPreferenceUserData = new SharedPreferenceUserData(getActivity());
         uid = sharedPreferenceUserData.getMyLoginUserData(getResources().getString(R.string.key_uid));
@@ -59,7 +57,7 @@ class FragmentSendList extends Fragment implements AbsListView.OnScrollListener,
         listViewHistory = new ListView(getActivity());
         listViewHistory = (ListView)fragmentSend.findViewById(R.id.history_owner_send_list_view);
         listViewHistory.setOnScrollListener(this);
-        adapter = new CustomHistorySendListAdapter(getActivity(),arrayList);
+        adapter = new CustomHistorySendListAdapter(getActivity());
         return fragmentSend;
     }
 
@@ -130,8 +128,6 @@ class FragmentSendList extends Fragment implements AbsListView.OnScrollListener,
                 sendHistoryListItem.setReceiverLand(object.getString(getResources().getString(R.string.server_key_receiverLand)));
                 GetSendHistoryList.getInstance().itemsInListSends.add(sendHistoryListItem);
             }
-            arrayList = new ArrayList<>();
-            arrayList = GetSendHistoryList.getInstance().itemsInListSends;
             listViewHistory.setAdapter(adapter);
         } catch (JSONException e) {
             e.printStackTrace();

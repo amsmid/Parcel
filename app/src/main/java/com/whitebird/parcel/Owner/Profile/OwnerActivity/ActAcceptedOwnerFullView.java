@@ -158,6 +158,7 @@ public class ActAcceptedOwnerFullView extends AppCompatActivity implements Resul
         }else {
             AlertDialog.Builder dialog = new AlertDialog.Builder(this);
             dialog.setTitle("Check Connection");
+            dialog.setPositiveButton("Ok",null);
             dialog.show();
         }
     }

@@ -11,16 +11,28 @@ import android.view.MenuItem;
 import com.whitebird.parcel.R;
 import com.whitebird.parcel.SharedPreferenceUserData;
 
+import java.io.File;
+import java.util.ArrayList;
+
 public class ActMainManage extends AppCompatActivity {
 
     SharedPreferenceUserData sharedPreferenceUserData;
     ViewPager viewPagerForMainFragments;
     TabLayout tabLayout;
+    ArrayList<PendingListItem> pendingListItemArrayList;
+    ArrayList<AcceptedListItem> acceptedListItemArrayList;
+    ArrayList<ReceivedListItem> receivedListItemArrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_act_manage);
 
+        pendingListItemArrayList = new ArrayList<>();
+        acceptedListItemArrayList = new ArrayList<>();
+        receivedListItemArrayList = new ArrayList<>();
+        GetPendingListOwner.getInstance().pendingListItems.removeAll(pendingListItemArrayList);
+        GetAcceptedListOwner.getInstance().acceptedListItems.removeAll(acceptedListItemArrayList);
+        GetReceivedListOwner.getInstance().receivedListItems.removeAll(receivedListItemArrayList);
 
         tabLayout = (TabLayout) findViewById(R.id.tab_layout_on_main_owner_manage_screen);
         tabLayout.addTab(tabLayout.newTab().setText("Pending Parcel List"));
@@ -84,4 +96,20 @@ public class ActMainManage extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    /*@Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        for (File cacheFile : getCacheDir().listFiles()) {
+            if (cacheFile.isFile() && cacheFile.length() > 1000000) cacheFile.delete();
+        }
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        for (File cacheFile : getCacheDir().listFiles()) {
+            if (cacheFile.isFile() && cacheFile.length() > 1000000) cacheFile.delete();
+        }
+    }*/
 }

@@ -33,14 +33,11 @@ public class ActOwnerTrackParcel extends AppCompatActivity implements AbsListVie
     Activity activity;
     String uid,onlineKey;
     ListAdapter adapter;
-    ArrayList<ProcessingListItem> arrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_owner_track_parcel);
         GetProcessingListOwner.getInstance().processingListItems.clear();
-            arrayList = new ArrayList<>();
-            arrayList = GetProcessingListOwner.getInstance().processingListItems;
             onlineKey = getResources().getString(R.string.mainListofOwner);
             sharedPreferenceUserData = new SharedPreferenceUserData(this);
             uid = sharedPreferenceUserData.getMyLoginUserData(getResources().getString(R.string.server_key_uid));
@@ -51,7 +48,7 @@ public class ActOwnerTrackParcel extends AppCompatActivity implements AbsListVie
             listViewProcessing = new ListView(this);
             listViewProcessing = (ListView)findViewById(R.id.list_view_processing_owner_list);
             listViewProcessing.setOnScrollListener(this);
-            adapter = new CustomProcessingListOfOwnerAdapter(this,arrayList);
+            adapter = new CustomProcessingListOfOwnerAdapter(this);
         }
 
         @Override

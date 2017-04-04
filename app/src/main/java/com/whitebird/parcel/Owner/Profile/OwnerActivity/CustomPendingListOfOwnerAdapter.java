@@ -20,11 +20,11 @@ import java.util.ArrayList;
 
 class CustomPendingListOfOwnerAdapter extends BaseAdapter {
 
-    private ArrayList<PendingListItem> arrayList;
+    //private ArrayList<PendingListItem> arrayList;
     private Activity activity;
-    CustomPendingListOfOwnerAdapter(Activity activity, ArrayList<PendingListItem> arrayList){
-        this.arrayList = new ArrayList<>();
-        this.arrayList = arrayList;
+    CustomPendingListOfOwnerAdapter(Activity activity){
+        /*this.arrayList = new ArrayList<>();
+        this.arrayList = arrayList;*/
         this.activity = activity;
     }
     @Override

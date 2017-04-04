@@ -58,7 +58,7 @@ public class ActTransManageFullDeliveredView extends AppCompatActivity {
         TextView textViewAddress = (TextView)findViewById(R.id.trans_delivered_model_full_edit_address);
         TextView textViewOrderNo = (TextView)findViewById(R.id.trans_delivered_model_full_edit_order_no);
         TextView textViewDispTime = (TextView)findViewById(R.id.trans_delivered_model_full_edit_disp_time);
-        textViewSenderAddress.setText(address);
+        textViewSenderAddress.setText(senderAddress);
         textViewAddress.setText(address);
         textViewOrderNo.setText(orderNo);
         textViewDispTime.setText(dispatchTime);

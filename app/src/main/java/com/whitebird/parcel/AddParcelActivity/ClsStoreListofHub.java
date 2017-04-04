@@ -22,7 +22,7 @@ class ClsStoreListofHub {
         this.activity=activity;
     }
 
-    public void SaveHubList(String result){
+    void SaveHubList(String result){
         getHubListDatas= new ArrayList<>();
 
         try {
@@ -44,9 +44,6 @@ class ClsStoreListofHub {
                 getHubListData.setPincode(jsonObject1.getString(activity.getResources().getString(R.string.server_key_pincode)));
                 getHubListData.setAddress(jsonObject1.getString(activity.getResources().getString(R.string.server_key_address)));
                 getHubListData.setLastLogin(jsonObject1.getString(activity.getResources().getString(R.string.server_key_lastLogin)));
-                /*getHubListData.setUserType(jsonObject1.getString(activity.getResources().getString(R.string.server_key_userType)));*/
-                /*getHubListData.setVehicle(jsonObject1.getString(activity.getResources().getString(R.string.server_key_vehicle)));
-                getHubListData.setInterCity(jsonObject1.getString(activity.getResources().getString(R.string.server_key_interCity)));*/
                 getHubListData.setLandmark(jsonObject1.getString(activity.getResources().getString(R.string.server_key_landmark)));
                 getHubListDatas.add(getHubListData);
             }
@@ -56,7 +53,7 @@ class ClsStoreListofHub {
 
     }
 
-    public ArrayList<GetHubListData> getGetHubListDatas() {
+    ArrayList<GetHubListData> getGetHubListDatas() {
         return getHubListDatas;
     }
 }

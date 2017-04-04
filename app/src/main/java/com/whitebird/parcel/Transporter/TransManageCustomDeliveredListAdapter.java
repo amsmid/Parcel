@@ -23,11 +23,8 @@ import java.util.ArrayList;
 
 class TransManageCustomDeliveredListAdapter extends BaseAdapter {
 
-    private ArrayList<GtStTransManageDeliveredList> arrayList;
     private Activity activity;
-    TransManageCustomDeliveredListAdapter(Activity activity, ArrayList<GtStTransManageDeliveredList> arrayList){
-        this.arrayList = new ArrayList<>();
-        this.arrayList = arrayList;
+    TransManageCustomDeliveredListAdapter(Activity activity){
         this.activity = activity;
     }
     @Override

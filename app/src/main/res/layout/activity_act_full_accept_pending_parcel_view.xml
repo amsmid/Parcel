@@ -28,10 +28,11 @@
 
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/trans_pending_model_full_view_sender_address"
-            android:text="Sender Address :"
+            android:text="@string/sender_address"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/trans_image_full_owner_pending_list"
@@ -43,6 +44,7 @@
             android:layout_marginLeft="10dp" />
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/address"
@@ -55,10 +57,11 @@
             tools:layout_editor_absoluteY="286dp"
             tools:layout_editor_absoluteX="10dp" />
         <TextView
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/trans_pending_model_full_view_address"
-            android:text="Receiver Address :"
+            android:text="@string/receiver_address_t"
             android:textStyle="bold"
             android:layout_marginTop="20dp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -70,6 +73,7 @@
             android:layout_marginLeft="10dp" />
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/address"
@@ -83,10 +87,11 @@
             tools:layout_editor_absoluteX="10dp" />
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/relativeLayout"
-            android:text="Order Number :"
+            android:text="@string/order_number_t"
             android:textStyle="bold"
             android:layout_marginTop="20dp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -98,9 +103,10 @@
             tools:layout_editor_absoluteX="8dp" />
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Order Number"
+            android:hint="@string/order_number"
             android:id="@+id/trans_pending_model_full_edit_order_no"
             android:layout_marginTop="20dp"
             app:layout_constraintTop_toBottomOf="@+id/trans_pending_model_full_edit_address"
@@ -112,10 +118,11 @@
 
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/trans_pending_model_full_view_disp_time"
-            android:text="Order Dispatch Time :"
+            android:text="@string/order_dispatch_time_t"
             android:textStyle="bold"
             tools:ignore="RtlHardcoded"
             app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
@@ -130,9 +137,10 @@
             android:layout_marginLeft="8dp" />
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Time"
+            android:hint="@string/time"
             android:id="@+id/trans_pending_model_full_edit_disp_time"
             tools:ignore="RtlHardcoded"
             android:layout_marginTop="20dp"
@@ -146,10 +154,11 @@
             tools:layout_editor_absoluteY="373dp" />
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/trans_pending_model_full_view_sender_name"
-            android:text="Sender Name :"
+            android:text="@string/sender_name_t"
             android:textStyle="bold"
             tools:ignore="RtlHardcoded"
             app:layout_constraintTop_toBottomOf="@+id/trans_pending_model_full_view_disp_time"
@@ -164,9 +173,10 @@
             android:layout_marginLeft="8dp" />
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Name"
+            android:hint="@string/name"
             android:id="@+id/trans_pending_model_full_edit_sender_name"
             tools:ignore="RtlHardcoded"
             android:layout_marginTop="20dp"
@@ -180,10 +190,11 @@
             tools:layout_editor_absoluteY="373dp" />
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/trans_pending_model_full_view_sender_mob"
-            android:text="Sender Mobile :"
+            android:text="@string/sender_mobile"
             android:textStyle="bold"
             tools:ignore="RtlHardcoded"
             app:layout_constraintTop_toBottomOf="@+id/trans_pending_model_full_view_sender_name"
@@ -198,9 +209,10 @@
             android:layout_marginLeft="8dp" />
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Number"
+            android:hint="@string/number"
             android:id="@+id/trans_pending_model_full_edit_sender_mob"
             tools:ignore="RtlHardcoded"
             android:layout_marginTop="20dp"
@@ -214,10 +226,11 @@
             tools:layout_editor_absoluteY="373dp" />
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/trans_pending_model_full_view_receiver_name"
-            android:text="Receiver Name :"
+            android:text="@string/receiver_name_t"
             android:textStyle="bold"
             tools:ignore="RtlHardcoded"
             app:layout_constraintTop_toBottomOf="@+id/trans_pending_model_full_view_sender_mob"
@@ -232,9 +245,10 @@
             android:layout_marginLeft="8dp" />
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Name"
+            android:hint="@string/name"
             android:id="@+id/trans_pending_model_full_edit_receiver_name"
             tools:ignore="RtlHardcoded"
             android:layout_marginTop="20dp"
@@ -248,10 +262,11 @@
             tools:layout_editor_absoluteY="373dp" />
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/trans_pending_model_full_view_receiver_mob"
-            android:text="Receiver Mobile :"
+            android:text="@string/receiver_mobile_t"
             android:textStyle="bold"
             tools:ignore="RtlHardcoded"
             app:layout_constraintTop_toBottomOf="@+id/trans_pending_model_full_view_receiver_name"
@@ -266,9 +281,10 @@
             android:layout_marginLeft="8dp" />
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Number"
+            android:hint="@string/number"
             android:id="@+id/trans_pending_model_full_edit_receiver_mob"
             tools:ignore="RtlHardcoded"
             android:layout_marginTop="20dp"
@@ -282,10 +298,11 @@
             tools:layout_editor_absoluteY="373dp" />
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/trans_pending_model_full_view_size"
-            android:text="Parcel Size :"
+            android:text="@string/parcel_size_t"
             android:textStyle="bold"
             tools:ignore="RtlHardcoded"
             app:layout_constraintTop_toBottomOf="@+id/trans_pending_model_full_view_receiver_mob"
@@ -300,9 +317,10 @@
             android:layout_marginLeft="8dp" />
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Size"
+            android:hint="@string/size"
             android:id="@+id/trans_pending_model_full_edit_size"
             tools:ignore="RtlHardcoded"
             android:layout_marginTop="20dp"
@@ -317,10 +335,11 @@
 
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/trans_pending_model_full_view_weight"
-            android:text="Parcel Weight :"
+            android:text="@string/parcel_weight_t"
             android:textStyle="bold"
             tools:ignore="RtlHardcoded"
             app:layout_constraintTop_toBottomOf="@+id/trans_pending_model_full_view_size"
@@ -335,9 +354,10 @@
             android:layout_marginLeft="8dp" />
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Weight"
+            android:hint="@string/weight"
             android:id="@+id/trans_pending_model_full_edit_weight"
             tools:ignore="RtlHardcoded"
             android:layout_marginTop="20dp"
@@ -351,10 +371,11 @@
             tools:layout_editor_absoluteY="373dp" />
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/trans_pending_model_full_view_timeline"
-            android:text="Parcel Timeline :"
+            android:text="@string/parcel_timeline_t"
             android:textStyle="bold"
             tools:ignore="RtlHardcoded"
             app:layout_constraintTop_toBottomOf="@+id/trans_pending_model_full_view_weight"
@@ -369,9 +390,10 @@
             android:layout_marginLeft="8dp" />
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="time"
+            android:hint="@string/time"
             android:id="@+id/trans_pending_model_full_edit_timeline"
             tools:ignore="RtlHardcoded"
             android:layout_marginTop="20dp"
@@ -385,10 +407,11 @@
             tools:layout_editor_absoluteY="373dp" />
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/trans_pending_model_full_view_type"
-            android:text="Parcel Type :"
+            android:text="@string/parcel_type_t"
             android:textStyle="bold"
             tools:ignore="RtlHardcoded"
             app:layout_constraintTop_toBottomOf="@+id/trans_pending_model_full_view_timeline"
@@ -403,9 +426,10 @@
             android:layout_marginLeft="8dp" />
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Type"
+            android:hint="@string/type"
             android:id="@+id/trans_pending_model_full_edit_type"
             tools:ignore="RtlHardcoded"
             android:layout_marginTop="20dp"
@@ -422,13 +446,14 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Accept Delivery"
+            android:text="@string/accept_delivery"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_margin="20dp"
             app:layout_constraintTop_toBottomOf="@+id/trans_pending_model_full_view_type"
             android:id="@+id/btn_accept_delivery_in_pending"
             tools:layout_editor_absoluteY="420dp"
-            tools:layout_editor_absoluteX="-5dp" />
+            tools:layout_editor_absoluteX="-5dp"
+            android:background="@color/colorPrimary"/>
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

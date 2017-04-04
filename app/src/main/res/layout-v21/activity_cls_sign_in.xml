@@ -1,90 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.whitebird.parcel.SignIn.ClsSignIn"
-    android:fitsSystemWindows="true">
-
-    <LinearLayout
+    android:layout_height="match_parent">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        android:orientation="vertical">
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:id="@+id/get_email"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:id="@+id/get_password"/>
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        tools:context="com.whitebird.parcel.SignIn.ClsSignIn"
+        android:background="@color/white"
+        android:fitsSystemWindows="true">
 
-        <RadioGroup
-            android:id="@+id/user_type_signIn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <RelativeLayout
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome_to_parcel"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textColor="@color/textColor"
+            android:layout_marginTop="10dp"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:layout_marginTop="100dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:orientation="vertical">
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:ignore="UselessParent">
-                <RadioButton
-                    android:id="@+id/user_owner_signIn"
-                    android:layout_width="wrap_content"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:id="@+id/get_email"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:id="@+id/get_password"/>
+
+            <RadioGroup
+                android:id="@+id/user_type_signIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/Owner"
-                    android:layout_alignParentLeft="true"
-                    tools:ignore="RtlHardcoded"
-                    android:checked="true"
-                    android:layout_marginLeft="30dp"/>
+                    tools:ignore="UselessParent">
+                    <RadioButton
+                        android:id="@+id/user_owner_signIn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Owner"
+                        android:layout_alignParentLeft="true"
+                        tools:ignore="RtlHardcoded"
+                        android:checked="true"
+                        android:layout_marginLeft="30dp"/>
 
-                <RadioButton
-                    android:id="@+id/user_transport_signIn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/transporter"
-                    android:layout_alignParentRight="true"
-                    tools:ignore="RelativeOverlap,RtlHardcoded"
-                    android:checked="false"
-                    android:layout_marginRight="30dp"/>
-            </RelativeLayout>
-        </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/user_transport_signIn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/transporter"
+                        android:layout_alignParentRight="true"
+                        tools:ignore="RelativeOverlap,RtlHardcoded"
+                        android:checked="false"
+                        android:layout_marginRight="30dp"/>
+                </RelativeLayout>
+            </RadioGroup>
 
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:id="@+id/sign_in"
-            android:text="@string/login"/>
-        
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/register"
-            android:id="@+id/signup_register"
-            android:layout_gravity="center"
-            android:textColor="@color/colorAccent"
-            android:backgroundTint="@color/transperentBackground"/>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardElevation="2dp"
+                card_view:cardCornerRadius="6dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                card_view:cardBackgroundColor="@color/textColor"
+                android:id="@+id/sign_in">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/login"
+                    android:textSize="20sp"
+                    android:padding="12dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"/>
+            </android.support.v7.widget.CardView>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Skip"
-            android:layout_gravity="center"
-            android:id="@+id/button_skip"/>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardElevation="2dp"
+                card_view:cardCornerRadius="6dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/signup_register">
 
-    </LinearLayout>
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/no_account_yet_create_one"
+                    android:textAlignment="center"
+                    android:padding="12dp"
+                    android:textColor="@color/colorAccent" />
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </RelativeLayout>
 </ScrollView>

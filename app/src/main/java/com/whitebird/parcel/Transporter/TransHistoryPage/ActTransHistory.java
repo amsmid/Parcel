@@ -29,14 +29,12 @@ public class ActTransHistory extends AppCompatActivity implements AbsListView.On
     private int count =0;
     String uid,onlineKey;
     ListAdapter adapter;
-    ArrayList<TransHistoryListItem> arrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_trans_history);
         GetTransHistoryList.getInstance().transHistoryListItems.clear();
         lvTransListory = (ListView)findViewById(R.id.lv_trans_history);
-        arrayList = new ArrayList<>();
         onlineKey = getResources().getString(R.string.historyListOwnerKey);
         sharedPreferenceUserData = new SharedPreferenceUserData(this);
         uid = sharedPreferenceUserData.getMyLoginUserData(getResources().getString(R.string.key_uid));
@@ -46,7 +44,7 @@ public class ActTransHistory extends AppCompatActivity implements AbsListView.On
         hashMapData.put(getResources().getString(R.string.server_key_count), String.valueOf(count));
         new BackgroundTaskForResult(hashMapData, onlineKey,this).execute();
         lvTransListory.setOnScrollListener(this);
-        adapter = new CustomTransHistoryListAdapter(this,arrayList);
+        adapter = new CustomTransHistoryListAdapter(this);
 
     }
 
@@ -117,8 +115,6 @@ public class ActTransHistory extends AppCompatActivity implements AbsListView.On
                 transHistoryListItem.setReceiverLand(object.getString(getResources().getString(R.string.server_key_receiverLand)));
                 GetTransHistoryList.getInstance().transHistoryListItems.add(transHistoryListItem);
             }
-            arrayList = new ArrayList<>();
-            arrayList = GetTransHistoryList.getInstance().transHistoryListItems;
             lvTransListory.setAdapter(adapter);
         } catch (JSONException e) {
             e.printStackTrace();

@@ -21,26 +21,24 @@ import java.util.List;
 class TransPendingListOfHubAdapter extends BaseAdapter {
 
     private Activity activity;
-    private ArrayList<TransPendingList> transPendingListArrayList;
 
-    TransPendingListOfHubAdapter(Activity activity, ArrayList<TransPendingList> transPendingListArrayList) {
+    TransPendingListOfHubAdapter(Activity activity) {
         this.activity = activity;
-        this.transPendingListArrayList = transPendingListArrayList;
     }
 
     @Override
     public int getCount() {
-        return transPendingListArrayList.size();
+        return SlgnTransPendingParcelList.getInstance().transPendingLists.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return transPendingListArrayList.get(position);
+        return SlgnTransPendingParcelList.getInstance().transPendingLists.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return transPendingListArrayList.indexOf(position);
+        return SlgnTransPendingParcelList.getInstance().transPendingLists.indexOf(position);
     }
 
     @Override
@@ -64,14 +62,13 @@ class TransPendingListOfHubAdapter extends BaseAdapter {
                 SlgnTransPendingParcelList.getInstance().transPendingLists.get(position).getReceiverState()+","+
                 SlgnTransPendingParcelList.getInstance().transPendingLists.get(position).getAddress()+","+
                 SlgnTransPendingParcelList.getInstance().transPendingLists.get(position).getPincode();
-        final String orderNo = transPendingListArrayList.get(position).getOrderNumber();
-        final String dispTime = transPendingListArrayList.get(position).getDispatchTime();
+        final String orderNo = SlgnTransPendingParcelList.getInstance().transPendingLists.get(position).getOrderNumber();
+        final String dispTime = SlgnTransPendingParcelList.getInstance().transPendingLists.get(position).getDispatchTime();
         textViewSenderAddress.setText(senderAddress);
         textViewAddress.setText(address);
         textViewOrderNo.setText(orderNo);
         textViewDispTime.setText(dispTime);
-        final List<TransPendingList> transPendingLists = transPendingListArrayList;
-
+        //final List<TransPendingList> transPendingLists = SlgnTransPendingParcelList.getInstance().transPendingLists;
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -12,7 +12,7 @@ import com.whitebird.parcel.SharedPreferenceUserData;
 
 public class ClsProfileDisplay extends AppCompatActivity {
 
-    TextView editTextName,editTextEmail,editTextMobNo,editTextPsswd,editTextAddress,editTextPinCode,editTextState,editTextCity;
+    TextView editTextName,editTextEmail,editTextMobNo,editTextAddress,editTextPinCode,editTextState,editTextCity;
     SharedPreferenceUserData sharedPreferenceUserData;
 
     @Override

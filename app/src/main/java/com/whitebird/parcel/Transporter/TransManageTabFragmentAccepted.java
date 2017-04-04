@@ -40,15 +40,12 @@ public class TransManageTabFragmentAccepted extends Fragment implements AbsListV
     Activity activity;
     String uid,onlineKey;
     ListAdapter adapter;
-    ArrayList<GtStTransManageAcceptedList> gtStTransManageAcceptedLists;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View fragmentTransAcceptedList= inflater.inflate(R.layout.trans_manage_fragment_accepted_list,container,false);
 
-        gtStTransManageAcceptedLists = new ArrayList<>();
-        gtStTransManageAcceptedLists = SlgnTransManageGetAcceptedList.getInstance().gtStTransManageAcceptedLists;
         onlineKey = getResources().getString(R.string.transManageAcceptList);
         sharedPreferenceUserData = new SharedPreferenceUserData(getActivity());
         uid = sharedPreferenceUserData.getMyLoginUserData(getResources().getString(R.string.key_uid));
@@ -59,7 +56,7 @@ public class TransManageTabFragmentAccepted extends Fragment implements AbsListV
         listViewAccepted = new ListView(getActivity());
         listViewAccepted = (ListView)fragmentTransAcceptedList.findViewById(R.id.trans_manage_accepted_list);
         listViewAccepted.setOnScrollListener(this);
-        adapter = new TransManageCustomAcceptListAdapter(getActivity(),gtStTransManageAcceptedLists);
+        adapter = new TransManageCustomAcceptListAdapter(getActivity());
 
 
         return fragmentTransAcceptedList;

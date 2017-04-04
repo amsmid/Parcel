@@ -1,5 +1,6 @@
 package com.whitebird.parcel.Transporter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -22,7 +23,6 @@ import com.whitebird.parcel.BackgroundTaskForResult;
 import com.whitebird.parcel.GetHubListData;
 import com.whitebird.parcel.R;
 import com.whitebird.parcel.ResultInString;
-import com.whitebird.parcel.TransPendingList;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,15 +41,13 @@ public class MainActivityPickShipment extends AppCompatActivity implements View.
     ArrayList<String> getHubNameListStored;
     ArrayList<GetHubListData> getHubFullListStored;
     ClsTransStorePendingListOfHub clsTransStorePendingListOfHub;
-    ArrayList<TransPendingList> transPendingListArrayList;
     View view;
-    int positionNew;
     String passingUid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String onlineKey = getResources().getString(R.string.fetchHubListKey);
-        HashMap<String,String> hashMapData = new HashMap<String, String>();
+        HashMap<String,String> hashMapData = new HashMap<>();
         hashMapData.put(getResources().getString(R.string.server_key_uid),"");
         hashMapData.put(getResources().getString(R.string.server_key_flag),"2");
         new BackgroundTaskForResult(hashMapData, onlineKey, MainActivityPickShipment.this).execute();
@@ -66,6 +64,7 @@ public class MainActivityPickShipment extends AppCompatActivity implements View.
 
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -74,7 +73,7 @@ public class MainActivityPickShipment extends AppCompatActivity implements View.
             svTransHubList.onActionViewCollapsed();
             String uid = passingUid;
             String onlineKeyPending = getResources().getString(R.string.pendingParcelListKey);
-            HashMap<String,String> hashMapData = new HashMap<String, String>();
+            HashMap<String,String> hashMapData = new HashMap<>();
             hashMapData.put(getResources().getString(R.string.server_key_uid),uid);
             new BackgroundTaskForResult(hashMapData, onlineKeyPending, MainActivityPickShipment.this).execute();
         }
@@ -89,7 +88,7 @@ public class MainActivityPickShipment extends AppCompatActivity implements View.
             listViewCombine = new ListView(this);
             listViewCombine = (ListView)findViewById(R.id.transport_pick_s_list_view_pending_parcel);
             String onlineKey = getResources().getString(R.string.fetchHubListKey);
-            HashMap<String,String> hashMapData = new HashMap<String, String>();
+            HashMap<String,String> hashMapData = new HashMap<>();
             hashMapData.put(getResources().getString(R.string.server_key_uid),"");
             hashMapData.put(getResources().getString(R.string.server_key_flag),"2");
             new BackgroundTaskForResult(hashMapData, onlineKey, MainActivityPickShipment.this).execute();
@@ -152,15 +151,14 @@ public class MainActivityPickShipment extends AppCompatActivity implements View.
                 SlgnTransPendingParcelList.getInstance().transPendingLists.clear();
                 clsTransStorePendingListOfHub = new ClsTransStorePendingListOfHub(this);
                 clsTransStorePendingListOfHub.SavePendingList(result);
-                transPendingListArrayList = new ArrayList<>();
-                transPendingListArrayList = SlgnTransPendingParcelList.getInstance().transPendingLists;
                 listViewCombine = new ListView(this);
                 listViewCombine = (ListView)findViewById(R.id.transport_pick_s_list_view_pending_parcel);
-                listViewCombine.setAdapter(new TransPendingListOfHubAdapter(this,transPendingListArrayList));
+                listViewCombine.setAdapter(new TransPendingListOfHubAdapter(this));
             }
         }else {
             AlertDialog.Builder dialog = new AlertDialog.Builder(this);
             dialog.setTitle("Empty Pending Data");
+            dialog.setPositiveButton("Ok",null);
             dialog.show();
         }
 
@@ -197,6 +195,7 @@ public class MainActivityPickShipment extends AppCompatActivity implements View.
             return getHubFullList.indexOf(position);
         }
 
+        @SuppressLint("InflateParams")
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
             LayoutInflater layoutInflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -210,6 +209,7 @@ public class MainActivityPickShipment extends AppCompatActivity implements View.
             textViewName.setText(getHubFullList.get(position).getName());
 
             view.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("SetTextI18n")
                 @Override
                 public void onClick(View v) {
                     searchTextView.setText("Search Hub List Here!");
@@ -217,7 +217,7 @@ public class MainActivityPickShipment extends AppCompatActivity implements View.
                     String uid = getHubFullList.get(position).getUid();
                     passingUid = uid;
                     String onlineKeyPending = getResources().getString(R.string.pendingParcelListKey);
-                    HashMap<String,String> hashMapData = new HashMap<String, String>();
+                    HashMap<String,String> hashMapData = new HashMap<>();
                     hashMapData.put(getResources().getString(R.string.server_key_uid),uid);
                     new BackgroundTaskForResult(hashMapData, onlineKeyPending, MainActivityPickShipment.this).execute();
                 }

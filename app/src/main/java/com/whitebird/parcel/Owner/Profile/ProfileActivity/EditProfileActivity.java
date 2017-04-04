@@ -125,9 +125,9 @@ public class EditProfileActivity extends AppCompatActivity implements ResultInSt
                 newPassword = editTextNewPassword.getText().toString();
                 conPassword = editTextConPassword.getText().toString();
                 if (ValidatePassword()){
-                    String data = uid + "|" + oldPassword + "|" + newPassword;
+                    //String data = uid + "|" + oldPassword + "|" + newPassword;
                     String onlineKey = getResources().getString(R.string.updateProfilePasswordKey);
-                    HashMap<String,String> hashMapDataPass = new HashMap<String, String>();
+                    HashMap<String,String> hashMapDataPass = new HashMap<>();
                     hashMapDataPass.put(getResources().getString(R.string.server_key_uid),uid);
                     hashMapDataPass.put(getResources().getString(R.string.server_key_oldPassword),oldPassword);
                     hashMapDataPass.put(getResources().getString(R.string.server_key_newPassword),newPassword);
@@ -160,7 +160,7 @@ public class EditProfileActivity extends AppCompatActivity implements ResultInSt
         if (!Validate()){
             return;
         }
-        String data = uid + "|" + stringName + "|" + stringEmail + "|" + stringMobNo + "|" + stringAddress + "|" + stringPinCode + "|" + stringState + "|" + stringCity;
+        //String data = uid + "|" + stringName + "|" + stringEmail + "|" + stringMobNo + "|" + stringAddress + "|" + stringPinCode + "|" + stringState + "|" + stringCity;
         String onlineKey = getResources().getString(R.string.updateProfileKey);
         HashMap<String,String> hashMapData = new HashMap<String, String>();
         hashMapData.put(getResources().getString(R.string.server_key_uid),uid);
@@ -256,6 +256,7 @@ public class EditProfileActivity extends AppCompatActivity implements ResultInSt
             sharedPreferenceUserData = new SharedPreferenceUserData(this);
             sharedPreferenceUserData.SaveSharedData(getResources().getString(R.string.server_key_result), result);
             clsStoreAllDataOfUser = new ClsStoreAllDataOfUser(this);
+            clsStoreAllDataOfUser.SetUserType("1");
             success = clsStoreAllDataOfUser.GetResult();
         }else if (keyOnline.equals(getResources().getString(R.string.updateProfilePasswordKey))){
             JSONObject jsonObject = null;

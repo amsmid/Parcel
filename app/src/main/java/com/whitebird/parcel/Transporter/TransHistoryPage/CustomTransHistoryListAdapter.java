@@ -21,11 +21,8 @@ import java.util.ArrayList;
 
 
 class CustomTransHistoryListAdapter extends BaseAdapter {
-    private ArrayList<TransHistoryListItem> arrayList;
     private Activity activity;
-    public CustomTransHistoryListAdapter(FragmentActivity activity, ArrayList<TransHistoryListItem> arrayList) {
-        this.arrayList = new ArrayList<>();
-        this.arrayList = arrayList;
+    public CustomTransHistoryListAdapter(FragmentActivity activity) {
         this.activity = activity;
     }
 
