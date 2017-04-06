@@ -5,6 +5,8 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +19,7 @@ public class ActTransManageFullDeliveredView extends AppCompatActivity {
     GtStTransManageDeliveredList gtStTransManageDeliveredList;
     String address,dispatchTime,orderNo,image,senderAddress,senderName,senderMo,receiverName,receiverMo,size,weight,timeline,type;
     File mediaFile,mediaStorageDir;
+    Button btnShowLocation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +89,16 @@ public class ActTransManageFullDeliveredView extends AppCompatActivity {
 
         mediaFile = new File(mediaStorageDir.getPath(),newImg);
         new TransManageClsBackgroundImageLoader(this,imageUrl,imageView,mediaFile).execute();
+
+        btnShowLocation = (Button)findViewById(R.id.trans_btn_show_loc_delivered_parcel);
+        btnShowLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(ActTransManageFullDeliveredView.this,TransMapView.class);
+                intent1.putExtra("address",address);
+                startActivity(intent1);
+            }
+        });
 
     }
 

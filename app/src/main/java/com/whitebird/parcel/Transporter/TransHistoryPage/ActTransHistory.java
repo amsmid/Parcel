@@ -1,5 +1,6 @@
 package com.whitebird.parcel.Transporter.TransHistoryPage;
 
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -79,46 +80,61 @@ public class ActTransHistory extends AppCompatActivity implements AbsListView.On
     @Override
     public void Result(String result, String keyOnline) {
         Log.d("ResultInTransHistory",result);
-        try {
-            JSONObject jsonObject = new JSONObject(result);
-            JSONArray jsonArrayListHistory = jsonObject.getJSONArray(getResources().getString(R.string.server_key_history));
 
-            int len1 = jsonArrayListHistory.length();
-            for (int i=0;i<len1;i++){
-                TransHistoryListItem transHistoryListItem = new TransHistoryListItem();
-                JSONObject object = jsonArrayListHistory.getJSONObject(i);
-                transHistoryListItem.setSenderId(object.getString(getResources().getString(R.string.server_key_senderId)));
-                transHistoryListItem.setReceiverId(object.getString(getResources().getString(R.string.server_key_receiverId)));
-                transHistoryListItem.setOrderNumber(object.getString(getResources().getString(R.string.server_key_orderNumber)));
-                transHistoryListItem.setAddress(object.getString(getResources().getString(R.string.server_key_address)));
-                transHistoryListItem.setPincode(object.getString(getResources().getString(R.string.server_key_pincode)));
-                transHistoryListItem.setTime(object.getString(getResources().getString(R.string.server_key_time)));
-                transHistoryListItem.setLandmark(object.getString(getResources().getString(R.string.server_key_landmark)));
-                transHistoryListItem.setSize(object.getString(getResources().getString(R.string.server_key_size)));
-                transHistoryListItem.setWeight(object.getString(getResources().getString(R.string.server_key_weight)));
-                transHistoryListItem.setImage(object.getString(getResources().getString(R.string.server_key_image)));
-                transHistoryListItem.setSenderAd(object.getString(getResources().getString(R.string.server_key_senderAd)));
-                transHistoryListItem.setSender(object.getString(getResources().getString(R.string.server_key_sender)));
-                /*transHistoryListItem.setSenderPin(object.getString(getResources().getString(R.string.server_key_senderPin)));*/
-                transHistoryListItem.setReceiver(object.getString(getResources().getString(R.string.server_key_receiver)));
-                transHistoryListItem.setType(object.getString(getResources().getString(R.string.server_key_type)));
-                transHistoryListItem.setTimeline(object.getString(getResources().getString(R.string.server_key_timeline)));
-                transHistoryListItem.setLandmark(object.getString(getResources().getString(R.string.server_key_landmark)));
-                transHistoryListItem.setDispatchTime(object.getString(getResources().getString(R.string.server_key_dispatchTime)));
-                transHistoryListItem.setSenderCity(object.getString(getResources().getString(R.string.server_key_senderCity)));
-                transHistoryListItem.setSenderState(object.getString(getResources().getString(R.string.server_key_senderState)));
-                transHistoryListItem.setSenderMo(object.getString(getResources().getString(R.string.server_key_senderMo)));
-                transHistoryListItem.setSenderLand(object.getString(getResources().getString(R.string.server_key_senderLand)));
-                transHistoryListItem.setReceiverCity(object.getString(getResources().getString(R.string.server_key_receiverCity)));
-                transHistoryListItem.setReceiverState(object.getString(getResources().getString(R.string.server_key_receiverState)));
-                transHistoryListItem.setReceiverMo(object.getString(getResources().getString(R.string.server_key_receiverMo)));
-                transHistoryListItem.setReceiverLand(object.getString(getResources().getString(R.string.server_key_receiverLand)));
-                GetTransHistoryList.getInstance().transHistoryListItems.add(transHistoryListItem);
-            }
-            lvTransListory.setAdapter(adapter);
+        String success;
+        try {
+            JSONObject jsonObjectSuccess = new JSONObject(result);
+            success = jsonObjectSuccess.getString(getResources().getString(R.string.server_key_success));
         } catch (JSONException e) {
+            success ="0";
             e.printStackTrace();
         }
+
+        if (success.equals("1")){
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                JSONArray jsonArrayListHistory = jsonObject.getJSONArray(getResources().getString(R.string.server_key_history));
+
+                int len1 = jsonArrayListHistory.length();
+                for (int i=0;i<len1;i++){
+                    TransHistoryListItem transHistoryListItem = new TransHistoryListItem();
+                    JSONObject object = jsonArrayListHistory.getJSONObject(i);
+                    transHistoryListItem.setSenderId(object.getString(getResources().getString(R.string.server_key_senderId)));
+                    transHistoryListItem.setReceiverId(object.getString(getResources().getString(R.string.server_key_receiverId)));
+                    transHistoryListItem.setOrderNumber(object.getString(getResources().getString(R.string.server_key_orderNumber)));
+                    transHistoryListItem.setAddress(object.getString(getResources().getString(R.string.server_key_address)));
+                    transHistoryListItem.setPincode(object.getString(getResources().getString(R.string.server_key_pincode)));
+                    transHistoryListItem.setTime(object.getString(getResources().getString(R.string.server_key_time)));
+                    transHistoryListItem.setLandmark(object.getString(getResources().getString(R.string.server_key_landmark)));
+                    transHistoryListItem.setSize(object.getString(getResources().getString(R.string.server_key_size)));
+                    transHistoryListItem.setWeight(object.getString(getResources().getString(R.string.server_key_weight)));
+                    transHistoryListItem.setImage(object.getString(getResources().getString(R.string.server_key_image)));
+                    transHistoryListItem.setSenderAd(object.getString(getResources().getString(R.string.server_key_senderAd)));
+                    transHistoryListItem.setSender(object.getString(getResources().getString(R.string.server_key_sender)));
+                /*transHistoryListItem.setSenderPin(object.getString(getResources().getString(R.string.server_key_senderPin)));*/
+                    transHistoryListItem.setReceiver(object.getString(getResources().getString(R.string.server_key_receiver)));
+                    transHistoryListItem.setType(object.getString(getResources().getString(R.string.server_key_type)));
+                    transHistoryListItem.setTimeline(object.getString(getResources().getString(R.string.server_key_timeline)));
+                    transHistoryListItem.setLandmark(object.getString(getResources().getString(R.string.server_key_landmark)));
+                    transHistoryListItem.setDispatchTime(object.getString(getResources().getString(R.string.server_key_dispatchTime)));
+                    transHistoryListItem.setSenderCity(object.getString(getResources().getString(R.string.server_key_senderCity)));
+                    transHistoryListItem.setSenderState(object.getString(getResources().getString(R.string.server_key_senderState)));
+                    transHistoryListItem.setSenderMo(object.getString(getResources().getString(R.string.server_key_senderMo)));
+                    transHistoryListItem.setSenderLand(object.getString(getResources().getString(R.string.server_key_senderLand)));
+                    transHistoryListItem.setReceiverCity(object.getString(getResources().getString(R.string.server_key_receiverCity)));
+                    transHistoryListItem.setReceiverState(object.getString(getResources().getString(R.string.server_key_receiverState)));
+                    transHistoryListItem.setReceiverMo(object.getString(getResources().getString(R.string.server_key_receiverMo)));
+                    transHistoryListItem.setReceiverLand(object.getString(getResources().getString(R.string.server_key_receiverLand)));
+                    GetTransHistoryList.getInstance().transHistoryListItems.add(transHistoryListItem);
+                }
+                lvTransListory.setAdapter(adapter);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }else {
+
+        }
+
 
 
     }

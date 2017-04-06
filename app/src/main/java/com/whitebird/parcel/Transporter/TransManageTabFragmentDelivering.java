@@ -44,8 +44,12 @@ public class TransManageTabFragmentDelivering extends Fragment implements AbsLis
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         final View fragmentTransAcceptedList= inflater.inflate(R.layout.trans_manage_fragment_accepted_list,container,false);
 
+        if(!isAdded()) {
+            return fragmentTransAcceptedList;
+        }
         onlineKey = getResources().getString(R.string.transManageDeliveredList);
         sharedPreferenceUserData = new SharedPreferenceUserData(getActivity());
         uid = sharedPreferenceUserData.getMyLoginUserData(getResources().getString(R.string.key_uid));
@@ -93,46 +97,62 @@ public class TransManageTabFragmentDelivering extends Fragment implements AbsLis
     @Override
     public void Result(String result, String keyOnline) {
         Log.d("resTransMngDeliveredLst",result);
+        if(!isAdded()) {
+            return;
+        }
 
+        String success;
         try {
-            JSONObject jsonObject = new JSONObject(result);
-            JSONArray jsonArrayListAccepted = jsonObject.getJSONArray(getResources().getString(R.string.server_key_picked));
-
-            int len1 = jsonArrayListAccepted.length();
-            for (int i=0;i<len1;i++){
-                GtStTransManageDeliveredList gtStTransManageDeliveredList = new GtStTransManageDeliveredList();
-                JSONObject object = jsonArrayListAccepted.getJSONObject(i);
-                gtStTransManageDeliveredList.setSenderId(object.getString(getResources().getString(R.string.server_key_senderId)));
-                gtStTransManageDeliveredList.setReceiverId(object.getString(getResources().getString(R.string.server_key_receiverId)));
-                gtStTransManageDeliveredList.setOrderNumber(object.getString(getResources().getString(R.string.server_key_orderNumber)));
-                gtStTransManageDeliveredList.setAddress(object.getString(getResources().getString(R.string.server_key_address)));
-                gtStTransManageDeliveredList.setPincode(object.getString(getResources().getString(R.string.server_key_pincode)));
-                gtStTransManageDeliveredList.setTime(object.getString(getResources().getString(R.string.server_key_time)));
-                gtStTransManageDeliveredList.setLandmark(object.getString(getResources().getString(R.string.server_key_landmark)));
-                gtStTransManageDeliveredList.setSize(object.getString(getResources().getString(R.string.server_key_size)));
-                gtStTransManageDeliveredList.setWeight(object.getString(getResources().getString(R.string.server_key_weight)));
-                gtStTransManageDeliveredList.setImage(object.getString(getResources().getString(R.string.server_key_image)));
-                gtStTransManageDeliveredList.setSenderAd(object.getString(getResources().getString(R.string.server_key_senderAd)));
-                gtStTransManageDeliveredList.setSender(object.getString(getResources().getString(R.string.server_key_sender)));
-                gtStTransManageDeliveredList.setSenderPin(object.getString(getResources().getString(R.string.server_key_senderPin)));
-                gtStTransManageDeliveredList.setReceiver(object.getString(getResources().getString(R.string.server_key_receiver)));
-                gtStTransManageDeliveredList.setTimeline(object.getString(getResources().getString(R.string.server_key_timeline)));
-                gtStTransManageDeliveredList.setLandmark(object.getString(getResources().getString(R.string.server_key_landmark)));
-                gtStTransManageDeliveredList.setDispatchTime(object.getString(getResources().getString(R.string.server_key_dispatchTime)));
-                gtStTransManageDeliveredList.setSenderCity(object.getString(getResources().getString(R.string.server_key_senderCity)));
-                gtStTransManageDeliveredList.setSenderState(object.getString(getResources().getString(R.string.server_key_senderState)));
-                gtStTransManageDeliveredList.setSenderMo(object.getString(getResources().getString(R.string.server_key_senderMo)));
-                gtStTransManageDeliveredList.setSenderLand(object.getString(getResources().getString(R.string.server_key_senderLand)));
-                gtStTransManageDeliveredList.setReceiverCity(object.getString(getResources().getString(R.string.server_key_receiverCity)));
-                gtStTransManageDeliveredList.setReceiverState(object.getString(getResources().getString(R.string.server_key_receiverState)));
-                gtStTransManageDeliveredList.setReceiverMo(object.getString(getResources().getString(R.string.server_key_receiverMo)));
-                gtStTransManageDeliveredList.setReceiverLand(object.getString(getResources().getString(R.string.server_key_receiverLand)));
-                SlgnTransManageGetDeliveredList.getInstance().gtStTransManageDeliveredLists.add(gtStTransManageDeliveredList);
-            }
-            listViewDelivered.setAdapter(adapter);
+            JSONObject jsonObjectSuccess = new JSONObject(result);
+            success = jsonObjectSuccess.getString(getResources().getString(R.string.server_key_success));
         } catch (JSONException e) {
+            success ="0";
             e.printStackTrace();
         }
+
+        if (success.equals("1")){
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                JSONArray jsonArrayListAccepted = jsonObject.getJSONArray(getString(R.string.server_key_picked));
+
+                int len1 = jsonArrayListAccepted.length();
+                for (int i=0;i<len1;i++){
+                    GtStTransManageDeliveredList gtStTransManageDeliveredList = new GtStTransManageDeliveredList();
+                    JSONObject object = jsonArrayListAccepted.getJSONObject(i);
+                    gtStTransManageDeliveredList.setSenderId(object.getString(getResources().getString(R.string.server_key_senderId)));
+                    gtStTransManageDeliveredList.setReceiverId(object.getString(getResources().getString(R.string.server_key_receiverId)));
+                    gtStTransManageDeliveredList.setOrderNumber(object.getString(getResources().getString(R.string.server_key_orderNumber)));
+                    gtStTransManageDeliveredList.setAddress(object.getString(getResources().getString(R.string.server_key_address)));
+                    gtStTransManageDeliveredList.setPincode(object.getString(getResources().getString(R.string.server_key_pincode)));
+                    gtStTransManageDeliveredList.setTime(object.getString(getResources().getString(R.string.server_key_time)));
+                    gtStTransManageDeliveredList.setLandmark(object.getString(getResources().getString(R.string.server_key_landmark)));
+                    gtStTransManageDeliveredList.setSize(object.getString(getResources().getString(R.string.server_key_size)));
+                    gtStTransManageDeliveredList.setWeight(object.getString(getResources().getString(R.string.server_key_weight)));
+                    gtStTransManageDeliveredList.setImage(object.getString(getResources().getString(R.string.server_key_image)));
+                    gtStTransManageDeliveredList.setSenderAd(object.getString(getResources().getString(R.string.server_key_senderAd)));
+                    gtStTransManageDeliveredList.setSender(object.getString(getResources().getString(R.string.server_key_sender)));
+                    gtStTransManageDeliveredList.setSenderPin(object.getString(getResources().getString(R.string.server_key_senderPin)));
+                    gtStTransManageDeliveredList.setReceiver(object.getString(getResources().getString(R.string.server_key_receiver)));
+                    gtStTransManageDeliveredList.setTimeline(object.getString(getResources().getString(R.string.server_key_timeline)));
+                    gtStTransManageDeliveredList.setLandmark(object.getString(getResources().getString(R.string.server_key_landmark)));
+                    gtStTransManageDeliveredList.setDispatchTime(object.getString(getResources().getString(R.string.server_key_dispatchTime)));
+                    gtStTransManageDeliveredList.setSenderCity(object.getString(getResources().getString(R.string.server_key_senderCity)));
+                    gtStTransManageDeliveredList.setSenderState(object.getString(getResources().getString(R.string.server_key_senderState)));
+                    gtStTransManageDeliveredList.setSenderMo(object.getString(getResources().getString(R.string.server_key_senderMo)));
+                    gtStTransManageDeliveredList.setSenderLand(object.getString(getResources().getString(R.string.server_key_senderLand)));
+                    gtStTransManageDeliveredList.setReceiverCity(object.getString(getResources().getString(R.string.server_key_receiverCity)));
+                    gtStTransManageDeliveredList.setReceiverState(object.getString(getResources().getString(R.string.server_key_receiverState)));
+                    gtStTransManageDeliveredList.setReceiverMo(object.getString(getResources().getString(R.string.server_key_receiverMo)));
+                    gtStTransManageDeliveredList.setReceiverLand(object.getString(getResources().getString(R.string.server_key_receiverLand)));
+                    SlgnTransManageGetDeliveredList.getInstance().gtStTransManageDeliveredLists.add(gtStTransManageDeliveredList);
+                }
+                listViewDelivered.setAdapter(adapter);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }else {
+        }
+
 
 
     }

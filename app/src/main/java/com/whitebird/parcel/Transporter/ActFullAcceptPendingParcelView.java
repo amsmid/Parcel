@@ -18,6 +18,9 @@ import com.whitebird.parcel.ResultInString;
 import com.whitebird.parcel.SharedPreferenceUserData;
 import com.whitebird.parcel.TransPendingList;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -134,18 +137,36 @@ public class ActFullAcceptPendingParcelView extends AppCompatActivity implements
     @Override
     public void Result(String result, String keyOnline) {
         Log.d("resultInAcceptOrder",result);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Pick Parcel From Hub For Further Shipment");
-        builder.setCancelable(false);
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                setResult(2);
-                //startActivity(new Intent(ActFullAcceptPendingParcelView.this,MainActivityPickShipment.class));
-                finish();
 
-            }
-        });
-        builder.show();
+        String success;
+        try {
+            JSONObject jsonObjectSuccess = new JSONObject(result);
+            success = jsonObjectSuccess.getString(getResources().getString(R.string.server_key_success));
+        } catch (JSONException e) {
+            success ="0";
+            e.printStackTrace();
+        }
+
+        if (success.equals("1")){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Pick Parcel From Hub For Further Shipment");
+            builder.setCancelable(false);
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    setResult(2);
+                    //startActivity(new Intent(ActFullAcceptPendingParcelView.this,MainActivityPickShipment.class));
+                    finish();
+
+                }
+            });
+            builder.show();
+        }else {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            dialog.setTitle("Check Connection");
+            dialog.setPositiveButton("Ok",null);
+            dialog.show();
+        }
+
     }
 }

@@ -1,10 +1,19 @@
 package com.whitebird.parcel.Owner.Profile.OwnerActivity;
 
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -32,7 +41,7 @@ public class ActMapView extends AppCompatActivity implements OnMapReadyCallback,
     GoogleMap mMap;
     MapView mapView;
     int geocoderMaxResults = 1;
-    TextView textView;
+    //TextView textView;
     String transUid;
     double latitude,longitude;
     @Override
@@ -40,7 +49,7 @@ public class ActMapView extends AppCompatActivity implements OnMapReadyCallback,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_map_view);
 
-        textView = (TextView)findViewById(R.id.address_lat_lan);
+        //textView = (TextView)findViewById(R.id.address_lat_lan);
 
         transUid = getIntent().getStringExtra("transUid");
 
@@ -83,27 +92,12 @@ public class ActMapView extends AppCompatActivity implements OnMapReadyCallback,
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        String Addresses;
 
 
             // Add a marker in Sydney, Australia, and move the camera.
 //            LatLng myPosition = new LatLng(latitude, longitude);
 
-
-            /*CameraPosition position = new CameraPosition.Builder().
-                    target(myPosition).zoom(17).bearing(19).tilt(30).build();*/
-        /*mMap.animateCamera(CameraUpdateFactory.newCameraPosition(position));
-        mMap.addMarker(new
-                MarkerOptions().position(myPosition).title("start"));*/
-            LatLng sydney = new LatLng(latitude, longitude);
-            mMap.addMarker(new MarkerOptions().position(sydney).title(transUid).icon(BitmapDescriptorFactory
-                    .fromResource(R.drawable.map_car_image)));
-            //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-            CameraUpdate center =
-                    CameraUpdateFactory.newLatLng(new LatLng(latitude,
-                            longitude));
-            CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
-            mMap.moveCamera(center);
-            mMap.animateCamera(zoom);
 
         Geocoder geocoder = new Geocoder(this, Locale.ENGLISH);
         try {
@@ -113,12 +107,47 @@ public class ActMapView extends AppCompatActivity implements OnMapReadyCallback,
             String locality = address.getLocality();
             String postalCode = address.getPostalCode();
             String countryName = address.getCountryName();
-            textView.setText(addressLine+"\n"+locality+"\n"+postalCode+"\n"+countryName);
+            Addresses = addressLine+"\n"+locality+"\n"+postalCode+"\n"+countryName;
         } catch (IOException e) {
+            Addresses = transUid;
             e.printStackTrace();
         }
+            /*CameraPosition position = new CameraPosition.Builder().
+                    target(myPosition).zoom(17).bearing(19).tilt(30).build();*/
+        /*mMap.animateCamera(CameraUpdateFactory.newCameraPosition(position));
+        mMap.addMarker(new
+                MarkerOptions().position(myPosition).title("start"));*/
+            LatLng sydney = new LatLng(latitude, longitude);
+        View marker = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker_layout, null);
+        TextView numTxt = (TextView) marker.findViewById(R.id.num_txt);
+        numTxt.setText(Addresses);
+            mMap.addMarker(new MarkerOptions().position(sydney).title(transUid).icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(this,marker))));
+            //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+            CameraUpdate center =
+                    CameraUpdateFactory.newLatLng(new LatLng(latitude,
+                            longitude));
+            CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
+            mMap.moveCamera(center);
+            mMap.animateCamera(zoom);
+
+
     }
 
+    // Convert a view to bitmap
+    public static Bitmap createDrawableFromView(Context context, View view) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        view.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        view.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
+        view.layout(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels);
+        view.buildDrawingCache();
+        Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(bitmap);
+        view.draw(canvas);
+
+        return bitmap;
+    }
 
     /*Map Program
     * 19.100981
@@ -159,6 +188,8 @@ public class ActMapView extends AppCompatActivity implements OnMapReadyCallback,
                 //longitude = Long.parseLong(Lang);
                 mapView.getMapAsync(this);
             } catch (JSONException e) {
+                latitude =19.100981;
+                longitude = 72.9984171;
                 e.printStackTrace();
             }
 

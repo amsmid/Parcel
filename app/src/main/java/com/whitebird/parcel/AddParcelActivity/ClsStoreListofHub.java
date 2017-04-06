@@ -51,6 +51,8 @@ class ClsStoreListofHub {
             e.printStackTrace();
         }
 
+        result = "";
+
     }
 
     ArrayList<GetHubListData> getGetHubListDatas() {

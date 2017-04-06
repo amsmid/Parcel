@@ -3,6 +3,7 @@ package com.whitebird.parcel.Transporter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,12 +65,13 @@ class TransPendingListOfHubAdapter extends BaseAdapter {
                 SlgnTransPendingParcelList.getInstance().transPendingLists.get(position).getPincode();
         final String orderNo = SlgnTransPendingParcelList.getInstance().transPendingLists.get(position).getOrderNumber();
         final String dispTime = SlgnTransPendingParcelList.getInstance().transPendingLists.get(position).getDispatchTime();
+        CardView cardView = (CardView)convertView.findViewById(R.id.trans_manage_card_view_pending_list);
         textViewSenderAddress.setText(senderAddress);
         textViewAddress.setText(address);
         textViewOrderNo.setText(orderNo);
         textViewDispTime.setText(dispTime);
         //final List<TransPendingList> transPendingLists = SlgnTransPendingParcelList.getInstance().transPendingLists;
-        convertView.setOnClickListener(new View.OnClickListener() {
+        cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intentAcceptPendingParcelView = new Intent(activity,ActFullAcceptPendingParcelView.class);
@@ -77,7 +79,6 @@ class TransPendingListOfHubAdapter extends BaseAdapter {
                 activity.startActivityForResult(intentAcceptPendingParcelView,0);
             }
         });
-
         return convertView;
     }
 }

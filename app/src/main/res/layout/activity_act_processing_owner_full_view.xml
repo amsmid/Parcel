@@ -20,9 +20,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/processing_model_full_view_address"
-            android:text="@string/receiver_address_t"
+            android:hint="@string/receiver_address_t"
             android:textStyle="bold"
-            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
             tools:ignore="RtlHardcoded"
             android:textColor="@color/black"/>
         <TextView
@@ -30,19 +32,21 @@
             android:layout_height="wrap_content"
             android:hint="@string/address"
             android:id="@+id/processing_model_full_edit_address"
-            android:layout_margin="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
             tools:ignore="RtlHardcoded"
-            android:textColor="@color/black"/>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:textSize="20sp"
+            android:textColor="@color/black" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/processing_model_full_view_order_no"
-                android:text="@string/order_number_t"
+                android:hint="@string/order_number_t"
                 android:textStyle="bold"
-                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 tools:ignore="RtlHardcoded"
                 android:textColor="@color/black"/>
             <TextView
@@ -50,22 +54,22 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/order_number"
                 android:id="@+id/processing_model_full_edit_order_no"
-                android:layout_margin="10dp"
-                android:layout_toRightOf="@+id/processing_model_full_view_order_no"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 tools:ignore="RtlHardcoded"
+                android:textSize="20sp"
                 android:textColor="@color/black"/>
-        </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/processing_model_full_view_pick_up"
-                android:text="@string/order_dispatch_time_t"
+                android:hint="@string/order_dispatch_time_t"
                 android:textStyle="bold"
-                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 tools:ignore="RtlHardcoded"
                 android:textColor="@color/black"/>
             <TextView
@@ -73,22 +77,22 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/time"
                 android:id="@+id/processing_model_full_edit_pick_up"
-                android:layout_margin="10dp"
-                android:layout_toRightOf="@+id/processing_model_full_view_pick_up"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 tools:ignore="RtlHardcoded"
+                android:textSize="20sp"
                 android:textColor="@color/black"/>
-        </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/processing_model_full_view_trans_name"
-                android:text="@string/transporter_name_t"
+                android:hint="@string/transporter_name_t"
                 android:textStyle="bold"
-                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 tools:ignore="RtlHardcoded"
                 android:textColor="@color/black"/>
             <TextView
@@ -96,22 +100,21 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/transporter_name"
                 android:id="@+id/processing_model_full_edit_trans_name"
-                android:layout_margin="10dp"
-                android:layout_toRightOf="@+id/processing_model_full_view_trans_name"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 tools:ignore="RtlHardcoded"
+                android:textSize="20sp"
                 android:textColor="@color/black"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/processing_model_full_view_type"
-                android:text="@string/transport_vehicle_type_t"
+                android:hint="@string/transport_vehicle_type_t"
                 android:textStyle="bold"
-                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 tools:ignore="RtlHardcoded"
                 android:textColor="@color/black"/>
             <TextView
@@ -119,22 +122,22 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/transport_type"
                 android:id="@+id/processing_model_full_edit_type"
-                android:layout_margin="10dp"
-                android:layout_toRightOf="@+id/processing_model_full_view_type"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 tools:ignore="RtlHardcoded"
+                android:textSize="20sp"
                 android:textColor="@color/black"/>
-        </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/processing_model_full_view_timeline"
-                android:text="@string/parcel_reach_time_t"
+                android:hint="@string/parcel_reach_time_t"
                 android:textStyle="bold"
-                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 tools:ignore="RtlHardcoded"
                 android:textColor="@color/black"/>
             <TextView
@@ -142,23 +145,21 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/parcel_reach_time"
                 android:id="@+id/processing_model_full_edit_timeline"
-                android:layout_margin="10dp"
-                android:layout_toRightOf="@+id/processing_model_full_view_timeline"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 tools:ignore="RtlHardcoded"
+                android:textSize="20sp"
                 android:textColor="@color/black"/>
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/processing_model_full_view_trans_mob"
-                android:text="@string/transporter_mobile_no_t"
+                android:hint="@string/transporter_mobile_no_t"
                 android:textStyle="bold"
-                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 tools:ignore="RtlHardcoded"
                 android:textColor="@color/black"/>
             <TextView
@@ -166,11 +167,12 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/mob_number"
                 android:id="@+id/processing_model_full_edit_trans_mob"
-                android:layout_margin="10dp"
-                android:layout_toRightOf="@+id/processing_model_full_view_trans_mob"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 tools:ignore="RtlHardcoded"
+                android:textSize="20sp"
                 android:textColor="@color/black"/>
-        </RelativeLayout>
 
         <Button
             android:layout_width="match_parent"

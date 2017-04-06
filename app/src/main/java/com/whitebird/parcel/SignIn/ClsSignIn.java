@@ -1,6 +1,7 @@
 package com.whitebird.parcel.SignIn;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -20,6 +21,9 @@ import com.whitebird.parcel.ResultInString;
 import com.whitebird.parcel.SharedPreferenceUserData;
 import com.whitebird.parcel.SignUp.ClsSignUp;
 import com.whitebird.parcel.Transporter.MainActivityParcelTransporter;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 
@@ -134,15 +138,33 @@ public class ClsSignIn extends AppCompatActivity implements ResultInString {
 
     @Override
     public void Result(String result,String keyOnline) {
-        String success;
+        String successRead="0";
         Log.d("resultSignIn",result);
-        sharedPreferenceUserData = new SharedPreferenceUserData(this);
-        sharedPreferenceUserData.SaveSharedData(getResources().getString(R.string.server_key_result),result);
-        clsStoreAllDataOfUser = new ClsStoreAllDataOfUser(this);
-        clsStoreAllDataOfUser.SetUserType(userTypeSelected);
-        success=clsStoreAllDataOfUser.GetResult();
+        String success;
+        try {
+            JSONObject jsonObjectSuccess = new JSONObject(result);
+            success = jsonObjectSuccess.getString(getResources().getString(R.string.server_key_success));
+        } catch (JSONException e) {
+            success ="0";
+            e.printStackTrace();
+        }
 
-        switch (success){
+        if (success.equals("1")){
+            sharedPreferenceUserData = new SharedPreferenceUserData(this);
+            sharedPreferenceUserData.SaveSharedData(getResources().getString(R.string.server_key_result),result);
+            clsStoreAllDataOfUser = new ClsStoreAllDataOfUser(this);
+            clsStoreAllDataOfUser.SetUserType(userTypeSelected);
+            successRead=clsStoreAllDataOfUser.GetResult();
+        }else {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            dialog.setTitle("Check Connection");
+            dialog.setPositiveButton("Ok",null);
+            dialog.show();
+        }
+
+
+
+        switch (successRead){
             case "1":
                 onLoginSuccess();
                 break;

@@ -9,6 +9,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.whitebird.parcel.R;
@@ -24,14 +25,19 @@ import java.util.Map;
 class TransManageConnectToVolleyServerFragment {
     Fragment fragment;
     Activity activity;
+    RequestQueue queue;
     public TransManageConnectToVolleyServerFragment(Fragment fragment) {
         this.fragment=fragment;
     }
 
     public void GetResult(final HashMap<String, String> hashMapData, final String onlineKey) {
         activity = fragment.getActivity();
+        if (activity==null) {
+            return;
+        }
         // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(activity);
+        if (queue==null)
+            queue = Volley.newRequestQueue(activity);
 
         String url =activity.getResources().getString(R.string.url)+onlineKey;
 
@@ -47,6 +53,9 @@ class TransManageConnectToVolleyServerFragment {
                         ResultInString resultInString= null;
                         resultInString = (ResultInString)fragment;
                         resultInString.Result(response,onlineKey);
+                        queue.getCache().clear();
+                        hashMapData.clear();
+                        new DiskBasedCache(activity.getCacheDir()).clear();
                     }
                 }, new Response.ErrorListener() {
             @Override

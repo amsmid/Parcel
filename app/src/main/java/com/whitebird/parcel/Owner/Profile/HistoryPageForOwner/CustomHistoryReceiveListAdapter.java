@@ -59,14 +59,14 @@ class CustomHistoryReceiveListAdapter extends BaseAdapter {
         TextView textViewOrderNo = (TextView)convertView.findViewById(R.id.owner_history_receive_ad_model_edit_order_no);
         CardView cardView = (CardView)convertView.findViewById(R.id.owner_card_view_history_receive_ad_list);
         String senderAddress = itemsInList.getSenderAd()+","+
+                itemsInList.getSenderLand()+","+
                 itemsInList.getSenderCity()+","+
                 itemsInList.getSenderState()+","+
-                itemsInList.getSenderLand()+","+
                 itemsInList.getSenderPin();
         String address = itemsInList.getAddress()+","+
+                itemsInList.getReceiverLand()+","+
                 itemsInList.getReceiverCity()+","+
                 itemsInList.getReceiverState()+","+
-                itemsInList.getAddress()+","+
                 itemsInList.getPincode();
         String orderNo = itemsInList.getOrderNumber();
         textViewSenderAddress.setText(senderAddress);

@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -239,6 +240,8 @@ public class ClsSignUp extends AppCompatActivity implements ResultInString{
         builder = new AlertDialog.Builder(this);
         LayoutInflater layout = getLayoutInflater();
         viewSearch = layout.inflate(R.layout.search_list_layout, null);
+        SearchView sv = (SearchView)viewSearch.findViewById(R.id.search_view_for_hub_list);
+        sv.setVisibility(View.GONE);
         listViewState = (ListView) viewSearch.findViewById(R.id.list_of_hub_item_in_popup);
 
     }
@@ -299,7 +302,7 @@ public class ClsSignUp extends AppCompatActivity implements ResultInString{
         }else {
             editTextPinCode.setError(null);
         }
-        if (stringState.isEmpty() || stringState.length() < 4 || stringState.length() > 15) {
+        if (stringState.isEmpty()) {
             editTextState.setError("Put Correct State");
             valid = false;
         }else {
@@ -337,73 +340,91 @@ public class ClsSignUp extends AppCompatActivity implements ResultInString{
 
     @Override
     public void Result(String result,String keyOnline) {
+        String successRead;
         String success;
-        sharedPreferenceUserData = new SharedPreferenceUserData(this);
-        sharedPreferenceUserData.SaveSharedData("result",result);
-        if (keyOnline.equals(getResources().getString(R.string.signupKey))) {
-            clsStoreAllDataOfUser = new ClsStoreAllDataOfUser(this);
-            clsStoreAllDataOfUser.SetUserType(userTypeSelected);
-            success = clsStoreAllDataOfUser.GetResult();
+        try {
+            JSONObject jsonObjectSuccess = new JSONObject(result);
+            success = jsonObjectSuccess.getString(getResources().getString(R.string.server_key_success));
+        } catch (JSONException e) {
+            success ="0";
+            e.printStackTrace();
+        }
 
-            switch (success) {
-                case "1":
-                    onSignUpSuccess();
-                    break;
-                default:
-                    onSignUpFailed();
-            }
-        }else if (keyOnline.equals(getResources().getString(R.string.getStateName))){
-            Log.d("stateNameRes",result);
-            try {
-                stateNames = new ArrayList<>();
-                stateId = new ArrayList<>();
-                cityName = new ArrayList<>();
-                cityId = new ArrayList<>();
-                JSONObject jsonObject = new JSONObject(result);
-                if (go == 2){
-                    JSONArray city = jsonObject.getJSONArray("City");
-                    int len2 = city.length();
-                    for (int i=0;i<len2;i++){
-                        JSONObject object = city.getJSONObject(i);
-                        cityName.add(object.getString("cityName"));
-                        cityId.add(object.getString("cityId"));
-                    }
-                    ArrayAdapter<String> arrayAdapterCityName = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, android.R.id.text1, cityName);
-                    editTextCity.setAdapter(arrayAdapterCityName);
-                }else if (go==1){
-                    JSONArray state = jsonObject.getJSONArray(getResources().getString(R.string.server_key_State));
-                    int len1 = state.length();
-                    for (int i = 0; i < len1; i++) {
-                        JSONObject object = state.getJSONObject(i);
-                        stateNames.add(object.getString("stateName"));
-                        stateId.add(object.getString("stateId"));
-                    }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, android.R.id.text1, stateNames);
-                    listViewState.setAdapter(adapter);
-                    listViewState.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            go = 2;
-                            editTextState.setText(stateNames.get(position));
-                            String onlineKey = getResources().getString(R.string.getStateName);
-                            HashMap<String,String> hashMapData = new HashMap<>();
-                            hashMapData.put(getResources().getString(R.string.server_key_stateId),stateId.get(position));
-                            new BackgroundTaskForResult(hashMapData, onlineKey, ClsSignUp.this).execute();
-                            dialogDis.dismiss();
+        if (success.equals("1")){
+            if (keyOnline.equals(getResources().getString(R.string.signupKey))) {
+                sharedPreferenceUserData = new SharedPreferenceUserData(this);
+                sharedPreferenceUserData.SaveSharedData("result",result);
+                clsStoreAllDataOfUser = new ClsStoreAllDataOfUser(this);
+                clsStoreAllDataOfUser.SetUserType(userTypeSelected);
+                successRead = clsStoreAllDataOfUser.GetResult();
+
+                switch (successRead) {
+                    case "1":
+                        onSignUpSuccess();
+                        break;
+                    default:
+                        onSignUpFailed();
+                }
+            }else if (keyOnline.equals(getResources().getString(R.string.getStateName))){
+                Log.d("stateNameRes",result);
+                try {
+                    stateNames = new ArrayList<>();
+                    stateId = new ArrayList<>();
+                    cityName = new ArrayList<>();
+                    cityId = new ArrayList<>();
+                    JSONObject jsonObject = new JSONObject(result);
+                    if (go == 2){
+                        JSONArray city = jsonObject.getJSONArray("City");
+                        int len2 = city.length();
+                        for (int i=0;i<len2;i++){
+                            JSONObject object = city.getJSONObject(i);
+                            cityName.add(object.getString("cityName"));
+                            cityId.add(object.getString("cityId"));
                         }
-                    });
-                    //Set All List Here And Search it
-                    builder.setView(viewSearch);
-                    builder.setNegativeButton("Cancel", null);
-                    dialogDis = builder.create();
-                    dialogDis.show();
+                        ArrayAdapter<String> arrayAdapterCityName = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, android.R.id.text1, cityName);
+                        editTextCity.setAdapter(arrayAdapterCityName);
+                    }else if (go==1){
+                        JSONArray state = jsonObject.getJSONArray(getResources().getString(R.string.server_key_State));
+                        int len1 = state.length();
+                        for (int i = 0; i < len1; i++) {
+                            JSONObject object = state.getJSONObject(i);
+                            stateNames.add(object.getString("stateName"));
+                            stateId.add(object.getString("stateId"));
+                        }
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, android.R.id.text1, stateNames);
+                        listViewState.setAdapter(adapter);
+                        listViewState.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                go = 2;
+                                editTextState.setText(stateNames.get(position));
+                                String onlineKey = getResources().getString(R.string.getStateName);
+                                HashMap<String,String> hashMapData = new HashMap<>();
+                                hashMapData.put(getResources().getString(R.string.server_key_stateId),stateId.get(position));
+                                new BackgroundTaskForResult(hashMapData, onlineKey, ClsSignUp.this).execute();
+                                dialogDis.dismiss();
+                            }
+                        });
+                        //Set All List Here And Search it
+                        builder.setView(viewSearch);
+                        builder.setNegativeButton("Cancel", null);
+                        dialogDis = builder.create();
+                        dialogDis.show();
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
 
-
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
-
+        }else {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            dialog.setTitle("Check Connection");
+            dialog.setPositiveButton("Ok",null);
+            dialog.show();
         }
+
+
     }
 }

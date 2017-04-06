@@ -9,6 +9,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.whitebird.parcel.R;
@@ -53,6 +54,9 @@ class ConnectToVolleyServerHistoryFragment {
                             ResultInString resultInString= null;
                             resultInString = (ResultInString)fragment;
                             resultInString.Result(response,onlineKey);
+                            queue.getCache().clear();
+                            hashMapData.clear();
+                            new DiskBasedCache(activity.getCacheDir()).clear();
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -61,7 +65,10 @@ class ConnectToVolleyServerHistoryFragment {
                 AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
                 dialog.setTitle("Check Connection");
                 dialog.setPositiveButton("Ok",null);
-                dialog.show();
+                if(!activity.isFinishing()){ //here activity means your activity class
+
+                    dialog.show();
+                }
             }
         }){
             @Override

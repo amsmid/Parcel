@@ -97,11 +97,11 @@ public class ActMainManage extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*@Override
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         for (File cacheFile : getCacheDir().listFiles()) {
-            if (cacheFile.isFile() && cacheFile.length() > 1000000) cacheFile.delete();
+            cacheFile.delete();
         }
     }
 
@@ -109,7 +109,9 @@ public class ActMainManage extends AppCompatActivity {
     public void onLowMemory() {
         super.onLowMemory();
         for (File cacheFile : getCacheDir().listFiles()) {
-            if (cacheFile.isFile() && cacheFile.length() > 1000000) cacheFile.delete();
+            cacheFile.delete();
         }
-    }*/
+    }
+
+
 }

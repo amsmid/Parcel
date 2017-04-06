@@ -44,6 +44,7 @@ public class ActReceivedOwnerFullView extends AppCompatActivity implements Resul
             @Override
             public void onClick(View v) {
                 HashMap<String, String> hashMapData = new HashMap<>();
+                hashMapData.clear();
                 hashMapData.put(getResources().getString(R.string.server_key_orderNumber), orderNo);
                 hashMapData.put(getResources().getString(R.string.server_key_receiver), receiverId);
                 hashMapData.put(getResources().getString(R.string.server_key_sender), senderId);
@@ -54,6 +55,7 @@ public class ActReceivedOwnerFullView extends AppCompatActivity implements Resul
 
         Intent intent = getIntent();
         int position = intent.getIntExtra("position", 0);
+        intent.removeExtra("position");
         receivedListItem = GetReceivedListOwner.getInstance().receivedListItems.get(position);
         receiverId = receivedListItem.getReceiverId();
         senderId = receivedListItem.getSenderId();
@@ -148,10 +150,12 @@ public class ActReceivedOwnerFullView extends AppCompatActivity implements Resul
 
         if (success.equals("1")){
             setResult(4);
+            result.equals("");
             finish();
         }else {
             AlertDialog.Builder dialog = new AlertDialog.Builder(this);
             dialog.setTitle("Check Connection");
+            dialog.setPositiveButton("Ok",null);
             dialog.show();
         }
     }

@@ -10,12 +10,13 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="6dp"
+        android:padding="10dp"
         android:id="@+id/search_text_notation"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         android:text="Search Hub List Here!"
         android:textAlignment="center"
-        android:textSize="30sp"/>
+        android:textColor="@color/white"
+        android:textSize="20sp"/>
     <android.support.v7.widget.SearchView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

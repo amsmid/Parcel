@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -92,46 +93,61 @@ class FragmentSendList extends Fragment implements AbsListView.OnScrollListener,
     @Override
     public void Result(String result, String keyOnline) {
         Log.d("ResultInFragSendHis",result);
-        try {
-            JSONObject jsonObject = new JSONObject(result);
-            JSONArray jsonArrayListSend = jsonObject.getJSONArray(getResources().getString(R.string.server_key_outgoing));
 
-            int len1 = jsonArrayListSend.length();
-            for (int i=0;i<len1;i++){
-                ItemsInListSend sendHistoryListItem = new ItemsInListSend();
-                JSONObject object = jsonArrayListSend.getJSONObject(i);
-                sendHistoryListItem.setSenderId(object.getString(getResources().getString(R.string.server_key_senderId)));
-                sendHistoryListItem.setReceiverId(object.getString(getResources().getString(R.string.server_key_receiverId)));
-                sendHistoryListItem.setOrderNumber(object.getString(getResources().getString(R.string.server_key_orderNumber)));
-                sendHistoryListItem.setAddress(object.getString(getResources().getString(R.string.server_key_address)));
-                sendHistoryListItem.setPincode(object.getString(getResources().getString(R.string.server_key_pincode)));
-                sendHistoryListItem.setTime(object.getString(getResources().getString(R.string.server_key_time)));
-                sendHistoryListItem.setLandmark(object.getString(getResources().getString(R.string.server_key_landmark)));
-                sendHistoryListItem.setSize(object.getString(getResources().getString(R.string.server_key_size)));
-                sendHistoryListItem.setWeight(object.getString(getResources().getString(R.string.server_key_weight)));
-                sendHistoryListItem.setImage(object.getString(getResources().getString(R.string.server_key_image)));
-                sendHistoryListItem.setSenderAd(object.getString(getResources().getString(R.string.server_key_senderAd)));
-                sendHistoryListItem.setSender(object.getString(getResources().getString(R.string.server_key_sender)));
-                /*sendHistoryListItem.setSenderPin(object.getString(getResources().getString(R.string.server_key_senderPin)));*/
-                sendHistoryListItem.setReceiver(object.getString(getResources().getString(R.string.server_key_receiver)));
-                sendHistoryListItem.setType(object.getString(getResources().getString(R.string.server_key_type)));
-                sendHistoryListItem.setTimeline(object.getString(getResources().getString(R.string.server_key_timeline)));
-                sendHistoryListItem.setLandmark(object.getString(getResources().getString(R.string.server_key_landmark)));
-                sendHistoryListItem.setDispatchTime(object.getString(getResources().getString(R.string.server_key_dispatchTime)));
-                sendHistoryListItem.setSenderCity(object.getString(getResources().getString(R.string.server_key_senderCity)));
-                sendHistoryListItem.setSenderState(object.getString(getResources().getString(R.string.server_key_senderState)));
-                sendHistoryListItem.setSenderMo(object.getString(getResources().getString(R.string.server_key_senderMo)));
-                sendHistoryListItem.setSenderLand(object.getString(getResources().getString(R.string.server_key_senderLand)));
-                sendHistoryListItem.setReceiverCity(object.getString(getResources().getString(R.string.server_key_receiverCity)));
-                sendHistoryListItem.setReceiverState(object.getString(getResources().getString(R.string.server_key_receiverState)));
-                sendHistoryListItem.setReceiverMo(object.getString(getResources().getString(R.string.server_key_receiverMo)));
-                sendHistoryListItem.setReceiverLand(object.getString(getResources().getString(R.string.server_key_receiverLand)));
-                GetSendHistoryList.getInstance().itemsInListSends.add(sendHistoryListItem);
-            }
-            listViewHistory.setAdapter(adapter);
+        String success;
+        try {
+            JSONObject jsonObjectSuccess = new JSONObject(result);
+            success = jsonObjectSuccess.getString(getResources().getString(R.string.server_key_success));
         } catch (JSONException e) {
+            success ="0";
             e.printStackTrace();
         }
+
+        if (success.equals("1")){
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                JSONArray jsonArrayListSend = jsonObject.getJSONArray(getResources().getString(R.string.server_key_outgoing));
+
+                int len1 = jsonArrayListSend.length();
+                for (int i=0;i<len1;i++){
+                    ItemsInListSend sendHistoryListItem = new ItemsInListSend();
+                    JSONObject object = jsonArrayListSend.getJSONObject(i);
+                    sendHistoryListItem.setSenderId(object.getString(getResources().getString(R.string.server_key_senderId)));
+                    sendHistoryListItem.setReceiverId(object.getString(getResources().getString(R.string.server_key_receiverId)));
+                    sendHistoryListItem.setOrderNumber(object.getString(getResources().getString(R.string.server_key_orderNumber)));
+                    sendHistoryListItem.setAddress(object.getString(getResources().getString(R.string.server_key_address)));
+                    sendHistoryListItem.setPincode(object.getString(getResources().getString(R.string.server_key_pincode)));
+                    sendHistoryListItem.setTime(object.getString(getResources().getString(R.string.server_key_time)));
+                    sendHistoryListItem.setLandmark(object.getString(getResources().getString(R.string.server_key_landmark)));
+                    sendHistoryListItem.setSize(object.getString(getResources().getString(R.string.server_key_size)));
+                    sendHistoryListItem.setWeight(object.getString(getResources().getString(R.string.server_key_weight)));
+                    sendHistoryListItem.setImage(object.getString(getResources().getString(R.string.server_key_image)));
+                    sendHistoryListItem.setSenderAd(object.getString(getResources().getString(R.string.server_key_senderAd)));
+                    sendHistoryListItem.setSender(object.getString(getResources().getString(R.string.server_key_sender)));
+                /*sendHistoryListItem.setSenderPin(object.getString(getResources().getString(R.string.server_key_senderPin)));*/
+                    sendHistoryListItem.setReceiver(object.getString(getResources().getString(R.string.server_key_receiver)));
+                    sendHistoryListItem.setType(object.getString(getResources().getString(R.string.server_key_type)));
+                    sendHistoryListItem.setTimeline(object.getString(getResources().getString(R.string.server_key_timeline)));
+                    sendHistoryListItem.setLandmark(object.getString(getResources().getString(R.string.server_key_landmark)));
+                    sendHistoryListItem.setDispatchTime(object.getString(getResources().getString(R.string.server_key_dispatchTime)));
+                    sendHistoryListItem.setSenderCity(object.getString(getResources().getString(R.string.server_key_senderCity)));
+                    sendHistoryListItem.setSenderState(object.getString(getResources().getString(R.string.server_key_senderState)));
+                    sendHistoryListItem.setSenderMo(object.getString(getResources().getString(R.string.server_key_senderMo)));
+                    sendHistoryListItem.setSenderLand(object.getString(getResources().getString(R.string.server_key_senderLand)));
+                    sendHistoryListItem.setReceiverCity(object.getString(getResources().getString(R.string.server_key_receiverCity)));
+                    sendHistoryListItem.setReceiverState(object.getString(getResources().getString(R.string.server_key_receiverState)));
+                    sendHistoryListItem.setReceiverMo(object.getString(getResources().getString(R.string.server_key_receiverMo)));
+                    sendHistoryListItem.setReceiverLand(object.getString(getResources().getString(R.string.server_key_receiverLand)));
+                    GetSendHistoryList.getInstance().itemsInListSends.add(sendHistoryListItem);
+                }
+                listViewHistory.setAdapter(adapter);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }else {
+
+        }
+
 
 
     }

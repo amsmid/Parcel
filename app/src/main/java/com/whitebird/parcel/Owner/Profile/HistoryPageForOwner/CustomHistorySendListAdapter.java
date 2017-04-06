@@ -55,24 +55,21 @@ class CustomHistorySendListAdapter extends BaseAdapter {
         TextView textViewSenderAddress = (TextView)convertView.findViewById(R.id.owner_history_send_ad_model_edit_sender_address);
         TextView textViewAddress = (TextView)convertView.findViewById(R.id.owner_history_send_ad_model_edit_address);
         TextView textViewOrderNo = (TextView)convertView.findViewById(R.id.owner_history_send_ad_model_edit_order_no);
-        TextView textViewStatus = (TextView)convertView.findViewById(R.id.owner_history_send_ad_model_edit_dispatch_time);
         CardView cardView = (CardView)convertView.findViewById(R.id.owner_card_view_history_send_ad_list);
         String senderAddress = itemsInList.getSenderAd()+","+
+                itemsInList.getSenderLand()+","+
                 itemsInList.getSenderCity()+","+
                 itemsInList.getSenderState()+","+
-                itemsInList.getSenderLand()+","+
                 itemsInList.getSenderPin();
         String address = itemsInList.getAddress()+","+
+                itemsInList.getLandmark()+","+
                 itemsInList.getReceiverCity()+","+
                 itemsInList.getReceiverState()+","+
-                itemsInList.getAddress()+","+
                 itemsInList.getPincode();
         String orderNo = itemsInList.getOrderNumber();
-        String status = itemsInList.getDispatchTime();
         textViewSenderAddress.setText(senderAddress);
         textViewAddress.setText(address);
         textViewOrderNo.setText(orderNo);
-        textViewStatus.setText(status);
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -31,14 +31,14 @@ public class ClsFullReceiveHistoryListView extends AppCompatActivity {
         position = intent.getIntExtra("position",0);
         itemsInList = GetReceiveHistoryList.getInstance().itemsInListReceives.get(position);
         senderAddress = itemsInList.getSenderAd()+","+
+                itemsInList.getSenderLand()+","+
                 itemsInList.getSenderCity()+","+
                 itemsInList.getSenderState()+","+
-                itemsInList.getSenderLand()+","+
                 itemsInList.getSenderPin();
         address = itemsInList.getAddress()+","+
+                itemsInList.getReceiverLand()+","+
                 itemsInList.getReceiverCity()+","+
                 itemsInList.getReceiverState()+","+
-                itemsInList.getAddress()+","+
                 itemsInList.getPincode();
         dispatchTime = itemsInList.getDispatchTime();
         orderNo = itemsInList.getOrderNumber();

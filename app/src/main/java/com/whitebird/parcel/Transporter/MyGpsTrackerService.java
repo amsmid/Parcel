@@ -84,7 +84,6 @@ public class MyGpsTrackerService extends IntentService implements LocationListen
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        Log.d("GpsTrack","Start");
         getLocation();
     }
 
@@ -170,13 +169,10 @@ public class MyGpsTrackerService extends IntentService implements LocationListen
         if (location != null) {
             latitude = location.getLatitude();
             longitude = location.getLongitude();
-            Log.d("LAT", String.valueOf(latitude));
-            Log.d("Lng", String.valueOf(longitude));
             sharedPref = this.getSharedPreferences(MY_LOGIN_USER_DATA,Context.MODE_PRIVATE);
             String data = sharedPref.getString(getResources().getString(R.string.key_uid),"");
 
             String onlineKey = getResources().getString(R.string.locationSendKey);
-            Log.d("uid", data);
             HashMap<String,String> hashMapData = new HashMap<String, String>();
             hashMapData.put("uid",data);
             hashMapData.put("lat", String.valueOf(latitude));
@@ -383,6 +379,6 @@ public class MyGpsTrackerService extends IntentService implements LocationListen
 
     @Override
     public void Result(String result, String keyOnline) {
-        Log.d("GpsResult",result);
+
     }
 }

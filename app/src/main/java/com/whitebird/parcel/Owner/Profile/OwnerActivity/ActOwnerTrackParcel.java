@@ -1,6 +1,7 @@
 package com.whitebird.parcel.Owner.Profile.OwnerActivity;
 
 import android.app.Activity;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,42 +56,60 @@ public class ActOwnerTrackParcel extends AppCompatActivity implements AbsListVie
         public void Result(String result, String keyOnline) {
             Log.d("ResultFragmePrc",result);
 
+            String success;
             try {
-                JSONObject jsonObject = new JSONObject(result);
-                JSONArray jsonArrayListProcessing = jsonObject.getJSONArray(getResources().getString(R.string.server_key_outgoing));
-
-                int len1 = jsonArrayListProcessing.length();
-                for (int i=0;i<len1;i++){
-                    ProcessingListItem processingListItem = new ProcessingListItem();
-                    JSONObject object = jsonArrayListProcessing.getJSONObject(i);
-                    processingListItem.setTransId(object.getString(getResources().getString(R.string.server_key_transId)));
-                    processingListItem.setTransName(object.getString(getResources().getString(R.string.server_key_transName)));
-                    processingListItem.setTransMobile(object.getString(getResources().getString(R.string.server_key_transMobile)));
-                    processingListItem.setSenderId(object.getString(getResources().getString(R.string.server_key_senderId)));
-                    processingListItem.setSender(object.getString(getResources().getString(R.string.server_key_sender)));
-                    processingListItem.setReceiverId(object.getString(getResources().getString(R.string.server_key_receiverId)));
-                    processingListItem.setReceiver(object.getString(getResources().getString(R.string.server_key_receiver)));
-                    processingListItem.setOrderNumber(object.getString(getResources().getString(R.string.server_key_orderNumber)));
-                    processingListItem.setAddress(object.getString(getResources().getString(R.string.server_key_address)));
-                    processingListItem.setType(object.getString(getResources().getString(R.string.server_key_type)));
-                    processingListItem.setPincode(object.getString(getResources().getString(R.string.server_key_pincode)));
-                    processingListItem.setTime(object.getString(getResources().getString(R.string.server_key_time)));
-                    processingListItem.setPickupTime(object.getString(getResources().getString(R.string.server_key_pickupTime)));
-                    processingListItem.setTimeline(object.getString(getResources().getString(R.string.server_key_timeline)));
-                    processingListItem.setLandmark(object.getString(getResources().getString(R.string.server_key_landmark)));
-                    processingListItem.setSize(object.getString(getResources().getString(R.string.server_key_size)));
-                    processingListItem.setWeight(object.getString(getResources().getString(R.string.server_key_weight)));
-                    processingListItem.setDispatchTime(object.getString(getResources().getString(R.string.server_key_dispatchTime)));
-                    processingListItem.setImage(object.getString(getResources().getString(R.string.server_key_image)));
-                    processingListItem.setCityName(object.getString(getResources().getString(R.string.server_key_cityName)));
-                    processingListItem.setStateName(object.getString(getResources().getString(R.string.server_key_stateName)));
-                    /*processingListItem.setReceiverMo(object.getString(getResources().getString(R.string.server_key_receiverMo)));*/
-                    GetProcessingListOwner.getInstance().processingListItems.add(processingListItem);
-                }
-                listViewProcessing.setAdapter(adapter);
+                JSONObject jsonObjectSuccess = new JSONObject(result);
+                success = jsonObjectSuccess.getString(getResources().getString(R.string.server_key_success));
             } catch (JSONException e) {
+                success ="0";
                 e.printStackTrace();
             }
+
+            if (success.equals("1")){
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    JSONArray jsonArrayListProcessing = jsonObject.getJSONArray(getResources().getString(R.string.server_key_outgoing));
+
+                    int len1 = jsonArrayListProcessing.length();
+                    for (int i=0;i<len1;i++){
+                        ProcessingListItem processingListItem = new ProcessingListItem();
+                        JSONObject object = jsonArrayListProcessing.getJSONObject(i);
+                        processingListItem.setTransId(object.getString(getResources().getString(R.string.server_key_transId)));
+                        processingListItem.setTransName(object.getString(getResources().getString(R.string.server_key_transName)));
+                        processingListItem.setTransMobile(object.getString(getResources().getString(R.string.server_key_transMobile)));
+                        processingListItem.setSenderId(object.getString(getResources().getString(R.string.server_key_senderId)));
+                        processingListItem.setSender(object.getString(getResources().getString(R.string.server_key_sender)));
+                        processingListItem.setReceiverId(object.getString(getResources().getString(R.string.server_key_receiverId)));
+                        processingListItem.setReceiver(object.getString(getResources().getString(R.string.server_key_receiver)));
+                        processingListItem.setOrderNumber(object.getString(getResources().getString(R.string.server_key_orderNumber)));
+                        processingListItem.setAddress(object.getString(getResources().getString(R.string.server_key_address)));
+                        processingListItem.setType(object.getString(getResources().getString(R.string.server_key_type)));
+                        processingListItem.setPincode(object.getString(getResources().getString(R.string.server_key_pincode)));
+                        processingListItem.setTime(object.getString(getResources().getString(R.string.server_key_time)));
+                        processingListItem.setPickupTime(object.getString(getResources().getString(R.string.server_key_pickupTime)));
+                        processingListItem.setTimeline(object.getString(getResources().getString(R.string.server_key_timeline)));
+                        processingListItem.setLandmark(object.getString(getResources().getString(R.string.server_key_landmark)));
+                        processingListItem.setSize(object.getString(getResources().getString(R.string.server_key_size)));
+                        processingListItem.setWeight(object.getString(getResources().getString(R.string.server_key_weight)));
+                        processingListItem.setDispatchTime(object.getString(getResources().getString(R.string.server_key_dispatchTime)));
+                        processingListItem.setImage(object.getString(getResources().getString(R.string.server_key_image)));
+                        processingListItem.setCityName(object.getString(getResources().getString(R.string.server_key_cityName)));
+                        processingListItem.setStateName(object.getString(getResources().getString(R.string.server_key_stateName)));
+                    /*processingListItem.setReceiverMo(object.getString(getResources().getString(R.string.server_key_receiverMo)));*/
+                        GetProcessingListOwner.getInstance().processingListItems.add(processingListItem);
+                    }
+                    listViewProcessing.setAdapter(adapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }else {
+                AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+                dialog.setTitle("Check Connection");
+                dialog.setPositiveButton("Ok",null);
+                dialog.show();
+            }
+
+
 
         }
 

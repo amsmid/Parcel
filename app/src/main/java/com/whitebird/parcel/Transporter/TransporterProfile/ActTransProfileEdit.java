@@ -1,18 +1,24 @@
 package com.whitebird.parcel.Transporter.TransporterProfile;
 
+import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.whitebird.parcel.BackgroundTaskForResult;
@@ -21,21 +27,31 @@ import com.whitebird.parcel.R;
 import com.whitebird.parcel.ResultInString;
 import com.whitebird.parcel.SharedPreferenceUserData;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ActTransProfileEdit extends AppCompatActivity implements ResultInString {
 
     String stringName,stringEmail,stringMobNo,stringPsswd,stringConPsswd,stringAddress,stringPinCode,stringState,stringCity,stringCityArea,stringVehicle;
-    EditText editTextName,editTextEmail,editTextMobNo,editTextPsswd,editTextAddress,editTextPinCode,editTextState,editTextCity;
+    EditText editTextName,editTextEmail,editTextMobNo,editTextPsswd,editTextAddress,editTextPinCode;
     SharedPreferenceUserData sharedPreferenceUserData;
     ClsStoreAllDataOfUser clsStoreAllDataOfUser;
     String oldPassword,newPassword,conPassword;
     Spinner spinnerVehicle,spinnerCityArea;
     String uid;
     EditText editTextOldPassword,editTextNewPassword,editTextConPassword;
+    TextView editTextState;
+    Spinner editTextCity;
+    int go;
+    AlertDialog.Builder builder;
+    Dialog dialogDis;
+    View viewSearch;
+    ListView listViewState;
+    ArrayList<String> stateNames,stateId,cityName,cityId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +62,8 @@ public class ActTransProfileEdit extends AppCompatActivity implements ResultInSt
         editTextPsswd = (EditText)findViewById(R.id.trans_prof_edit_profile_o_password);
         editTextAddress = (EditText)findViewById(R.id.trans_prof_edit_profile_o_address);
         editTextPinCode = (EditText)findViewById(R.id.trans_prof_edit_profile_o_pincode);
-        editTextState = (EditText)findViewById(R.id.trans_prof_edit_profile_o_state);
-        editTextCity = (EditText)findViewById(R.id.trans_prof_edit_profile_o_city);
+        editTextState = (TextView) findViewById(R.id.trans_prof_edit_profile_o_state);
+        editTextCity = (Spinner) findViewById(R.id.trans_prof_edit_profile_o_city);
         spinnerCityArea = (Spinner)findViewById(R.id.trans_prof_edit_select_city_area);
         spinnerVehicle = (Spinner)findViewById(R.id.trans_prof_edit_select_vehicle);
 
@@ -80,8 +96,25 @@ public class ActTransProfileEdit extends AppCompatActivity implements ResultInSt
         editTextAddress.setText(sharedPreferenceUserData.getMyLoginUserData(getResources().getString(R.string.key_address)));
         editTextPinCode.setText(sharedPreferenceUserData.getMyLoginUserData(getResources().getString(R.string.key_pincode)));
         editTextState.setText(sharedPreferenceUserData.getMyLoginUserData(getResources().getString(R.string.key_stateName)));
-        editTextCity.setText(sharedPreferenceUserData.getMyLoginUserData(getResources().getString(R.string.key_cityName)));
 
+        String strcityName = sharedPreferenceUserData.getMyLoginUserData(getString(R.string.key_cityName));
+        ArrayList<String> cityName = new ArrayList<>();
+        cityName.add(strcityName);
+        ArrayAdapter<String> arrayAdapterCityName = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, android.R.id.text1, cityName);
+        editTextCity.setAdapter(arrayAdapterCityName);
+
+        editTextState.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                go = 1;
+                String onlineKey = getResources().getString(R.string.getStateName);
+                HashMap<String,String> hashMapData = new HashMap<>();
+                hashMapData.put(getResources().getString(R.string.server_key_stateId),"0");
+                new BackgroundTaskForResult(hashMapData, onlineKey, ActTransProfileEdit.this).execute();
+                editTextState.setError(null);
+                ListBuilderOnPopUp();
+            }
+        });
         switch (sharedPreferenceUserData.getMyLoginUserData(getResources().getString(R.string.key_interCity))){
             case "0":
                 spinnerCityArea.setSelection(0);
@@ -102,6 +135,17 @@ public class ActTransProfileEdit extends AppCompatActivity implements ResultInSt
                 spinnerCityArea.setSelection(2);
                 break;
         }
+
+    }
+
+    @SuppressLint("InflateParams")
+    private void ListBuilderOnPopUp() {
+        builder = new AlertDialog.Builder(this);
+        LayoutInflater layout = getLayoutInflater();
+        viewSearch = layout.inflate(R.layout.search_list_layout, null);
+        SearchView sv = (SearchView)viewSearch.findViewById(R.id.search_view_for_hub_list);
+        sv.setVisibility(View.GONE);
+        listViewState = (ListView) viewSearch.findViewById(R.id.list_of_hub_item_in_popup);
 
     }
 
@@ -199,7 +243,7 @@ public class ActTransProfileEdit extends AppCompatActivity implements ResultInSt
         stringAddress = editTextAddress.getText().toString();
         stringPinCode = editTextPinCode.getText().toString();
         stringState = editTextState.getText().toString();
-        stringCity = editTextCity.getText().toString();
+        stringCity = editTextCity.getSelectedItem().toString();
         stringCityArea = spinnerCityArea.getSelectedItem().toString();
         stringVehicle = spinnerVehicle.getSelectedItem().toString();
         if (stringCityArea.equals("Inter-City")){
@@ -285,56 +329,123 @@ public class ActTransProfileEdit extends AppCompatActivity implements ResultInSt
         }else {
             editTextPinCode.setError(null);
         }
-        if (stringState.isEmpty() || stringState.length() < 4 || stringState.length() > 15) {
+        if (stringState.isEmpty()) {
             editTextState.setError("Put Correct State");
             valid = false;
         }else {
             editTextState.setError(null);
         }
-        if (stringCity.isEmpty() || stringCity.length() < 4 || stringCity.length() > 15) {
+        /*if (stringCity.isEmpty() || stringCity.length() < 4 || stringCity.length() > 15) {
             editTextCity.setError("Put Correct City");
             valid = false;
         }else {
             editTextCity.setError(null);
-        }
+        }*/
         return valid;
     }
 
     @Override
     public void Result(String result,String keyOnline) {
-        String success ="0";
-        Log.d("resultOnProfileEdit",result);
-        if (keyOnline.equals(getResources().getString(R.string.updateProfileKey))) {
-            sharedPreferenceUserData = new SharedPreferenceUserData(this);
-            sharedPreferenceUserData.SaveSharedData(getResources().getString(R.string.server_key_result), result);
-            clsStoreAllDataOfUser = new ClsStoreAllDataOfUser(this);
-            clsStoreAllDataOfUser.SetUserType("2");
-            success = clsStoreAllDataOfUser.GetResult();
-        }else if (keyOnline.equals(getResources().getString(R.string.updateProfilePasswordKey))){
-            JSONObject jsonObject = null;
-            try {
-                jsonObject = new JSONObject(result);
-                success=jsonObject.getString(getResources().getString(R.string.server_key_success));
-            } catch (JSONException e) {
-                success="0";
-                e.printStackTrace();
-            }
-            //JSONObject json_success = jsonObject.getJSONObject("success");
-
+        String successRead ="0";
+        String success;
+        try {
+            JSONObject jsonObjectSuccess = new JSONObject(result);
+            success = jsonObjectSuccess.getString(getResources().getString(R.string.server_key_success));
+        } catch (JSONException e) {
+            success ="0";
+            e.printStackTrace();
         }
-        Log.d("successOnProfileEdit",success);
-        switch (success){
-            case "1":
-                Toast.makeText(getBaseContext(), "Profile Changes Successfully", Toast.LENGTH_SHORT).show();
-                StartProfileViewPage();
-                break;
-            default:
-                new AlertDialog.Builder(ActTransProfileEdit.this)
-                        .setMessage("Profile Not Save")
-                        .setCancelable(false)
-                        .setNegativeButton("Ok", null)
-                        .show();
-                Toast.makeText(getBaseContext(), "Profile Not Save", Toast.LENGTH_SHORT).show();
+
+        if (success.equals("1")){
+            if (keyOnline.equals(getResources().getString(R.string.updateProfileKey))) {
+                sharedPreferenceUserData = new SharedPreferenceUserData(this);
+                sharedPreferenceUserData.SaveSharedData(getResources().getString(R.string.server_key_result), result);
+                clsStoreAllDataOfUser = new ClsStoreAllDataOfUser(this);
+                clsStoreAllDataOfUser.SetUserType("2");
+                successRead = clsStoreAllDataOfUser.GetResult();
+            }else if (keyOnline.equals(getResources().getString(R.string.updateProfilePasswordKey))){
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(result);
+                    successRead=jsonObject.getString(getResources().getString(R.string.server_key_success));
+                } catch (JSONException e) {
+                    successRead="0";
+                    e.printStackTrace();
+                }
+                //JSONObject json_success = jsonObject.getJSONObject("success");
+
+            } else if (keyOnline.equals(getResources().getString(R.string.getStateName))) {
+                try {
+                    stateNames = new ArrayList<>();
+                    stateId = new ArrayList<>();
+                    cityName = new ArrayList<>();
+                    cityId = new ArrayList<>();
+                    JSONObject jsonObject = new JSONObject(result);
+                    if (go == 2) {
+                        JSONArray city = jsonObject.getJSONArray("City");
+                        int len2 = city.length();
+                        for (int i = 0; i < len2; i++) {
+                            JSONObject object = city.getJSONObject(i);
+                            cityName.add(object.getString("cityName"));
+                            cityId.add(object.getString("cityId"));
+                        }
+                        ArrayAdapter<String> arrayAdapterCityName = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, cityName);
+                        editTextCity.setAdapter(arrayAdapterCityName);
+                    } else if (go == 1) {
+                        JSONArray state = jsonObject.getJSONArray(getResources().getString(R.string.server_key_State));
+                        int len1 = state.length();
+                        for (int i = 0; i < len1; i++) {
+                            JSONObject object = state.getJSONObject(i);
+                            stateNames.add(object.getString("stateName"));
+                            stateId.add(object.getString("stateId"));
+                        }
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, stateNames);
+                        listViewState.setAdapter(adapter);
+                        listViewState.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                go = 2;
+                                editTextState.setText(stateNames.get(position));
+                                String onlineKey = getResources().getString(R.string.getStateName);
+                                HashMap<String, String> hashMapData = new HashMap<>();
+                                hashMapData.put(getResources().getString(R.string.server_key_stateId), stateId.get(position));
+                                new BackgroundTaskForResult(hashMapData, onlineKey, ActTransProfileEdit.this).execute();
+                                dialogDis.dismiss();
+                            }
+                        });
+                        //Set All List Here And Search it
+                        builder.setView(viewSearch);
+                        builder.setNegativeButton("Cancel", null);
+                        dialogDis = builder.create();
+                        dialogDis.show();
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }else {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            dialog.setTitle("Check Connection");
+            dialog.setPositiveButton("Ok",null);
+            dialog.show();
+        }
+
+        if (keyOnline.equals(getResources().getString(R.string.updateProfileKey))||keyOnline.equals(getResources().getString(R.string.updateProfileKey))) {
+            switch (successRead) {
+                case "1":
+                    Toast.makeText(getBaseContext(), "Profile Changes Successfully", Toast.LENGTH_SHORT).show();
+                    StartProfileViewPage();
+                    break;
+                default:
+                    new AlertDialog.Builder(ActTransProfileEdit.this)
+                            .setMessage("Profile Not Save")
+                            .setCancelable(false)
+                            .setNegativeButton("Ok", null)
+                            .show();
+                    Toast.makeText(getBaseContext(), "Profile Not Save", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

@@ -53,12 +53,12 @@ class CustomReceivedListOfOwnerAdapter extends BaseAdapter {
         TextView textViewStatus = (TextView)convertView.findViewById(R.id.received_model_edit_status);
         CardView cardView = (CardView)convertView.findViewById(R.id.card_view_received_list);
         String address = GetReceivedListOwner.getInstance().receivedListItems.get(position).getAddress()+","+
-                GetReceivedListOwner.getInstance().receivedListItems.get(position).getLandmark()+","+
+                GetReceivedListOwner.getInstance().receivedListItems.get(position).getLandmark()+"\n"+
                 GetReceivedListOwner.getInstance().receivedListItems.get(position).getCityName()+","+
-                GetReceivedListOwner.getInstance().receivedListItems.get(position).getStateName()+","+
+                GetReceivedListOwner.getInstance().receivedListItems.get(position).getStateName()+"\n"+
                 GetReceivedListOwner.getInstance().receivedListItems.get(position).getPincode();
         String orderNo = GetReceivedListOwner.getInstance().receivedListItems.get(position).getOrderNumber();
-        String status = GetReceivedListOwner.getInstance().receivedListItems.get(position).getStatus();
+        String status = GetReceivedListOwner.getInstance().receivedListItems.get(position).getTransName();
         textViewAddress.setText(address);
         textViewOrderNo.setText(orderNo);
         textViewStatus.setText(status);
@@ -72,6 +72,5 @@ class CustomReceivedListOfOwnerAdapter extends BaseAdapter {
         });
         return convertView;
     }
-
 }
 
