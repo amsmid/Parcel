@@ -7,7 +7,7 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/history_owner_send_list_view">
-
+        android:id="@+id/history_owner_send_list_view"
+        android:divider="@null">
     </ListView>
 </LinearLayout>

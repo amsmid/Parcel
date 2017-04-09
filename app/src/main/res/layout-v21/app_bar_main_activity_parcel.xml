@@ -33,40 +33,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/card_view_welcome_note"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                card_view:cardBackgroundColor="@color/white"
-                card_view:cardCornerRadius="4dp"
-                card_view:cardElevation="2dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="20dp">
-
-                    <TextView
-                        android:id="@+id/textView_welcome_note"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:drawableEnd="@drawable/parcel_box_logo"
-                        android:drawableLeft="@drawable/welcome_sign_logo"
-                        android:drawableRight="@drawable/parcel_box_logo"
-                        android:drawableStart="@drawable/welcome_sign_logo"
-                        android:gravity="center"
-                        android:minWidth="88dp"
-                        android:padding="20dp"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:text="@string/hub"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="40sp"
-                        tools:ignore="RtlHardcoded" />
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
                 android:id="@+id/card_view_create_button"
@@ -78,30 +44,34 @@
                 android:layout_marginTop="10dp"
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
-                card_view:cardBackgroundColor="@color/colorPrimary"
+                card_view:cardBackgroundColor="@color/white"
                 card_view:cardCornerRadius="4dp"
-                card_view:cardElevation="2dp"
+                card_view:cardElevation="5dp"
                 card_view:theme="@style/MyButton">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:id="@+id/iv_create_parcel_image"
+                        android:src="@drawable/create_parcel"
+                        android:layout_centerHorizontal="true"/>
                     <TextView
                         android:id="@+id/textView_create_button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/colorPrimary"
+                        android:layout_below="@+id/iv_create_parcel_image"
                         android:layout_centerInParent="true"
-                        android:drawableLeft="@drawable/create_parcel_logo"
-                        android:drawableStart="@drawable/create_parcel_logo"
                         android:gravity="center"
                         android:minWidth="88dp"
-                        android:padding="20dp"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
+                        android:padding="15dp"
                         android:text="@string/create_parcel"
                         android:textColor="@color/white"
-                        android:textSize="20sp"
+                        android:textSize="17sp"
                         tools:ignore="RtlHardcoded" />
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
@@ -117,30 +87,34 @@
                 android:layout_marginTop="10dp"
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
-                card_view:cardBackgroundColor="@color/colorPrimary"
+                card_view:cardBackgroundColor="@color/white"
                 card_view:cardCornerRadius="4dp"
-                card_view:cardElevation="2dp"
+                card_view:cardElevation="5dp"
                 card_view:theme="@style/MyButton">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:id="@+id/iv_manage_parcel_image"
+                        android:src="@drawable/manage_parcel"
+                        android:layout_centerHorizontal="true"/>
                     <TextView
                         android:id="@+id/textView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:drawableLeft="@drawable/manage_parcel_logo"
-                        android:drawableStart="@drawable/manage_parcel_logo"
+                        android:layout_below="@+id/iv_manage_parcel_image"
                         android:gravity="center"
                         android:minWidth="88dp"
-                        android:padding="20dp"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
+                        android:background="@color/colorPrimary"
                         android:text="@string/manage_parcel"
                         android:textColor="@color/white"
-                        android:textSize="20sp"
+                        android:textSize="17sp"
+                        android:padding="15dp"
                         tools:ignore="RtlHardcoded" />
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
@@ -155,31 +129,34 @@
                 android:layout_marginTop="10dp"
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
-                card_view:cardBackgroundColor="@color/colorPrimary"
+                card_view:cardBackgroundColor="@color/white"
                 card_view:cardCornerRadius="4dp"
-                card_view:cardElevation="2dp"
+                card_view:cardElevation="5dp"
                 card_view:theme="@style/MyButton">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:id="@+id/iv_track_parcel_image"
+                        android:src="@drawable/track_parcel"
+                        android:layout_centerHorizontal="true"/>
                     <TextView
                         android:id="@+id/textView_track_button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:drawableLeft="@drawable/map_car_image"
-                        android:drawableStart="@drawable/map_car_image"
+                        android:layout_below="@+id/iv_track_parcel_image"
                         android:gravity="center"
                         android:minWidth="88dp"
-                        android:padding="20dp"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:singleLine="true"
+                        android:background="@color/colorPrimary"
+                        android:padding="15dp"
                         android:text="@string/track_parcel"
                         android:textColor="@color/white"
-                        android:textSize="20sp"
+                        android:textSize="17sp"
                         tools:ignore="RtlHardcoded" />
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
