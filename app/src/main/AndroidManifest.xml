@@ -127,7 +127,15 @@
         <activity android:name=".Transporter.TransHistoryPage.ActTransHistory" />
         <activity android:name=".Transporter.TransHistoryPage.ActTransHistoryFullView" />
         <activity android:name=".Owner.Profile.HistoryPageForOwner.ClsFullReceiveHistoryListView" />
-        <activity android:name=".Transporter.TransMapView"></activity>
+        <activity android:name=".Transporter.TransMapView" />
+        <activity
+            android:name=".AddParcelActivity.MainActivityCreateNewParcel"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AddParcelActivity.CreateParcelTakeImageAndData"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AddParcelActivity.ActCreateParcelTakeDates" />
+        <activity android:name=".AddParcelActivity.ActCreateParcelTakeWeightSize"></activity>
     </application>
 
 </manifest>

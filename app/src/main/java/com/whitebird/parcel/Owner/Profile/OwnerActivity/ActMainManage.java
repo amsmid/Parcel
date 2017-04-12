@@ -43,6 +43,7 @@ public class ActMainManage extends AppCompatActivity {
         viewPagerForMainFragments = (ViewPager)findViewById(R.id.view_pager_for_main_owner_manage_view);
         viewPagerForMainFragments.setAdapter(new CustomPagerAdapterForOwner(getSupportFragmentManager(),tabLayout.getTabCount()));
         viewPagerForMainFragments.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

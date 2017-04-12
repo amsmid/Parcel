@@ -102,7 +102,6 @@ public class MainActivityAddNewParcel extends AppCompatActivity implements Resul
 
         setContentView(R.layout.activity_main_add_new_parcel);
 
-
         textViewHubSelection = (Button) findViewById(R.id.list_item_of_hub_select);
         textViewHubSelectionAddress = (TextView) findViewById(R.id.list_item_of_hub_select_address);
         imageViewItemSelected = (ImageView)findViewById(R.id.image_of_item_selected);
@@ -678,8 +677,9 @@ public class MainActivityAddNewParcel extends AppCompatActivity implements Resul
                 convertView = layoutInflater.inflate(R.layout.list_view_of_hub_model,null);
             }
 
-
             final TextView textViewName = (TextView)convertView.findViewById(R.id.tv_history_list_send_name_hub);
+
+
             textViewName.setText(arrayList.get(position).getName());
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override

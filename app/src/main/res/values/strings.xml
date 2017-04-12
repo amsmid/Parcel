@@ -59,7 +59,6 @@
     </string-array>
 
     <string-array name="new_item_type">
-        <item>Bike</item>
         <item>Documents</item>
         <item>Small Stuff</item>
         <item>Medium Stuff</item>
@@ -167,7 +166,7 @@
     <string name="server_key_transName">transName</string>
     <string name="server_key_transMobile">transMobile</string>
     <string name="server_key_stateId">stateId</string>
-    <string name="date_and_time_for_parcel_should_dispatch">Date And Time For Parcel Should Dispatch</string>
+    <string name="date_and_time_for_parcel_should_dispatch">Date And Time For Parcel Should Dispatch From Your Hub</string>
     <string name="parcel_timeline_for_reach_destination">Parcel Timeline For Reach Destination</string>
     <string name="welcome_to_parcel">Welcome To Parcel</string>
     <string name="hub">Hub</string>

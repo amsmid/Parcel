@@ -1,6 +1,7 @@
 package com.whitebird.parcel.Owner.Profile.OwnerActivity;
 
 import android.Manifest;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -22,6 +23,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.whitebird.parcel.AddParcelActivity.MainActivityAddNewParcel;
+import com.whitebird.parcel.AddParcelActivity.MainActivityCreateNewParcel;
 import com.whitebird.parcel.Owner.Profile.HistoryPageForOwner.MainActivityHistoryList;
 import com.whitebird.parcel.Owner.Profile.ProfileActivity.ClsProfileDisplay;
 import com.whitebird.parcel.R;
@@ -53,7 +55,7 @@ public class ActMainActivityParcelOwner extends AppCompatActivity implements Nav
             cardViewCreate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    StartCreateActivity();
+                    StartCreateActivity2();
                 }
             });
             cardViewManage.setOnClickListener(new View.OnClickListener() {
@@ -130,6 +132,15 @@ public class ActMainActivityParcelOwner extends AppCompatActivity implements Nav
     private void StartCreateActivity() {
         startActivity(new Intent(ActMainActivityParcelOwner.this, MainActivityAddNewParcel.class));
         finish();
+    }
+
+    private void StartCreateActivity2() {
+        Bundle bndlanimation;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.first_animation, R.anim.second_animation).toBundle();
+            startActivity(new Intent(this, MainActivityCreateNewParcel.class), bndlanimation);
+        }else
+            startActivity(new Intent(this, MainActivityCreateNewParcel.class));
     }
 
     private void StartMainManageActivity() {

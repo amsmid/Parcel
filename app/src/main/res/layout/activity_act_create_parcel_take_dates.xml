@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.whitebird.parcel.AddParcelActivity.ActCreateParcelTakeDates">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date_and_time_for_parcel_should_dispatch"
+        android:textSize="19sp"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:id="@+id/tv_hint_date_dispatch"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/date_picker_icon"
+        android:background="@color/colorPrimary"
+        app:layout_constraintTop_toBottomOf="@+id/tv_hint_date_dispatch"
+        app:layout_constraintRight_toRightOf="@+id/date_picker_view"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/calendar_icon"
+        android:contentDescription="@string/date_and_time_for_parcel_should_dispatch"
+        tools:ignore="ContentDescription" />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/date_picker_icon"
+        android:id="@+id/date_picker_view"
+        android:hint="Date"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_hint_date_dispatch"
+        android:textAlignment="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_centerVertical="true"
+        android:textSize="20sp"
+        style="@android:style/Widget.EditText"
+        android:focusableInTouchMode="true"
+        tools:ignore="RtlHardcoded"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/time_picker_icon"
+        android:scaleType="fitXY"
+        android:background="@color/transparentBackground"
+        app:layout_constraintTop_toBottomOf="@+id/date_picker_icon"
+        app:layout_constraintRight_toRightOf="@+id/time_picker_view"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/clock_icon"
+        android:contentDescription="@string/date_and_time_for_parcel_should_dispatch"
+        tools:ignore="ContentDescription" />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/time_picker_view"
+        android:hint="Time"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date_picker_icon"
+        android:textAlignment="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_centerVertical="true"
+        android:textSize="20sp"
+        style="@android:style/Widget.EditText"
+        android:focusableInTouchMode="true"
+        tools:ignore="RtlHardcoded"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/parcel_timeline_for_reach_destination"
+        android:textSize="19sp"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:id="@+id/tv_hint_date_reach_destination"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time_picker_view"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/date_picker_timeline_view"
+        android:hint="Date"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_hint_date_reach_destination"
+        android:textAlignment="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:textSize="20sp"
+        style="@android:style/Widget.EditText"
+        android:focusableInTouchMode="true"
+        tools:ignore="RtlHardcoded"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/date_picker_timeline_icon"
+        android:background="@color/transparentBackground"
+        app:layout_constraintTop_toTopOf="@+id/date_picker_timeline_view"
+        app:layout_constraintRight_toRightOf="@+id/date_picker_timeline_view"
+        app:layout_constraintBottom_toBottomOf="@+id/date_picker_timeline_view"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/calendar_icon"
+        android:contentDescription="@string/date_and_time_for_parcel_should_dispatch"
+        tools:ignore="ContentDescription" />
+
+
+    <ImageButton
+        android:id="@+id/submit_dates_page_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/transparentBackground"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/submit_icon" />
+
+</android.support.constraint.ConstraintLayout>

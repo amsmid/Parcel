@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    tools:context="com.whitebird.parcel.AddParcelActivity.MainActivityCreateNewParcel">
+
+
+    <TextView
+        android:id="@+id/tv_of_create_parcel_hub_list"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="20sp"
+        android:layout_marginTop="5dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:text="Select Parcel Destination Hub Here!"
+        />
+    <android.support.v7.widget.SearchView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:queryHint="Search Destination Hub List"
+        android:padding="5dp"
+        android:id="@+id/search_view_for_hub_list"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_of_create_parcel_hub_list">
+
+    </android.support.v7.widget.SearchView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EmptyList! Try Again"
+        android:textSize="30sp"
+        android:id="@+id/tv_empty_list"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/submit_hub_list_button"
+        app:layout_constraintTop_toBottomOf="@+id/search_view_for_hub_list"/>
+    <ListView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/list_of_hub_item_in_popup"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/submit_hub_list_button"
+        app:layout_constraintTop_toBottomOf="@+id/search_view_for_hub_list">
+    </ListView>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/transparentBackground"
+        android:id="@+id/submit_hub_list_button"
+        android:src="@drawable/submit_icon"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>
